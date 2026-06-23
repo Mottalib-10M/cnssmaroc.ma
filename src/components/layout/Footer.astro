@@ -36,20 +36,20 @@ const year = new Date().getFullYear();
       <div>
         <h3 class="font-semibold text-white mb-3 text-sm uppercase tracking-wider">Informations</h3>
         <ul class="space-y-2 text-sm">
-          <li><a href="/a-propos/" class="hover:text-white transition-colors">A propos</a></li>
-          <li><a href="/mentions-legales/" class="hover:text-white transition-colors">Mentions legales</a></li>
+          <li><a href="/a-propos/" class="hover:text-white transition-colors">À propos</a></li>
+          <li><a href="/mentions-legales/" class="hover:text-white transition-colors">Mentions légales</a></li>
           <li><a href={`mailto:${CONFIG.contact}`} class="hover:text-white transition-colors">{CONFIG.contact}</a></li>
         </ul>
       </div>
     </div>
 
     <div class="border-t border-gray-800 mt-10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-      <p>&copy; {year} {CONFIG.siteName}. Tous droits reserves.</p>
+      <p>&copy; {year} {CONFIG.siteName}. Tous droits réservés.</p>
       <p>Par <a href={CONFIG.author.url} class="text-gray-400 hover:text-white transition-colors">{CONFIG.author.name}</a> ({CONFIG.author.credentials})</p>
     </div>
 
     <p class="mt-4 text-xs text-gray-600 text-center">
-      Les informations fournies sur ce site sont a titre indicatif. Consultez la CNSS ou un expert-comptable pour des calculs officiels.
+      Les informations fournies sur ce site sont à titre indicatif. Consultez la CNSS ou un expert-comptable pour des calculs officiels.
     </p>
   </div>
 </footer>

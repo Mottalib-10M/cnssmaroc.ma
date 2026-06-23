@@ -3,13 +3,13 @@ import Layout from '../components/layout/Layout.astro';
 import { CONFIG } from '../config';
 import { buildBreadcrumbSchema } from '../lib/seo';
 
-const title = 'A propos - CNSS Maroc';
+const title = 'À propos - CNSS Maroc';
 const description = 'Découvrez l\'équipe derrière CNSS Maroc, le site de référence pour les calculateurs de cotisations sociales et simulateurs de retraite au Maroc.';
 
 const schemas = [
   buildBreadcrumbSchema([
     { name: 'Accueil', url: CONFIG.siteUrl + '/' },
-    { name: 'A propos', url: CONFIG.siteUrl + '/a-propos/' },
+    { name: 'À propos', url: CONFIG.siteUrl + '/a-propos/' },
   ]),
 ];
 ---
@@ -19,11 +19,11 @@ const schemas = [
     <nav aria-label="Fil d'Ariane" class="mb-6">
       <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500">
         <li><a href="/" class="hover:text-brand-700">Accueil</a></li>
-        <li class="flex items-center gap-1"><span>/</span><span class="text-gray-800 font-medium">A propos</span></li>
+        <li class="flex items-center gap-1"><span>/</span><span class="text-gray-800 font-medium">À propos</span></li>
       </ol>
     </nav>
 
-    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">A propos de CNSS Maroc</h1>
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">À propos de CNSS Maroc</h1>
 
     <div class="prose prose-gray max-w-none">
       <p><strong>CNSS Maroc</strong> (cnssmaroc.ma) est un site indépendant dédié à la vulgarisation de la protection sociale au Maroc. Notre mission est de rendre accessible à tous les informations relatives aux cotisations CNSS, à la retraite, à l'assurance maladie et aux autres prestations sociales.</p>
