@@ -1,0 +1,50 @@
+---
+import CalculateurLayout from '../layouts/CalculateurLayout.astro';
+import CotisationsCNSS from '../components/calculateurs/CotisationsCNSS';
+import { CONFIG } from '../config';
+
+const title = 'Calculateur cotisations CNSS 2025 - Salarié et employeur';
+const description = 'Calculez toutes les cotisations CNSS 2025 : part salariale, patronale, AMO, retraite et allocations familiales. Résultat détaillé et instantané.';
+const breadcrumbs = [
+  { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+  { name: 'Calculateur cotisations CNSS', url: CONFIG.siteUrl + '/calculateur-cotisations-cnss/' },
+];
+---
+
+<CalculateurLayout
+  title={title}
+  description={description}
+  breadcrumbs={breadcrumbs}
+  appName="Calculateur cotisations CNSS Maroc"
+>
+  <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+    Calculateur de cotisations CNSS 2025
+  </h1>
+  <p class="text-lg text-gray-600 mb-8 max-w-3xl">
+    Entrez votre salaire brut mensuel pour obtenir le détail de toutes les cotisations CNSS : part salariale, part patronale, AMO, retraite et allocations familiales.
+  </p>
+
+  <CotisationsCNSS client:idle />
+
+  <section class="mt-16 prose prose-gray max-w-none">
+    <h2>Comprendre les cotisations CNSS au Maroc</h2>
+
+    <p>Les cotisations à la Caisse Nationale de Sécurité Sociale (CNSS) sont obligatoires pour tous les salariés du secteur privé au Maroc. Elles sont partagées entre l'employeur et le salarié et couvrent différentes branches de la sécurité sociale. Le total des cotisations représente environ 27,83% du salaire brut, dont 6,74% à la charge du salarié et environ 21,09% à la charge de l'employeur.</p>
+
+    <h3>Part salarié : 6,74% du salaire brut</h3>
+
+    <p>Le salarié contribue à trois lignes de cotisation distinctes. Les prestations sociales à court terme représentent 0,52% du salaire, plafonnées à 6 000 DH par mois. L'AMO (Assurance Maladie Obligatoire) représente 2,26% du salaire brut total, sans plafond. La cotisation retraite à long terme s'élève à 3,96%, également plafonnée à 6 000 DH. Ces retenues sont effectuées directement par l'employeur sur le bulletin de paie avant le versement du salaire net.</p>
+
+    <h3>Part employeur : environ 21,09% du salaire brut</h3>
+
+    <p>L'employeur supporte une charge sociale nettement plus importante. Les allocations familiales représentent 6,40% du salaire brut total (déplafonné). Les prestations sociales patronales s'élèvent à 1,05% (plafonnées à 6 000 DH). L'AMO patronale est de 4,11% (déplafonnée). La cotisation retraite patronale atteint 7,93% (plafonnée). Enfin, la taxe de formation professionnelle représente 1,60% (déplafonnée). Le coût total pour l'employeur dépasse donc considérablement le salaire brut affiché.</p>
+
+    <h3>Impact du plafond de 6 000 DH</h3>
+
+    <p>Le plafond de 6 000 DH par mois est un élément central du système CNSS. Pour un salarié gagnant exactement 6 000 DH, toutes les cotisations sont calculées sur l'intégralité du salaire. En revanche, pour un salarié gagnant 15 000 DH par mois, les cotisations plafonnées (prestations sociales et retraite) restent calculées sur 6 000 DH, tandis que les cotisations déplafonnées (AMO, allocations familiales, formation professionnelle) sont calculées sur 15 000 DH. Cela signifie que le taux effectif global diminue à mesure que le salaire augmente au-dessus du plafond.</p>
+
+    <h3>Comment utiliser ce calculateur</h3>
+
+    <p>Entrez simplement votre salaire brut mensuel dans le champ prévu à cet effet. Le calculateur affichera instantanément le détail de chaque ligne de cotisation, avec l'assiette utilisée (salaire brut ou plafond selon le cas), le taux appliqué et le montant correspondant. Vous verrez également le net avant impôt sur le revenu, le coût total pour l'employeur et la répartition en graphique. Si votre salaire dépasse 6 000 DH, une note explicative vous indiquera l'impact du plafonnement sur vos cotisations.</p>
+  </section>
+</CalculateurLayout>

@@ -1,0 +1,126 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import { CONFIG } from '../../config';
+import { buildBreadcrumbSchema, buildArticleSchema } from '../../lib/seo';
+
+const title = 'Guide AMO Maroc 2025 - Assurance Maladie Obligatoire';
+const description = 'Tout savoir sur l\'AMO au Maroc : couverture médicale obligatoire, cotisations, remboursements, CNSS vs CNOPS et le RAMED. Guide complet 2025.';
+const url = CONFIG.siteUrl + '/guides/amo-maroc/';
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+    { name: 'Guides', url: CONFIG.siteUrl + '/guides/cotisations-cnss-maroc/' },
+    { name: 'AMO Maroc', url },
+  ]),
+  buildArticleSchema({
+    title,
+    description,
+    url,
+    datePublished: '2025-01-15',
+    dateModified: '2025-01-15',
+  }),
+];
+---
+
+<Layout title={title} description={description} schema={schemas}>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <nav aria-label="Fil d'Ariane" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-brand-700">Accueil</a></li>
+        <li class="flex items-center gap-1"><span>/</span><a href="/guides/cotisations-cnss-maroc/" class="hover:text-brand-700">Guides</a></li>
+        <li class="flex items-center gap-1"><span>/</span><span class="text-gray-800 font-medium">AMO Maroc</span></li>
+      </ol>
+    </nav>
+
+    <header class="mb-10">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        Guide complet de l'AMO au Maroc (2025)
+      </h1>
+      <p class="text-lg text-gray-600">
+        L'Assurance Maladie Obligatoire expliquée : couverture, cotisations, remboursements, régimes CNSS et CNOPS, et la généralisation de la couverture médicale.
+      </p>
+      <div class="mt-4 flex items-center gap-3 text-sm text-gray-500">
+        <span>Par <a href={CONFIG.author.url} class="text-brand-700 hover:underline">{CONFIG.author.name}</a></span>
+        <span>({CONFIG.author.credentials})</span>
+        <span>- Mis à jour le 15 janvier 2025</span>
+      </div>
+    </header>
+
+    <div class="prose prose-gray max-w-none">
+      <p>L'Assurance Maladie Obligatoire (AMO) est un pilier essentiel du système de protection sociale au Maroc. Instaurée par la loi 65-00 entrée en vigueur en 2005, elle garantit à tous les salariés et à leurs ayants droit une couverture médicale de base. Ce guide vous explique le fonctionnement de l'AMO, les régimes existants, les prestations couvertes et les évolutions récentes du système.</p>
+
+      <h2>Qu'est-ce que l'AMO ?</h2>
+
+      <p>L'Assurance Maladie Obligatoire est un régime de couverture médicale qui s'applique à l'ensemble des salariés du secteur privé et public au Maroc, ainsi qu'à leurs ayants droit (conjoints, enfants). Elle prend en charge une partie des frais médicaux engagés par les assurés : consultations médicales, hospitalisations, médicaments, analyses de laboratoire, imagerie médicale, soins dentaires et autres actes médicaux.</p>
+
+      <p>L'AMO repose sur le principe de la solidarité : tous les salariés cotisent proportionnellement à leur salaire, indépendamment de leur état de santé ou de leur consommation médicale. Les cotisations sont déplafonnées, c'est-à-dire calculées sur l'intégralité du salaire brut.</p>
+
+      <h2>Les deux régimes AMO</h2>
+
+      <h3>AMO gérée par la CNSS (secteur privé)</h3>
+
+      <p>Pour les salariés du secteur privé, l'AMO est gérée par la Caisse Nationale de Sécurité Sociale (CNSS). Les cotisations sont les suivantes : 2,26% à la charge du salarié et 4,11% à la charge de l'employeur, soit un total de 6,37% du salaire brut. Ces cotisations sont calculées sur l'intégralité du salaire, sans plafonnement. La CNSS délègue la gestion des remboursements à des organismes gestionnaires agréés.</p>
+
+      <p>Les salariés du secteur privé bénéficient d'un panier de soins défini par la réglementation, incluant les soins ambulatoires, l'hospitalisation, les médicaments (selon une liste de médicaments remboursables), les analyses biologiques et l'imagerie médicale. Les taux de remboursement varient selon la nature des soins et le recours au parcours de soins coordonné.</p>
+
+      <h3>AMO gérée par la CNOPS (fonctionnaires)</h3>
+
+      <p>Les fonctionnaires et agents de l'État sont couverts par l'AMO gérée par la Caisse Nationale des Organismes de Prévoyance Sociale (CNOPS). La CNOPS fédère plusieurs mutuelles de fonctionnaires et offre une couverture médicale spécifique. Les taux de cotisation et les conditions de remboursement peuvent différer légèrement de ceux de la CNSS, mais le principe de base est identique.</p>
+
+      <h2>Prestations couvertes par l'AMO</h2>
+
+      <p>L'AMO couvre un large éventail de prestations médicales, organisées en plusieurs catégories :</p>
+
+      <ul>
+        <li><strong>Soins ambulatoires :</strong> consultations de médecins généralistes et spécialistes, soins infirmiers, kinésithérapie, soins dentaires de base</li>
+        <li><strong>Hospitalisation :</strong> séjours en hôpitaux publics et cliniques privées conventionnées, interventions chirurgicales, réanimation</li>
+        <li><strong>Médicaments :</strong> médicaments figurant sur la liste des médicaments remboursables, selon le prix de référence fixé par l'ANAM</li>
+        <li><strong>Biologie médicale :</strong> analyses de sang, d'urine et autres examens biologiques</li>
+        <li><strong>Imagerie médicale :</strong> radiographies, échographies, scanners, IRM</li>
+        <li><strong>Maladies de longue durée (ALD) :</strong> prise en charge renforcée pour les maladies chroniques comme le diabète, l'hypertension, le cancer, etc.</li>
+      </ul>
+
+      <h3>Taux de remboursement</h3>
+
+      <p>Les taux de remboursement AMO varient selon le type de prestation et le secteur de soins. En général, les soins dans le secteur public sont remboursés à un taux plus élevé que dans le secteur privé. Pour les maladies de longue durée (ALD), le taux de remboursement est majoré et peut atteindre 100% dans le secteur public. Le ticket modérateur (la part restant à la charge de l'assuré) varie entre 0% et 30% selon les cas.</p>
+
+      <h2>Le RAMED et la couverture des démunis</h2>
+
+      <p>Le Régime d'Assistance Médicale (RAMED), géré par l'Agence Nationale de l'Assurance Maladie (ANAM), offre une couverture médicale aux personnes en situation de précarité qui ne sont pas éligibles à l'AMO. Le RAMED est financé par l'État et les collectivités territoriales. Il couvre les soins dans les hôpitaux publics et les centres de santé.</p>
+
+      <p>Avec la généralisation de la couverture sociale lancée en 2021, le Maroc s'est engagé à étendre progressivement l'AMO à l'ensemble de la population, y compris les travailleurs non-salariés, les indépendants et les personnes sans activité professionnelle. Cette réforme historique vise à supprimer le RAMED et à basculer l'ensemble de la population vers un régime AMO universel.</p>
+
+      <h2>Généralisation de la protection sociale</h2>
+
+      <p>Le chantier de la généralisation de la protection sociale, lancé par Sa Majesté le Roi Mohammed VI en 2021, constitue une réforme structurelle majeure. Il comprend quatre axes principaux étalés sur cinq ans :</p>
+
+      <ul>
+        <li><strong>2021-2022 :</strong> Généralisation de l'AMO à l'ensemble de la population (22 millions de bénéficiaires supplémentaires)</li>
+        <li><strong>2023-2024 :</strong> Généralisation des allocations familiales aux familles non couvertes</li>
+        <li><strong>2025 :</strong> Élargissement de la retraite aux travailleurs non-salariés</li>
+        <li><strong>2025 :</strong> Généralisation de l'indemnité pour perte d'emploi</li>
+      </ul>
+
+      <p>Cette réforme transforme en profondeur le paysage de la protection sociale au Maroc et fait du Royaume un modèle dans la région en matière de couverture sociale universelle.</p>
+
+      <h2>Démarches et services en ligne</h2>
+
+      <p>Les assurés AMO via la CNSS peuvent effectuer de nombreuses démarches en ligne via le portail www.cnss.ma ou l'application mobile Damancom. Les services disponibles incluent la consultation de l'état des droits AMO, le suivi des demandes de remboursement, le téléchargement de l'attestation d'affiliation et la mise à jour des données personnelles et des ayants droit.</p>
+
+      <p>Pour les remboursements, les assurés doivent remplir un formulaire de demande accompagné des pièces justificatives (ordonnances, factures, feuilles de soins) et le déposer auprès de leur organisme gestionnaire ou de la délégation CNSS. Les délais de remboursement varient mais ne dépassent généralement pas quelques semaines.</p>
+
+      <h2>Conseils pratiques</h2>
+
+      <p>Pour optimiser votre couverture AMO, pensez à toujours demander un devis préalable pour les hospitalisations et les soins coûteux, à vérifier si votre médecin ou clinique est conventionné avec la CNSS, à conserver toutes les pièces justificatives (ordonnances, factures, résultats d'analyses) et à déposer vos demandes de remboursement dans les délais (généralement 2 ans maximum). Si votre couverture AMO ne suffit pas, envisagez de souscrire à une mutuelle complémentaire pour couvrir le ticket modérateur et les dépassements d'honoraires.</p>
+    </div>
+
+    <div class="mt-10 p-6 bg-brand-50 rounded-2xl border border-brand-100">
+      <h3 class="text-lg font-semibold text-brand-800 mb-2">Calculez vos cotisations AMO</h3>
+      <p class="text-brand-700 text-sm mb-3">L'AMO fait partie des cotisations CNSS. Utilisez notre calculateur pour voir le détail de vos cotisations.</p>
+      <a href="/calculateur-cotisations-cnss/" class="inline-flex items-center px-5 py-2.5 bg-brand-600 text-white font-medium rounded-lg hover:bg-brand-700 transition-colors text-sm">
+        Calculer mes cotisations
+      </a>
+    </div>
+  </article>
+</Layout>

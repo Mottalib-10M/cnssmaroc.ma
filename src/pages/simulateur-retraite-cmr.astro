@@ -1,0 +1,46 @@
+---
+import CalculateurLayout from '../layouts/CalculateurLayout.astro';
+import PensionCMR from '../components/calculateurs/PensionCMR';
+import { CONFIG } from '../config';
+
+const title = 'Simulateur retraite CMR 2025 - Fonctionnaires Maroc';
+const description = 'Simulez votre pension CMR pour fonctionnaires au Maroc. Calculez votre retraite selon votre traitement de base et années de service.';
+const breadcrumbs = [
+  { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+  { name: 'Simulateur retraite CMR', url: CONFIG.siteUrl + '/simulateur-retraite-cmr/' },
+];
+---
+
+<CalculateurLayout
+  title={title}
+  description={description}
+  breadcrumbs={breadcrumbs}
+  appName="Simulateur retraite CMR Maroc"
+>
+  <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+    Simulateur de retraite CMR 2025
+  </h1>
+  <p class="text-lg text-gray-600 mb-8 max-w-3xl">
+    Estimez votre pension de retraite CMR (Caisse Marocaine des Retraites) pour les fonctionnaires civils. Entrez votre dernier traitement de base et vos années de service.
+  </p>
+
+  <PensionCMR client:idle />
+
+  <section class="mt-16 prose prose-gray max-w-none">
+    <h2>La retraite des fonctionnaires au Maroc (CMR)</h2>
+
+    <p>La Caisse Marocaine des Retraites (CMR) gère le régime de pension des fonctionnaires civils et militaires de l'État au Maroc. Ce régime est distinct de celui de la CNSS qui couvre les salariés du secteur privé. La CMR offre généralement des pensions plus avantageuses, calculées sur le dernier traitement de base plutôt que sur une moyenne.</p>
+
+    <h3>Cotisations CMR</h3>
+
+    <p>Les fonctionnaires cotisent à hauteur de 10% de leur traitement de base mensuel. L'État employeur verse une cotisation équivalente de 10%, pour un total de 20% du traitement de base. Ces taux sont plus élevés que ceux de la CNSS pour la seule branche retraite, mais le système CMR offre en contrepartie une pension plus généreuse.</p>
+
+    <h3>Calcul de la pension CMR</h3>
+
+    <p>La formule est simple : 2,5% multiplié par le nombre d'années de service, multiplié par le dernier traitement de base. Le taux de remplacement maximum est de 70%, atteint après 28 ans de service (28 x 2,5% = 70%). Contrairement à la CNSS, c'est le dernier traitement de base qui sert de référence, ce qui avantage les fonctionnaires ayant bénéficié de promotions en fin de carrière.</p>
+
+    <h3>Différences avec la CNSS</h3>
+
+    <p>Les principales différences sont : l'absence de plafond sur le traitement de base, le calcul sur le dernier salaire plutôt que sur une moyenne, un taux de remplacement de 2,5% par année (contre un calcul par jours pour la CNSS), et un âge de départ à 63 ans pour les civils (contre 60 ans pour la CNSS). Ces différences font de la CMR un régime nettement plus favorable pour les fonctionnaires.</p>
+  </section>
+</CalculateurLayout>

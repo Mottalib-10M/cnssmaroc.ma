@@ -1,0 +1,292 @@
+---
+import Layout from '../components/layout/Layout.astro';
+import CotisationsCNSS from '../components/calculateurs/CotisationsCNSS';
+import { CONFIG } from '../config';
+import { buildFAQSchema, buildBreadcrumbSchema } from '../lib/seo';
+
+const title = 'CNSS Maroc : Calculateur cotisations et retraite 2025';
+const description = 'Calculez vos cotisations CNSS, simulez votre pension de retraite, TVA et allocations familiales au Maroc. Outils gratuits et guides complets.';
+
+const faqData = [
+  {
+    q: 'Quel est le taux de cotisation CNSS pour le salarié au Maroc ?',
+    a: 'Le salarié cotise 6,74% de son salaire brut : 0,52% pour les prestations sociales, 2,26% pour l\'AMO et 3,96% pour la retraite. Les prestations sociales et la retraite sont plafonnées à 6 000 DH par mois.',
+  },
+  {
+    q: 'Combien de jours faut-il cotiser pour avoir droit à la pension CNSS ?',
+    a: 'Il faut un minimum de 3 240 jours de cotisation (environ 15 ans) pour avoir droit à la pension de retraite CNSS. Le taux de base est de 50% du salaire moyen des 8 dernières années.',
+  },
+  {
+    q: 'Quel est le plafond de cotisation CNSS ?',
+    a: 'Le plafond de cotisation CNSS est de 6 000 DH par mois. Ce plafond s\'applique aux cotisations de prestations sociales et de retraite. L\'AMO et les allocations familiales ne sont pas plafonnées.',
+  },
+  {
+    q: 'Comment est calculée la pension de retraite CNSS ?',
+    a: 'La pension CNSS est égale à 50% du salaire moyen des 8 dernières années pour 3 240 jours de cotisation, plus 1% par tranche supplémentaire de 216 jours. Le maximum est de 70% du salaire moyen.',
+  },
+  {
+    q: 'Quel est le montant des allocations familiales CNSS ?',
+    a: 'Les allocations familiales CNSS sont de 300 DH par mois pour chacun des 3 premiers enfants et 36 DH par mois pour chacun des 3 suivants. Le maximum est de 6 enfants.',
+  },
+];
+
+const schemas = [
+  buildBreadcrumbSchema([{ name: 'Accueil', url: CONFIG.siteUrl + '/' }]),
+  buildFAQSchema(faqData),
+];
+---
+
+<Layout title={title} description={description} schema={schemas}>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-brand-600 to-brand-800 text-white py-16 sm:py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-4xl mx-auto">
+        CNSS Maroc : Calculez vos cotisations et simulez votre retraite
+      </h1>
+      <p class="mt-4 text-lg sm:text-xl text-brand-100 max-w-2xl mx-auto">
+        Outils de calcul gratuits pour comprendre vos cotisations sociales, pension de retraite, TVA et allocations familiales au Maroc.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4 justify-center">
+        <a href="/calculateur-cotisations-cnss/" class="inline-flex items-center px-6 py-3 bg-white text-brand-700 font-semibold rounded-lg hover:bg-brand-50 transition-colors">
+          Calculer mes cotisations
+        </a>
+        <a href="/simulateur-retraite-cnss/" class="inline-flex items-center px-6 py-3 bg-brand-700 text-white font-semibold rounded-lg border border-brand-500 hover:bg-brand-600 transition-colors">
+          Simuler ma retraite
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick calculator -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 -mt-8">
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8">
+      <CotisationsCNSS client:idle />
+    </div>
+  </section>
+
+  <!-- Cards -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-10">
+      Tous nos outils de calcul
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {[
+        {
+          title: 'Cotisations CNSS',
+          desc: 'Calculez la part salariale et patronale de toutes les cotisations CNSS pour n\'importe quel salaire.',
+          href: '/calculateur-cotisations-cnss/',
+          icon: '&#128176;',
+        },
+        {
+          title: 'Retraite CNSS',
+          desc: 'Simulez votre pension de retraite CNSS en fonction de votre salaire et de vos jours cotisés.',
+          href: '/simulateur-retraite-cnss/',
+          icon: '&#128200;',
+        },
+        {
+          title: 'Retraite CMR',
+          desc: 'Estimez votre pension CMR pour fonctionnaires civils selon votre traitement et ancienneté.',
+          href: '/simulateur-retraite-cmr/',
+          icon: '&#127979;',
+        },
+        {
+          title: 'Calculateur TVA',
+          desc: 'Calculez la TVA marocaine dans les deux sens : HT vers TTC et TTC vers HT pour tous les taux.',
+          href: '/calculateur-tva/',
+          icon: '&#128178;',
+        },
+        {
+          title: 'Allocations familiales',
+          desc: 'Estimez vos allocations familiales CNSS selon le nombre d\'enfants à charge.',
+          href: '/calculateur-allocations-familiales/',
+          icon: '&#128106;',
+        },
+        {
+          title: 'Indemnité perte d\'emploi',
+          desc: 'Vérifiez votre éligibilité à l\'IPE et calculez le montant de votre indemnité.',
+          href: '/calculateur-ipe/',
+          icon: '&#128188;',
+        },
+      ].map((card) => (
+        <a href={card.href} class="group block bg-white rounded-2xl border border-gray-200 p-6 hover:border-brand-300 hover:shadow-md transition-all">
+          <span class="text-3xl" set:html={card.icon} />
+          <h3 class="mt-3 text-lg font-semibold text-gray-900 group-hover:text-brand-700 transition-colors">{card.title}</h3>
+          <p class="mt-2 text-sm text-gray-600">{card.desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- CNSS Rates summary -->
+  <section class="bg-gray-50 py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-10">
+        Taux de cotisation CNSS 2025
+      </h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6">
+          <h3 class="text-lg font-semibold text-brand-700 mb-4">Part salarié (6,74%)</h3>
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200">
+                <th class="text-left py-2 font-medium text-gray-600">Cotisation</th>
+                <th class="text-right py-2 font-medium text-gray-600">Taux</th>
+                <th class="text-right py-2 font-medium text-gray-600">Plafond</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Prestations sociales</td>
+                <td class="text-right py-2">0,52%</td>
+                <td class="text-right py-2">6 000 DH</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">AMO</td>
+                <td class="text-right py-2">2,26%</td>
+                <td class="text-right py-2">Déplafonné</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Retraite</td>
+                <td class="text-right py-2">3,96%</td>
+                <td class="text-right py-2">6 000 DH</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="border-t-2 border-gray-300 font-semibold">
+                <td class="py-2">Total salarié</td>
+                <td class="text-right py-2">6,74%</td>
+                <td class="text-right py-2"></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-gray-200 p-6">
+          <h3 class="text-lg font-semibold text-brand-800 mb-4">Part employeur (~21,09%)</h3>
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-200">
+                <th class="text-left py-2 font-medium text-gray-600">Cotisation</th>
+                <th class="text-right py-2 font-medium text-gray-600">Taux</th>
+                <th class="text-right py-2 font-medium text-gray-600">Plafond</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Allocations familiales</td>
+                <td class="text-right py-2">6,40%</td>
+                <td class="text-right py-2">Déplafonné</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Prestations sociales</td>
+                <td class="text-right py-2">1,05%</td>
+                <td class="text-right py-2">6 000 DH</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">AMO patronale</td>
+                <td class="text-right py-2">4,11%</td>
+                <td class="text-right py-2">Déplafonné</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Retraite</td>
+                <td class="text-right py-2">7,93%</td>
+                <td class="text-right py-2">6 000 DH</td>
+              </tr>
+              <tr class="border-b border-gray-100">
+                <td class="py-2">Formation professionnelle</td>
+                <td class="text-right py-2">1,60%</td>
+                <td class="text-right py-2">Déplafonné</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="border-t-2 border-gray-300 font-semibold">
+                <td class="py-2">Total employeur</td>
+                <td class="text-right py-2">~21,09%</td>
+                <td class="text-right py-2"></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-10">
+      Questions fréquentes sur la CNSS
+    </h2>
+    <div class="space-y-4">
+      {faqData.map((faq) => (
+        <details class="group bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <summary class="cursor-pointer px-6 py-4 font-medium text-gray-900 flex items-center justify-between hover:bg-gray-50 transition-colors">
+            {faq.q}
+            <span class="ml-4 text-gray-400 group-open:rotate-180 transition-transform">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          </summary>
+          <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{faq.a}</div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- Educational content -->
+  <section class="bg-gray-50 py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <article class="prose prose-gray max-w-none">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Comprendre la protection sociale au Maroc</h2>
+
+        <p>La Caisse Nationale de Sécurité Sociale (CNSS) est l'organisme public marocain chargé de la gestion du régime obligatoire de sécurité sociale des salariés du secteur privé. Créée en 1959, la CNSS couvre aujourd'hui plus de 3,5 millions de salariés déclarés à travers le Royaume du Maroc. Elle constitue un pilier fondamental du système de protection sociale marocain, garantissant aux travailleurs et à leurs familles une couverture contre les principaux risques sociaux.</p>
+
+        <h3 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Les missions de la CNSS</h3>
+
+        <p>La CNSS assure plusieurs missions essentielles pour les salariés du secteur privé au Maroc. Elle gère les prestations sociales à court terme, incluant les indemnités journalières de maladie, les allocations de maternité et les allocations de décès. Elle administre également les prestations à long terme, notamment les pensions de retraite, d'invalidité et de survivants. Depuis l'entrée en vigueur de l'Assurance Maladie Obligatoire (AMO) en 2005, la CNSS gère aussi la couverture médicale des salariés du privé et de leurs ayants droit.</p>
+
+        <p>L'employeur est responsable de l'immatriculation de ses salariés auprès de la CNSS et du versement de l'ensemble des cotisations, incluant la part salariale qu'il retient sur le salaire brut de l'employé. Les déclarations sont effectuées mensuellement ou trimestriellement selon la taille de l'entreprise. Le non-respect de ces obligations expose l'employeur à des sanctions et majorations de retard.</p>
+
+        <h3 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Le système de cotisations</h3>
+
+        <p>Le financement de la CNSS repose sur un système de cotisations partagées entre l'employeur et le salarié. En 2025, le taux global de cotisation s'élève à environ 27,83% du salaire brut, réparti entre 6,74% pour le salarié et environ 21,09% pour l'employeur. Ce déséquilibre en faveur du salarié est caractéristique des systèmes de sécurité sociale dans le monde, où l'employeur supporte la charge la plus importante.</p>
+
+        <p>Un élément crucial du système CNSS est le plafond de cotisation, fixé à 6 000 DH par mois. Ce plafond s'applique aux cotisations de prestations sociales et de retraite, tant pour la part salariale que patronale. En revanche, l'AMO (Assurance Maladie Obligatoire), les allocations familiales et la taxe de formation professionnelle sont calculées sur l'intégralité du salaire, sans plafond. Cette distinction est importante car elle signifie que pour un salarié gagnant plus de 6 000 DH par mois, le taux effectif de cotisation diminue pour les lignes plafonnées.</p>
+
+        <h3 class="text-xl font-semibold text-gray-900 mt-8 mb-4">La pension de retraite CNSS</h3>
+
+        <p>La pension de retraite CNSS constitue souvent la principale préoccupation des salariés du secteur privé. Pour y avoir droit, il faut avoir cumulé un minimum de 3 240 jours de cotisation, soit l'équivalent d'environ 15 ans de travail déclaré. L'âge légal de départ à la retraite est fixé à 60 ans, avec une possibilité de retraite anticipée à 55 ans moyennant une décote.</p>
+
+        <p>Le calcul de la pension repose sur le salaire moyen des 96 derniers mois (8 dernières années) d'activité. Le taux de remplacement de base est de 50% pour 3 240 jours de cotisation, augmenté de 1% par tranche supplémentaire de 216 jours, dans la limite de 70% du salaire moyen. La pension minimum est fixée à 1 500 DH par mois. Il est important de noter que le salaire pris en compte est lui aussi plafonné à 6 000 DH, ce qui signifie que la pension CNSS maximale est de 4 200 DH par mois (70% de 6 000 DH).</p>
+
+        <h3 class="text-xl font-semibold text-gray-900 mt-8 mb-4">La CMR pour les fonctionnaires</h3>
+
+        <p>Les fonctionnaires de l'État bénéficient d'un régime distinct géré par la Caisse Marocaine des Retraites (CMR). Ce régime est nettement plus avantageux que celui de la CNSS. Les cotisations sont de 10% chacune pour le salarié et l'État employeur. La pension est calculée selon la formule : 2,5% multiplié par le nombre d'années de service, multiplié par le dernier traitement de base. L'âge de départ est fixé à 63 ans pour les fonctionnaires civils. Le taux de remplacement peut atteindre 70% après 28 ans de service, ce qui représente une pension beaucoup plus généreuse que celle de la CNSS.</p>
+
+        <h3 class="text-xl font-semibold text-gray-900 mt-8 mb-4">L'Assurance Maladie Obligatoire (AMO)</h3>
+
+        <p>L'AMO est un acquis majeur du système de protection sociale marocain. Instaurée par la loi 65-00, elle garantit aux salariés du secteur privé et à leurs ayants droit une couverture médicale incluant les soins ambulatoires, l'hospitalisation, les médicaments et les analyses de laboratoire. Le salarié cotise 2,26% de son salaire brut (sans plafond) tandis que l'employeur verse 4,11%. La CNSS délègue la gestion des remboursements à des organismes agréés, assurant un accès aux soins sur l'ensemble du territoire national.</p>
+
+        <h3 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Les allocations familiales</h3>
+
+        <p>La CNSS verse des allocations familiales aux salariés ayant des enfants à charge. Le barème est de 300 DH par mois pour chacun des trois premiers enfants et de 36 DH par mois pour chacun des trois suivants (du 4e au 6e enfant). Ces allocations sont versées mensuellement et financées exclusivement par les cotisations patronales (6,40% du salaire brut, déplafonné). Elles constituent un complément de revenu appréciable pour les familles marocaines.</p>
+
+        <h3 class="text-xl font-semibold text-gray-900 mt-8 mb-4">L'indemnité pour perte d'emploi (IPE)</h3>
+
+        <p>Créée en 2014, l'indemnité pour perte d'emploi (IPE) est une prestation versée aux salariés ayant perdu involontairement leur emploi. Pour en bénéficier, il faut justifier d'au moins 780 jours de cotisation CNSS dont 260 jours au cours des 12 derniers mois précédant la perte d'emploi. Le montant de l'IPE est égal à 70% du salaire moyen des 36 derniers mois, plafonné au SMIG (3 111 DH en 2025). La durée de versement est de 6 mois maximum. Cette prestation représente un filet de sécurité important pour les salariés en situation de chômage involontaire.</p>
+
+        <h3 class="text-xl font-semibold text-gray-900 mt-8 mb-4">La TVA au Maroc</h3>
+
+        <p>La Taxe sur la Valeur Ajoutée (TVA) est le principal impôt indirect au Maroc. Le taux normal est de 20%, mais il existe des taux réduits de 14%, 10% et 7% pour certains produits et services, ainsi que des exonérations pour les produits de première nécessité comme le pain, le lait et le sucre. La compréhension des différents taux de TVA est essentielle pour les entreprises et les consommateurs marocains. Notre calculateur TVA permet de convertir facilement les montants HT en TTC et inversement pour tous les taux en vigueur au Maroc.</p>
+
+        <h3 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Utiliser nos outils de calcul</h3>
+
+        <p>Notre site met à votre disposition des calculateurs gratuits et précis pour simuler vos cotisations CNSS, estimer votre pension de retraite, calculer la TVA et évaluer vos allocations familiales. Ces outils sont mis à jour régulièrement pour refléter les derniers barèmes et taux en vigueur. Ils sont conçus pour aider les salariés, les employeurs, les comptables et les consultants RH à mieux comprendre et planifier les aspects financiers de la protection sociale au Maroc. N'hésitez pas à consulter nos guides détaillés pour approfondir chaque sujet.</p>
+      </article>
+
+      <div class="mt-8 text-sm text-gray-500">
+        <p>Par <a href={CONFIG.author.url} class="text-brand-700 hover:underline">{CONFIG.author.name}</a> ({CONFIG.author.credentials}) - Mis à jour en 2025</p>
+      </div>
+    </div>
+  </section>
+</Layout>

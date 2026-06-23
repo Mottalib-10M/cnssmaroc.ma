@@ -1,0 +1,46 @@
+---
+import CalculateurLayout from '../layouts/CalculateurLayout.astro';
+import IPE from '../components/calculateurs/IPE';
+import { CONFIG } from '../config';
+
+const title = 'Calculateur IPE 2025 - Indemnité perte d\'emploi CNSS';
+const description = 'Simulez votre indemnité pour perte d\'emploi (IPE) CNSS au Maroc. Vérifiez votre éligibilité et calculez le montant de votre indemnité.';
+const breadcrumbs = [
+  { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+  { name: 'Calculateur IPE', url: CONFIG.siteUrl + '/calculateur-ipe/' },
+];
+---
+
+<CalculateurLayout
+  title={title}
+  description={description}
+  breadcrumbs={breadcrumbs}
+  appName="Calculateur IPE CNSS Maroc"
+>
+  <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+    Calculateur Indemnité Perte d'Emploi (IPE) 2025
+  </h1>
+  <p class="text-lg text-gray-600 mb-8 max-w-3xl">
+    Vérifiez votre éligibilité à l'indemnité pour perte d'emploi CNSS et estimez le montant mensuel que vous pourriez percevoir.
+  </p>
+
+  <IPE client:idle />
+
+  <section class="mt-16 prose prose-gray max-w-none">
+    <h2>L'indemnité pour perte d'emploi (IPE) au Maroc</h2>
+
+    <p>L'indemnité pour perte d'emploi (IPE) a été instaurée au Maroc par la loi n° 03-14 en 2014. Elle vise à offrir un filet de sécurité temporaire aux salariés ayant perdu involontairement leur emploi, le temps de retrouver une nouvelle activité professionnelle. Cette prestation est gérée par la CNSS.</p>
+
+    <h3>Conditions d'éligibilité</h3>
+
+    <p>Pour bénéficier de l'IPE, le salarié doit remplir trois conditions cumulatives. Premièrement, il doit avoir perdu son emploi de manière involontaire (licenciement, fin de contrat CDD, force majeure). La démission n'ouvre pas droit à l'IPE. Deuxièmement, le salarié doit justifier d'au moins 780 jours de cotisation CNSS au total. Troisièmement, il doit avoir cotisé au moins 260 jours au cours des 12 mois précédant la perte d'emploi.</p>
+
+    <h3>Montant et durée</h3>
+
+    <p>Le montant de l'IPE est fixé à 70% du salaire moyen déclaré sur les 36 derniers mois. Ce montant est plafonné au Salaire Minimum Interprofessionnel Garanti (SMIG), soit 3 111 DH par mois en 2025. La durée de versement est de 6 mois maximum. Le bénéficiaire doit s'inscrire à l'ANAPEC dans les 60 jours suivant la perte d'emploi et rechercher activement un nouvel emploi.</p>
+
+    <h3>Démarches à suivre</h3>
+
+    <p>Le salarié ayant perdu son emploi doit s'inscrire à l'ANAPEC dans un délai de 60 jours. Il doit ensuite déposer une demande auprès de la CNSS accompagnée des pièces justificatives (attestation de travail, certificat de l'ANAPEC, etc.). Le premier versement intervient généralement dans le mois suivant l'acceptation du dossier.</p>
+  </section>
+</CalculateurLayout>

@@ -1,0 +1,42 @@
+---
+import CalculateurLayout from '../layouts/CalculateurLayout.astro';
+import CalculateurTVA from '../components/calculateurs/CalculateurTVA';
+import { CONFIG } from '../config';
+
+const title = 'Calculateur TVA Maroc 2025 - HT/TTC tous taux';
+const description = 'Calculez la TVA au Maroc : conversion HT vers TTC et TTC vers HT pour les taux de 20%, 14%, 10% et 7%. Référence complète des taux par produit.';
+const breadcrumbs = [
+  { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+  { name: 'Calculateur TVA', url: CONFIG.siteUrl + '/calculateur-tva/' },
+];
+---
+
+<CalculateurLayout
+  title={title}
+  description={description}
+  breadcrumbs={breadcrumbs}
+  appName="Calculateur TVA Maroc"
+>
+  <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+    Calculateur TVA Maroc 2025
+  </h1>
+  <p class="text-lg text-gray-600 mb-8 max-w-3xl">
+    Convertissez vos montants entre HT et TTC pour tous les taux de TVA en vigueur au Maroc : 20%, 14%, 10% et 7%.
+  </p>
+
+  <CalculateurTVA client:idle />
+
+  <section class="mt-16 prose prose-gray max-w-none">
+    <h2>La TVA au Maroc : guide complet</h2>
+
+    <p>La Taxe sur la Valeur Ajoutée (TVA) est un impôt indirect qui s'applique à la plupart des biens et services commercialisés au Maroc. Instituée par la loi n° 30-85, elle constitue la première source de recettes fiscales de l'État marocain. Le taux normal est de 20%, mais le législateur a prévu plusieurs taux réduits pour certaines catégories de produits et services.</p>
+
+    <h3>Les différents taux de TVA</h3>
+
+    <p>Le Maroc applique quatre taux de TVA positifs, plus une catégorie d'exonération. Le taux normal de 20% s'applique à la majorité des biens et services. Le taux de 14% concerne notamment le transport, le beurre et le thé. Le taux de 10% s'applique aux huiles alimentaires, au sel, au riz, aux pâtes, aux opérations bancaires et à l'hôtellerie. Le taux super-réduit de 7% couvre l'eau et l'électricité à usage domestique, les produits pharmaceutiques et les fournitures scolaires. Enfin, certains produits de première nécessité comme le pain, le lait frais et le sucre brut sont totalement exonérés.</p>
+
+    <h3>Comment calculer la TVA</h3>
+
+    <p>Pour passer du HT au TTC, multipliez le montant HT par (1 + taux). Par exemple, pour 1 000 DH HT à 20% : 1 000 x 1,20 = 1 200 DH TTC. Pour l'opération inverse (TTC vers HT), divisez le montant TTC par (1 + taux). Par exemple, pour 1 200 DH TTC à 20% : 1 200 / 1,20 = 1 000 DH HT. Notre calculateur effectue ces opérations instantanément pour tous les taux en vigueur.</p>
+  </section>
+</CalculateurLayout>

@@ -1,0 +1,173 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import { CONFIG } from '../../config';
+import { buildBreadcrumbSchema, buildArticleSchema } from '../../lib/seo';
+
+const title = 'Guide retraite CNSS Maroc 2025 - Calcul et conditions';
+const description = 'Tout savoir sur la pension de retraite CNSS au Maroc : conditions, calcul, jours de cotisation, plafond et conseils pour maximiser votre pension.';
+const url = CONFIG.siteUrl + '/guides/retraite-cnss/';
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+    { name: 'Guides', url: CONFIG.siteUrl + '/guides/cotisations-cnss-maroc/' },
+    { name: 'Retraite CNSS', url },
+  ]),
+  buildArticleSchema({
+    title,
+    description,
+    url,
+    datePublished: '2025-01-15',
+    dateModified: '2025-01-15',
+  }),
+];
+---
+
+<Layout title={title} description={description} schema={schemas}>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <nav aria-label="Fil d'Ariane" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-brand-700">Accueil</a></li>
+        <li class="flex items-center gap-1"><span>/</span><a href="/guides/cotisations-cnss-maroc/" class="hover:text-brand-700">Guides</a></li>
+        <li class="flex items-center gap-1"><span>/</span><span class="text-gray-800 font-medium">Retraite CNSS</span></li>
+      </ol>
+    </nav>
+
+    <header class="mb-10">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        Guide complet de la retraite CNSS au Maroc (2025)
+      </h1>
+      <p class="text-lg text-gray-600">
+        Tout comprendre sur votre pension de retraite CNSS : conditions d'éligibilité, calcul de la pension, maximisation de vos droits et comparaison avec la CMR.
+      </p>
+      <div class="mt-4 flex items-center gap-3 text-sm text-gray-500">
+        <span>Par <a href={CONFIG.author.url} class="text-brand-700 hover:underline">{CONFIG.author.name}</a></span>
+        <span>({CONFIG.author.credentials})</span>
+        <span>- Mis à jour le 15 janvier 2025</span>
+      </div>
+    </header>
+
+    <div class="prose prose-gray max-w-none">
+      <p>La pension de retraite CNSS est la prestation la plus attendue par les salariés du secteur privé au Maroc. Elle représente un revenu de remplacement versé à vie à partir de l'âge de la retraite. Cependant, le système de retraite CNSS est souvent mal compris, et de nombreux salariés découvrent tardivement que leur pension sera bien inférieure à leur dernier salaire. Ce guide vous explique en détail comment fonctionne la retraite CNSS et comment optimiser vos droits.</p>
+
+      <h2>Conditions d'éligibilité à la pension CNSS</h2>
+
+      <p>Pour bénéficier de la pension de vieillesse CNSS, deux conditions doivent être remplies simultanément :</p>
+
+      <p><strong>1. Le nombre minimum de jours de cotisation :</strong> Il faut avoir cumulé au moins 3 240 jours de cotisation CNSS au cours de sa carrière. Chaque mois travaillé et déclaré représente en principe 26 jours de cotisation. Ainsi, 3 240 jours correspondent environ à 124,6 mois, soit un peu plus de 10 ans de travail continu. En pratique, compte tenu des interruptions de carrière (périodes de chômage, travail non déclaré, etc.), il faut généralement environ 15 ans de carrière effective pour atteindre ce seuil.</p>
+
+      <p><strong>2. L'âge de départ :</strong> L'âge légal de départ à la retraite est fixé à 60 ans. Il existe une possibilité de retraite anticipée à partir de 55 ans dans certains cas spécifiques, notamment pour les métiers pénibles ou les travailleurs en situation de handicap. La retraite anticipée entraîne toutefois une réduction de la pension. Il est également possible de continuer à travailler au-delà de 60 ans tout en bénéficiant de sa pension, sous certaines conditions.</p>
+
+      <h2>Comment est calculée la pension CNSS ?</h2>
+
+      <p>Le calcul de la pension CNSS repose sur trois éléments : le salaire moyen de référence, le nombre de jours cotisés et le taux de remplacement.</p>
+
+      <h3>Le salaire moyen de référence</h3>
+
+      <p>La CNSS prend en compte le salaire moyen des 96 derniers mois d'activité (soit les 8 dernières années). Ce salaire est plafonné à 6 000 DH par mois. Cela signifie que même si un salarié gagne 30 000 DH par mois, le salaire pris en compte pour le calcul de la pension sera de 6 000 DH. C'est la principale limitation du système CNSS qui explique le faible niveau des pensions pour les salariés à hauts revenus.</p>
+
+      <h3>Le taux de remplacement</h3>
+
+      <p>Le taux de remplacement détermine quelle proportion du salaire moyen sera versée sous forme de pension. Il se calcule comme suit :</p>
+
+      <ul>
+        <li><strong>Taux de base :</strong> 50% pour les 3 240 premiers jours de cotisation</li>
+        <li><strong>Majoration :</strong> +1% pour chaque tranche supplémentaire de 216 jours au-delà de 3 240 jours</li>
+        <li><strong>Plafond :</strong> Le taux de remplacement ne peut pas dépasser 70%</li>
+      </ul>
+
+      <h3>Exemples de calcul détaillés</h3>
+
+      <p><strong>Exemple 1 :</strong> Un salarié ayant cotisé 3 240 jours avec un salaire moyen de 5 000 DH. Taux = 50%. Pension = 5 000 x 50% = 2 500 DH/mois.</p>
+
+      <p><strong>Exemple 2 :</strong> Un salarié ayant cotisé 5 400 jours (environ 25 ans) avec un salaire moyen de 6 000 DH. Jours excédentaires = 5 400 - 3 240 = 2 160. Tranches = 2 160 / 216 = 10. Taux = 50% + 10% = 60%. Pension = 6 000 x 60% = 3 600 DH/mois.</p>
+
+      <p><strong>Exemple 3 :</strong> Un salarié ayant cotisé 7 560 jours (35 ans) avec un salaire moyen de 6 000 DH. Jours excédentaires = 7 560 - 3 240 = 4 320. Tranches = 4 320 / 216 = 20. Taux théorique = 50% + 20% = 70% (atteint le plafond). Pension = 6 000 x 70% = 4 200 DH/mois. C'est la pension CNSS maximale possible.</p>
+
+      <h3>La pension minimum</h3>
+
+      <p>La CNSS garantit une pension minimum de 1 500 DH par mois pour tout assuré éligible (3 240 jours de cotisation). Cette garantie s'applique même si le calcul normal donne un montant inférieur. Par exemple, un salarié ayant cotisé au SMIG pendant toute sa carrière recevra au minimum 1 500 DH de pension mensuelle.</p>
+
+      <h2>Conseils pour maximiser votre pension CNSS</h2>
+
+      <h3>1. Vérifiez votre relevé de carrière</h3>
+
+      <p>Consultez régulièrement votre relevé de carrière sur le portail CNSS (www.cnss.ma) ou via l'application Damancom. Assurez-vous que tous vos mois de travail sont correctement déclarés et que le salaire déclaré correspond à votre salaire réel. Les erreurs de déclaration peuvent réduire significativement votre pension future.</p>
+
+      <h3>2. Évitez les interruptions de cotisation</h3>
+
+      <p>Chaque jour de cotisation compte. Les périodes de travail non déclaré ou de chômage sans cotisation réduisent votre pension de deux manières : en diminuant le nombre total de jours cotisés (et donc le taux de remplacement) et en réduisant potentiellement le salaire moyen de référence. Si vous êtes entre deux emplois, essayez de minimiser la durée des interruptions.</p>
+
+      <h3>3. Complétez avec une retraite complémentaire</h3>
+
+      <p>Compte tenu du plafond de 6 000 DH et du taux maximum de 70%, la pension CNSS maximale est de 4 200 DH par mois. Pour les salariés dont le niveau de vie est supérieur, il est indispensable de souscrire à un régime de retraite complémentaire. La CIMR (Caisse Interprofessionnelle Marocaine de Retraite) est le principal régime complémentaire au Maroc. Les contrats d'assurance vie et les plans d'épargne retraite constituent également des compléments utiles.</p>
+
+      <h3>4. Planifiez votre dernière période d'activité</h3>
+
+      <p>Puisque la pension est calculée sur le salaire moyen des 8 dernières années, il est dans votre intérêt que vos 8 dernières années d'activité soient déclarées à un salaire au moins égal au plafond de 6 000 DH. Si votre salaire est inférieur au plafond, toute augmentation pendant cette période améliorera directement votre pension future.</p>
+
+      <h2>Comparaison CNSS vs CMR</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Critère</th>
+            <th>CNSS (Secteur privé)</th>
+            <th>CMR (Fonctionnaires)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Salaire de référence</td>
+            <td>Moyenne des 8 dernières années, plafonné à 6 000 DH</td>
+            <td>Dernier traitement de base, sans plafond</td>
+          </tr>
+          <tr>
+            <td>Taux de remplacement</td>
+            <td>50% à 70% (par paliers de jours)</td>
+            <td>2,5% par année de service (max 70%)</td>
+          </tr>
+          <tr>
+            <td>Age de départ</td>
+            <td>60 ans</td>
+            <td>63 ans (civils)</td>
+          </tr>
+          <tr>
+            <td>Pension maximum</td>
+            <td>4 200 DH/mois</td>
+            <td>70% du dernier traitement (pas de plafond absolu)</td>
+          </tr>
+          <tr>
+            <td>Cotisation salariale (retraite)</td>
+            <td>3,96%</td>
+            <td>10%</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Comme le montre ce tableau comparatif, le régime CMR est nettement plus avantageux que le régime CNSS, en particulier pour les fonctionnaires ayant un traitement élevé. La différence principale réside dans l'absence de plafonnement du salaire de référence pour la CMR et dans le calcul sur le dernier traitement plutôt que sur une moyenne.</p>
+
+      <h2>Questions fréquentes sur la retraite CNSS</h2>
+
+      <h3>Que se passe-t-il si je n'atteins pas 3 240 jours ?</h3>
+
+      <p>Si vous n'atteignez pas le minimum de 3 240 jours de cotisation à l'âge de 60 ans, vous ne pourrez pas bénéficier de la pension de retraite CNSS. Vous pourrez toutefois demander le remboursement de vos cotisations sous certaines conditions, ou continuer à travailler pour atteindre le seuil requis.</p>
+
+      <h3>Puis-je cumuler pension CNSS et revenus d'activité ?</h3>
+
+      <p>Oui, sous certaines conditions. Un retraité CNSS peut reprendre une activité salariée tout en continuant à percevoir sa pension. Cependant, les cotisations versées après le départ en retraite n'augmentent pas le montant de la pension.</p>
+
+      <h3>La pension CNSS est-elle imposable ?</h3>
+
+      <p>Oui, la pension CNSS est soumise à l'impôt sur le revenu (IR). Toutefois, les retraités bénéficient d'un abattement forfaitaire de 60% sur le montant de leur pension, ce qui réduit significativement l'impôt dû. La pension est également exonérée de cotisations sociales.</p>
+    </div>
+
+    <div class="mt-10 p-6 bg-brand-50 rounded-2xl border border-brand-100">
+      <h3 class="text-lg font-semibold text-brand-800 mb-2">Simulez votre pension</h3>
+      <p class="text-brand-700 text-sm mb-3">Utilisez notre simulateur gratuit pour estimer le montant de votre future pension CNSS.</p>
+      <a href="/simulateur-retraite-cnss/" class="inline-flex items-center px-5 py-2.5 bg-brand-600 text-white font-medium rounded-lg hover:bg-brand-700 transition-colors text-sm">
+        Simuler ma retraite
+      </a>
+    </div>
+  </article>
+</Layout>

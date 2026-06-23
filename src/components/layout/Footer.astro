@@ -1,0 +1,55 @@
+---
+import { CONFIG } from '../../config';
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-gray-900 text-gray-300 mt-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="md:col-span-1">
+        <p class="font-bold text-white text-lg mb-2">{CONFIG.siteName}</p>
+        <p class="text-sm text-gray-400">{CONFIG.tagline}</p>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-white mb-3 text-sm uppercase tracking-wider">Calculateurs</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/calculateur-cotisations-cnss/" class="hover:text-white transition-colors">Cotisations CNSS</a></li>
+          <li><a href="/simulateur-retraite-cnss/" class="hover:text-white transition-colors">Retraite CNSS</a></li>
+          <li><a href="/simulateur-retraite-cmr/" class="hover:text-white transition-colors">Retraite CMR</a></li>
+          <li><a href="/calculateur-tva/" class="hover:text-white transition-colors">Calculateur TVA</a></li>
+          <li><a href="/calculateur-allocations-familiales/" class="hover:text-white transition-colors">Allocations familiales</a></li>
+          <li><a href="/calculateur-ipe/" class="hover:text-white transition-colors">Indemnité perte d'emploi</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-white mb-3 text-sm uppercase tracking-wider">Guides</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/guides/cotisations-cnss-maroc/" class="hover:text-white transition-colors">Guide cotisations CNSS</a></li>
+          <li><a href="/guides/retraite-cnss/" class="hover:text-white transition-colors">Guide retraite CNSS</a></li>
+          <li><a href="/guides/tva-maroc/" class="hover:text-white transition-colors">Guide TVA Maroc</a></li>
+          <li><a href="/guides/amo-maroc/" class="hover:text-white transition-colors">Guide AMO Maroc</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-white mb-3 text-sm uppercase tracking-wider">Informations</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/a-propos/" class="hover:text-white transition-colors">A propos</a></li>
+          <li><a href="/mentions-legales/" class="hover:text-white transition-colors">Mentions legales</a></li>
+          <li><a href={`mailto:${CONFIG.contact}`} class="hover:text-white transition-colors">{CONFIG.contact}</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-800 mt-10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+      <p>&copy; {year} {CONFIG.siteName}. Tous droits reserves.</p>
+      <p>Par <a href={CONFIG.author.url} class="text-gray-400 hover:text-white transition-colors">{CONFIG.author.name}</a> ({CONFIG.author.credentials})</p>
+    </div>
+
+    <p class="mt-4 text-xs text-gray-600 text-center">
+      Les informations fournies sur ce site sont a titre indicatif. Consultez la CNSS ou un expert-comptable pour des calculs officiels.
+    </p>
+  </div>
+</footer>

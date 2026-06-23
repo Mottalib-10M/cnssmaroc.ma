@@ -1,0 +1,57 @@
+---
+import Layout from '../components/layout/Layout.astro';
+import { CONFIG } from '../config';
+import { buildBreadcrumbSchema } from '../lib/seo';
+
+const title = 'Mentions légales - CNSS Maroc';
+const description = 'Mentions légales du site cnssmaroc.ma : éditeur, hébergement, propriété intellectuelle et limitation de responsabilité.';
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+    { name: 'Mentions légales', url: CONFIG.siteUrl + '/mentions-legales/' },
+  ]),
+];
+---
+
+<Layout title={title} description={description} schema={schemas} noindex={true}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+    <nav aria-label="Fil d'Ariane" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-brand-700">Accueil</a></li>
+        <li class="flex items-center gap-1"><span>/</span><span class="text-gray-800 font-medium">Mentions légales</span></li>
+      </ol>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">Mentions légales</h1>
+
+    <div class="prose prose-gray max-w-none">
+      <h2>Editeur du site</h2>
+      <p>Le site cnssmaroc.ma est édité par {CONFIG.author.name}.</p>
+      <p>Email : <a href={`mailto:${CONFIG.contact}`}>{CONFIG.contact}</a></p>
+
+      <h2>Hébergement</h2>
+      <p>Le site est hébergé par GitHub Pages (GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA).</p>
+
+      <h2>Propriété intellectuelle</h2>
+      <p>L'ensemble du contenu de ce site (textes, outils de calcul, guides, graphismes) est protégé par le droit d'auteur. Toute reproduction, même partielle, est soumise à autorisation préalable de l'éditeur. Les données CNSS, CMR et TVA sont des informations publiques issues des textes réglementaires marocains.</p>
+
+      <h2>Limitation de responsabilité</h2>
+      <p>Les informations et les résultats de calcul fournis sur ce site sont donnés à titre indicatif et ne constituent en aucun cas un avis juridique, fiscal ou comptable. L'éditeur ne saurait être tenu responsable de toute erreur, omission ou résultat obtenu à partir de ces informations. Pour des calculs officiels, veuillez consulter directement les organismes compétents (CNSS, CMR, Direction Générale des Impôts) ou un professionnel agréé (expert-comptable, conseiller fiscal).</p>
+
+      <h2>Données personnelles</h2>
+      <p>Ce site ne collecte aucune donnée personnelle. Les calculs sont effectués entièrement dans le navigateur de l'utilisateur. Aucune information saisie dans les calculateurs n'est transmise à un serveur.</p>
+
+      <h2>Cookies</h2>
+      <p>Ce site n'utilise pas de cookies de suivi. Aucun cookie tiers n'est déposé sur votre navigateur.</p>
+
+      <h2>Liens hypertextes</h2>
+      <p>Ce site peut contenir des liens vers des sites tiers (CNSS, CMR, etc.). L'éditeur ne peut être tenu responsable du contenu de ces sites externes.</p>
+
+      <h2>Droit applicable</h2>
+      <p>Les présentes mentions légales sont soumises au droit marocain. En cas de litige, les tribunaux marocains seront seuls compétents.</p>
+
+      <p class="text-sm text-gray-500 mt-8">Dernière mise à jour : janvier 2025</p>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,50 @@
+---
+import CalculateurLayout from '../layouts/CalculateurLayout.astro';
+import PensionCNSS from '../components/calculateurs/PensionCNSS';
+import { CONFIG } from '../config';
+
+const title = 'Simulateur retraite CNSS 2025 - Pension estimée';
+const description = 'Simulez votre pension de retraite CNSS au Maroc. Calculez votre pension mensuelle selon votre salaire moyen et vos jours de cotisation.';
+const breadcrumbs = [
+  { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+  { name: 'Simulateur retraite CNSS', url: CONFIG.siteUrl + '/simulateur-retraite-cnss/' },
+];
+---
+
+<CalculateurLayout
+  title={title}
+  description={description}
+  breadcrumbs={breadcrumbs}
+  appName="Simulateur retraite CNSS Maroc"
+>
+  <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+    Simulateur de retraite CNSS 2025
+  </h1>
+  <p class="text-lg text-gray-600 mb-8 max-w-3xl">
+    Estimez votre pension de retraite CNSS en fonction de votre salaire moyen des 8 dernières années et de votre nombre total de jours cotisés.
+  </p>
+
+  <PensionCNSS client:idle />
+
+  <section class="mt-16 prose prose-gray max-w-none">
+    <h2>Comment est calculée la pension CNSS au Maroc ?</h2>
+
+    <p>La pension de retraite CNSS est la prestation la plus importante versée par la Caisse Nationale de Sécurité Sociale aux salariés du secteur privé au Maroc. Elle représente un revenu de remplacement versé mensuellement à partir de l'âge de 60 ans, à condition de remplir les conditions d'éligibilité fixées par la loi.</p>
+
+    <h3>Conditions d'éligibilité</h3>
+
+    <p>Pour bénéficier de la pension de vieillesse CNSS, le salarié doit avoir cumulé un minimum de 3 240 jours de cotisation. Ce seuil correspond approximativement à 15 années de travail déclaré, à raison de 26 jours ouvrables par mois. L'âge légal de départ est fixé à 60 ans, avec une possibilité de départ anticipé à 55 ans sous certaines conditions, moyennant une réduction de la pension.</p>
+
+    <h3>Formule de calcul</h3>
+
+    <p>La pension mensuelle est calculée selon la formule suivante : le salaire moyen des 96 derniers mois (8 dernières années) est multiplié par le taux de remplacement. Le taux de base est de 50% pour 3 240 jours de cotisation. Pour chaque tranche supplémentaire de 216 jours au-delà de 3 240, le taux augmente de 1%, jusqu'à un maximum de 70%. Le salaire moyen pris en compte est plafonné à 6 000 DH par mois.</p>
+
+    <h3>Exemples concrets</h3>
+
+    <p>Un salarié ayant cotisé exactement 3 240 jours avec un salaire moyen de 5 000 DH recevra une pension de 2 500 DH par mois (50% de 5 000 DH). Un salarié ayant cotisé 5 400 jours (environ 25 ans) avec le même salaire recevra 5 000 x 60% = 3 000 DH par mois (50% + 10 tranches de 216 jours = 60%). La pension minimum garantie est de 1 500 DH par mois, même si le calcul donne un montant inférieur.</p>
+
+    <h3>Importance de la planification retraite</h3>
+
+    <p>Compte tenu du plafond de 6 000 DH et du taux maximum de 70%, la pension CNSS maximale théorique est de 4 200 DH par mois. Pour les salariés ayant un niveau de vie plus élevé, il est recommandé de compléter la retraite CNSS par une épargne retraite complémentaire (CIMR, assurance vie, etc.). Notre simulateur vous aide à évaluer le niveau de votre future pension et à prendre les décisions de planification financière appropriées.</p>
+  </section>
+</CalculateurLayout>

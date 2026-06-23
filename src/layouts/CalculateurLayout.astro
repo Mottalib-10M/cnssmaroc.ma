@@ -1,0 +1,51 @@
+---
+import Layout from '../components/layout/Layout.astro';
+import { buildBreadcrumbSchema, buildSoftwareAppSchema } from '../lib/seo';
+import { CONFIG } from '../config';
+
+interface Props {
+  title: string;
+  description: string;
+  breadcrumbs: { name: string; url: string }[];
+  appName: string;
+  canonical?: string;
+  extraSchema?: object;
+}
+
+const { title, description, breadcrumbs, appName, canonical, extraSchema } = Astro.props;
+const pageUrl = canonical || Astro.url.href;
+
+const schemas = [
+  buildBreadcrumbSchema(breadcrumbs),
+  buildSoftwareAppSchema({ name: appName, description, url: pageUrl }),
+];
+if (extraSchema) schemas.push(extraSchema as any);
+---
+
+<Layout title={title} description={description} canonical={canonical} schema={schemas}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+    <nav aria-label="Fil d'Ariane" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500">
+        {breadcrumbs.map((crumb, i) => (
+          <li class="flex items-center gap-1">
+            {i > 0 && <span aria-hidden="true">/</span>}
+            {i === breadcrumbs.length - 1 ? (
+              <span class="text-gray-800 font-medium">{crumb.name}</span>
+            ) : (
+              <a href={crumb.url} class="hover:text-brand-700 transition-colors">{crumb.name}</a>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+
+    <slot />
+
+    <div class="mt-12 pt-8 border-t border-gray-200 text-sm text-gray-500">
+      <p>
+        Outil gratuit fourni par <a href={CONFIG.author.url} class="text-brand-700 hover:underline">{CONFIG.author.name}</a> ({CONFIG.author.credentials}).
+        Donnees mises a jour en 2025. Consultez la <a href="https://www.cnss.ma" target="_blank" rel="noopener noreferrer" class="text-brand-700 hover:underline">CNSS</a> pour les informations officielles.
+      </p>
+    </div>
+  </div>
+</Layout>

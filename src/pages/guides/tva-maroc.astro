@@ -1,0 +1,118 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import { CONFIG } from '../../config';
+import { buildBreadcrumbSchema, buildArticleSchema } from '../../lib/seo';
+
+const title = 'Guide TVA Maroc 2025 - Taux, calcul et exonérations';
+const description = 'Guide complet de la TVA au Maroc : taux de 20%, 14%, 10%, 7%, exonérations, liste des produits par catégorie et méthodes de calcul.';
+const url = CONFIG.siteUrl + '/guides/tva-maroc/';
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+    { name: 'Guides', url: CONFIG.siteUrl + '/guides/cotisations-cnss-maroc/' },
+    { name: 'TVA Maroc', url },
+  ]),
+  buildArticleSchema({
+    title,
+    description,
+    url,
+    datePublished: '2025-01-15',
+    dateModified: '2025-01-15',
+  }),
+];
+---
+
+<Layout title={title} description={description} schema={schemas}>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <nav aria-label="Fil d'Ariane" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-brand-700">Accueil</a></li>
+        <li class="flex items-center gap-1"><span>/</span><a href="/guides/cotisations-cnss-maroc/" class="hover:text-brand-700">Guides</a></li>
+        <li class="flex items-center gap-1"><span>/</span><span class="text-gray-800 font-medium">TVA Maroc</span></li>
+      </ol>
+    </nav>
+
+    <header class="mb-10">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        Guide complet de la TVA au Maroc (2025)
+      </h1>
+      <p class="text-lg text-gray-600">
+        Tout savoir sur la Taxe sur la Valeur Ajoutée au Maroc : les différents taux, les produits concernés, les exonérations et les méthodes de calcul.
+      </p>
+      <div class="mt-4 flex items-center gap-3 text-sm text-gray-500">
+        <span>Par <a href={CONFIG.author.url} class="text-brand-700 hover:underline">{CONFIG.author.name}</a></span>
+        <span>({CONFIG.author.credentials})</span>
+        <span>- Mis à jour le 15 janvier 2025</span>
+      </div>
+    </header>
+
+    <div class="prose prose-gray max-w-none">
+      <p>La Taxe sur la Valeur Ajoutée (TVA) est le principal impôt indirect au Maroc. Instituée par la loi n° 30-85 du 20 décembre 1985, elle s'applique à la plupart des opérations de vente de biens et de prestations de services sur le territoire marocain. La TVA représente la première source de recettes fiscales indirectes de l'État et touche directement le pouvoir d'achat des consommateurs marocains.</p>
+
+      <h2>Principe de la TVA</h2>
+
+      <p>La TVA est un impôt sur la consommation collecté par les entreprises à chaque étape de la chaîne de production et de distribution. Le mécanisme de base est simple : chaque entreprise facture la TVA à ses clients (TVA collectée) et récupère la TVA payée à ses fournisseurs (TVA déductible). La différence (TVA collectée moins TVA déductible) est reversée à l'État. In fine, c'est le consommateur final qui supporte la charge de la TVA, car il ne peut pas la déduire.</p>
+
+      <p>Au Maroc, la TVA s'applique aux opérations de nature industrielle, commerciale, artisanale et aux prestations de services. Sont assujettis les personnes physiques et morales qui réalisent ces opérations à titre habituel ou occasionnel. Certaines activités sont expressément exonérées par la loi.</p>
+
+      <h2>Les différents taux de TVA au Maroc</h2>
+
+      <h3>Taux normal : 20%</h3>
+
+      <p>Le taux normal de 20% est le taux par défaut qui s'applique à la majorité des biens et services au Maroc. Parmi les produits et services soumis au taux normal, on trouve : les produits manufacturés, les appareils électroménagers, les vêtements, les véhicules neufs et d'occasion, les services de télécommunication, la restauration (hors restauration touristique), les services professionnels (avocats, consultants, architectes), les matériaux de construction et les produits cosmétiques et de beauté.</p>
+
+      <h3>Taux réduit de 14%</h3>
+
+      <p>Le taux de 14% s'applique à certains produits et services considérés comme semi-nécessaires. Les principaux concernés sont : les opérations de transport de marchandises et de voyageurs, le beurre (hors beurre de fabrication artisanale), le thé (en vrac ou conditionné), la confiture, l'énergie électrique à usage non domestique et certaines prestations de services liées à la restauration. Ce taux intermédiaire vise à modérer l'impact fiscal sur des produits largement consommés par la population.</p>
+
+      <h3>Taux réduit de 10%</h3>
+
+      <p>Le taux de 10% couvre une gamme plus large de produits et services. On y trouve notamment : les huiles alimentaires (sauf l'huile d'olive qui est exonérée), le sel de cuisine, le riz, les pâtes alimentaires, les conserves de sardines, les opérations bancaires (intérêts, commissions), les opérations d'hôtellerie et de restauration touristique, les opérations de location d'immeubles à usage d'habitation, certaines opérations de crédit immobilier et les chauffe-eaux solaires.</p>
+
+      <h3>Taux super-réduit de 7%</h3>
+
+      <p>Le taux de 7% est le taux le plus bas applicable aux produits et services taxés. Il concerne principalement : l'eau potable et les prestations d'assainissement (usage domestique), l'énergie électrique à usage domestique, les produits pharmaceutiques et spécialités médicales, les fournitures scolaires, les aliments pour bétail et volailles et le lait en poudre. Ce taux super-réduit vise à protéger l'accès aux biens et services essentiels.</p>
+
+      <h3>Exonérations (taux 0%)</h3>
+
+      <p>Certains produits de première nécessité sont totalement exonérés de TVA pour préserver le pouvoir d'achat des ménages les plus modestes. Les principales exonérations concernent : le pain (toutes variétés), le lait frais, le sucre brut, les dattes produites au Maroc, les produits de la pêche à l'état frais ou congelés, la viande fraîche, l'huile d'olive, les légumineuses et les céréales. Les exportations de biens et services sont également exonérées de TVA (taux 0% avec droit à déduction).</p>
+
+      <h2>Comment calculer la TVA</h2>
+
+      <h3>Du HT vers le TTC</h3>
+
+      <p>Pour obtenir le montant TTC à partir d'un montant HT, appliquez la formule : <strong>TTC = HT x (1 + taux)</strong>. Exemple : pour 1 000 DH HT au taux de 20%, le TTC = 1 000 x 1,20 = 1 200 DH. Le montant de TVA est de 200 DH.</p>
+
+      <h3>Du TTC vers le HT</h3>
+
+      <p>L'opération inverse est fréquemment nécessaire, par exemple pour retrouver le prix HT à partir d'un prix affiché TTC. La formule est : <strong>HT = TTC / (1 + taux)</strong>. Exemple : pour 1 200 DH TTC au taux de 20%, le HT = 1 200 / 1,20 = 1 000 DH. Le montant de TVA est de 200 DH.</p>
+
+      <h3>Calcul de la TVA seule</h3>
+
+      <p>Pour extraire le montant de TVA contenu dans un prix TTC : <strong>TVA = TTC - (TTC / (1 + taux))</strong>. Ou de manière équivalente : <strong>TVA = TTC x taux / (1 + taux)</strong>. Exemple : la TVA contenue dans 1 200 DH TTC à 20% = 1 200 x 0,20 / 1,20 = 200 DH.</p>
+
+      <h2>Obligations des entreprises</h2>
+
+      <p>Les entreprises assujetties à la TVA au Maroc doivent respecter plusieurs obligations. Elles doivent s'inscrire au registre de la TVA auprès de l'administration fiscale, émettre des factures conformes mentionnant le montant HT, le taux et le montant de TVA, tenir une comptabilité permettant de justifier les opérations taxables et les déductions, déposer des déclarations périodiques (mensuelles ou trimestrielles selon le chiffre d'affaires) et verser la TVA due dans les délais impartis.</p>
+
+      <p>Le régime de déclaration mensuel s'applique aux entreprises dont le chiffre d'affaires annuel dépasse 1 000 000 DH. Le régime trimestriel s'applique aux entreprises en dessous de ce seuil, ainsi qu'aux nouveaux assujettis pendant les 24 premiers mois d'activité.</p>
+
+      <h2>Évolution récente de la TVA au Maroc</h2>
+
+      <p>La loi de finances 2024 a introduit des modifications significatives dans le système de TVA marocain. L'objectif principal est de converger progressivement vers deux taux (un taux normal et un taux réduit) pour simplifier le système et réduire les distorsions. Certains taux ont été ajustés et des produits ont changé de catégorie dans le cadre de cette réforme progressive. Les contribuables et les professionnels de la comptabilité doivent rester attentifs à ces évolutions qui pourraient modifier les taux applicables à certains produits dans les années à venir.</p>
+
+      <h2>Conseils pratiques</h2>
+
+      <p>Pour les consommateurs, il est utile de savoir quel taux de TVA s'applique aux produits que vous achetez régulièrement. Cela permet de vérifier les factures et de mieux comprendre la composition des prix. Pour les entrepreneurs et les professionnels, une bonne maîtrise de la TVA est essentielle pour la gestion de trésorerie, la tarification et les déclarations fiscales. Notre <a href="/calculateur-tva/">calculateur TVA</a> vous permet de convertir instantanément les montants entre HT et TTC pour tous les taux en vigueur.</p>
+    </div>
+
+    <div class="mt-10 p-6 bg-brand-50 rounded-2xl border border-brand-100">
+      <h3 class="text-lg font-semibold text-brand-800 mb-2">Calculez la TVA</h3>
+      <p class="text-brand-700 text-sm mb-3">Utilisez notre calculateur gratuit pour convertir vos montants HT/TTC instantanément.</p>
+      <a href="/calculateur-tva/" class="inline-flex items-center px-5 py-2.5 bg-brand-600 text-white font-medium rounded-lg hover:bg-brand-700 transition-colors text-sm">
+        Calculer la TVA
+      </a>
+    </div>
+  </article>
+</Layout>

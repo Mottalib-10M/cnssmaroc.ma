@@ -1,0 +1,61 @@
+---
+import Layout from '../components/layout/Layout.astro';
+import { CONFIG } from '../config';
+import { buildBreadcrumbSchema } from '../lib/seo';
+
+const title = 'A propos - CNSS Maroc';
+const description = 'Découvrez l\'équipe derrière CNSS Maroc, le site de référence pour les calculateurs de cotisations sociales et simulateurs de retraite au Maroc.';
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+    { name: 'A propos', url: CONFIG.siteUrl + '/a-propos/' },
+  ]),
+];
+---
+
+<Layout title={title} description={description} schema={schemas}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+    <nav aria-label="Fil d'Ariane" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-brand-700">Accueil</a></li>
+        <li class="flex items-center gap-1"><span>/</span><span class="text-gray-800 font-medium">A propos</span></li>
+      </ol>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">A propos de CNSS Maroc</h1>
+
+    <div class="prose prose-gray max-w-none">
+      <p><strong>CNSS Maroc</strong> (cnssmaroc.ma) est un site indépendant dédié à la vulgarisation de la protection sociale au Maroc. Notre mission est de rendre accessible à tous les informations relatives aux cotisations CNSS, à la retraite, à l'assurance maladie et aux autres prestations sociales.</p>
+
+      <h2>Notre mission</h2>
+
+      <p>La protection sociale au Maroc est un système complexe que beaucoup de salariés et d'employeurs ont du mal à comprendre. Notre objectif est de simplifier ces informations grâce à des outils de calcul gratuits, précis et faciles à utiliser. Nous croyons que chaque citoyen marocain devrait pouvoir comprendre ses droits et obligations en matière de sécurité sociale.</p>
+
+      <h2>Nos outils</h2>
+
+      <p>Nous proposons une gamme complète de calculateurs et simulateurs :</p>
+
+      <ul>
+        <li><a href="/calculateur-cotisations-cnss/">Calculateur de cotisations CNSS</a> : détail complet des cotisations salariales et patronales</li>
+        <li><a href="/simulateur-retraite-cnss/">Simulateur de retraite CNSS</a> : estimation de la pension de retraite</li>
+        <li><a href="/simulateur-retraite-cmr/">Simulateur de retraite CMR</a> : pension des fonctionnaires</li>
+        <li><a href="/calculateur-tva/">Calculateur TVA Maroc</a> : conversion HT/TTC pour tous les taux</li>
+        <li><a href="/calculateur-allocations-familiales/">Calculateur d'allocations familiales</a> : montant des prestations familiales</li>
+        <li><a href="/calculateur-ipe/">Calculateur IPE</a> : indemnité pour perte d'emploi</li>
+      </ul>
+
+      <h2>L'auteur</h2>
+
+      <p>Ce site est créé et maintenu par <strong>{CONFIG.author.name}</strong>, titulaire d'un {CONFIG.author.credentials}. Passionné par les questions de finance personnelle et de protection sociale, il met son expertise au service de la communauté marocaine pour faciliter la compréhension des mécanismes de la sécurité sociale.</p>
+
+      <h2>Avertissement</h2>
+
+      <p>Les informations et calculs fournis sur ce site sont donnés à titre informatif et ne se substituent pas aux textes légaux et réglementaires en vigueur. Pour des calculs officiels, veuillez vous adresser directement à la CNSS, à la CMR ou à un expert-comptable agréé. Nous nous efforçons de maintenir les données à jour, mais des modifications législatives peuvent survenir entre les mises à jour de notre site.</p>
+
+      <h2>Contact</h2>
+
+      <p>Pour toute question, suggestion ou signalement d'erreur, vous pouvez nous contacter par email à : <a href={`mailto:${CONFIG.contact}`}>{CONFIG.contact}</a>.</p>
+    </div>
+  </div>
+</Layout>

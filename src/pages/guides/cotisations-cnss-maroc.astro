@@ -1,0 +1,144 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import { CONFIG } from '../../config';
+import { buildBreadcrumbSchema, buildArticleSchema } from '../../lib/seo';
+
+const title = 'Guide complet des cotisations CNSS au Maroc 2025';
+const description = 'Tout savoir sur les cotisations CNSS au Maroc : taux, plafonds, répartition salarié-employeur. Guide détaillé mis à jour pour 2025.';
+const url = CONFIG.siteUrl + '/guides/cotisations-cnss-maroc/';
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+    { name: 'Guides', url: CONFIG.siteUrl + '/guides/cotisations-cnss-maroc/' },
+    { name: 'Cotisations CNSS', url },
+  ]),
+  buildArticleSchema({
+    title,
+    description,
+    url,
+    datePublished: '2025-01-15',
+    dateModified: '2025-01-15',
+  }),
+];
+---
+
+<Layout title={title} description={description} schema={schemas}>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <nav aria-label="Fil d'Ariane" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-brand-700">Accueil</a></li>
+        <li class="flex items-center gap-1"><span>/</span><a href="/guides/cotisations-cnss-maroc/" class="hover:text-brand-700">Guides</a></li>
+        <li class="flex items-center gap-1"><span>/</span><span class="text-gray-800 font-medium">Cotisations CNSS</span></li>
+      </ol>
+    </nav>
+
+    <header class="mb-10">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        Guide complet des cotisations CNSS au Maroc (2025)
+      </h1>
+      <p class="text-lg text-gray-600">
+        Comprendre en détail chaque ligne de cotisation, les plafonds, la répartition entre salarié et employeur, et l'évolution historique du système.
+      </p>
+      <div class="mt-4 flex items-center gap-3 text-sm text-gray-500">
+        <span>Par <a href={CONFIG.author.url} class="text-brand-700 hover:underline">{CONFIG.author.name}</a></span>
+        <span>({CONFIG.author.credentials})</span>
+        <span>- Mis à jour le 15 janvier 2025</span>
+      </div>
+    </header>
+
+    <div class="prose prose-gray max-w-none">
+      <p>La Caisse Nationale de Sécurité Sociale (CNSS) est l'organisme public marocain en charge de la gestion du régime de sécurité sociale obligatoire pour les salariés du secteur privé. Le financement de ce régime repose sur un système de cotisations sociales partagées entre l'employeur et le salarié. Ce guide détaille l'ensemble des cotisations en vigueur en 2025, leurs taux, les règles de plafonnement et leur répartition.</p>
+
+      <h2>Vue d'ensemble du système de cotisations</h2>
+
+      <p>Le système de cotisations CNSS comprend cinq branches principales : les prestations sociales à court terme, l'Assurance Maladie Obligatoire (AMO), la retraite (prestations à long terme), les allocations familiales et la formation professionnelle. Chaque branche a son propre taux de cotisation et ses propres règles de plafonnement. Le total des cotisations représente environ 27,83% du salaire brut mensuel.</p>
+
+      <h2>Cotisations à la charge du salarié</h2>
+
+      <h3>1. Prestations sociales à court terme : 0,52%</h3>
+
+      <p>Cette cotisation finance les indemnités journalières de maladie, les allocations de maternité et les allocations de décès. Elle est calculée sur le salaire brut mensuel plafonné à 6 000 DH. Pour un salarié gagnant 6 000 DH, la retenue est de 31,20 DH. Pour un salarié gagnant 15 000 DH, la retenue reste à 31,20 DH en raison du plafonnement. Ces prestations à court terme couvrent les risques temporaires et sont versées sous forme d'indemnités forfaitaires ou proportionnelles au salaire.</p>
+
+      <h3>2. AMO (Assurance Maladie Obligatoire) : 2,26%</h3>
+
+      <p>L'AMO est la cotisation la plus récente du système CNSS, instaurée en 2005 par la loi 65-00. Elle finance la couverture médicale des salariés et de leurs ayants droit : consultations, hospitalisations, médicaments, analyses et examens de laboratoire. Contrairement aux prestations sociales et à la retraite, l'AMO est calculée sur l'intégralité du salaire brut, sans plafond. Pour un salarié gagnant 10 000 DH, la retenue AMO est de 226 DH. Pour un salarié gagnant 20 000 DH, elle est de 452 DH.</p>
+
+      <h3>3. Retraite (prestations à long terme) : 3,96%</h3>
+
+      <p>C'est la cotisation la plus élevée à la charge du salarié. Elle finance la pension de retraite versée à partir de 60 ans. Comme les prestations sociales, elle est plafonnée à 6 000 DH par mois. La retenue maximale est donc de 237,60 DH par mois (6 000 x 3,96%). Cette cotisation est indispensable pour l'acquisition de droits à la pension : chaque mois de cotisation représente environ 26 jours de droits.</p>
+
+      <p><strong>Total salarié : 6,74%</strong> (avec un maximum théorique de 31,20 + salaire x 2,26% + 237,60 pour les salaires supérieurs à 6 000 DH).</p>
+
+      <h2>Cotisations à la charge de l'employeur</h2>
+
+      <h3>1. Allocations familiales : 6,40%</h3>
+
+      <p>C'est la charge patronale la plus lourde en pourcentage. Elle finance les allocations familiales versées aux salariés ayant des enfants à charge (300 DH par enfant pour les 3 premiers, 36 DH pour les suivants). Cette cotisation est calculée sur l'intégralité du salaire brut, sans aucun plafonnement. Pour un salarié gagnant 20 000 DH, la charge pour l'employeur est de 1 280 DH par mois. Fait notable : l'employeur paie cette cotisation même si le salarié n'a pas d'enfants.</p>
+
+      <h3>2. Prestations sociales patronales : 1,05%</h3>
+
+      <p>Cette cotisation patronale complète la cotisation salariale de 0,52% pour financer les prestations sociales à court terme. Elle est plafonnée à 6 000 DH par mois, soit un montant maximum de 63 DH. Le total des cotisations prestations sociales (salarié + employeur) est donc de 1,57%, ce qui assure le financement des indemnités journalières et allocations de court terme.</p>
+
+      <h3>3. AMO patronale : 4,11%</h3>
+
+      <p>La part patronale de l'AMO est nettement plus élevée que la part salariale (4,11% contre 2,26%). Elle est également déplafonnée, calculée sur l'intégralité du salaire brut. Le total AMO (salarié + employeur) atteint 6,37% du salaire brut, ce qui reflète le coût important de la couverture médicale. Cette charge déplafonnée est particulièrement significative pour les salaires élevés.</p>
+
+      <h3>4. Retraite patronale : 7,93%</h3>
+
+      <p>La cotisation retraite patronale est exactement le double de la cotisation salariale (7,93% contre 3,96%). Elle est plafonnée à 6 000 DH, soit un montant maximum de 475,80 DH par mois. Le total retraite (salarié + employeur) est de 11,89% du salaire plafonné, ce qui finance le régime de pension de vieillesse et d'invalidité.</p>
+
+      <h3>5. Taxe de formation professionnelle : 1,60%</h3>
+
+      <p>Cette taxe est exclusivement à la charge de l'employeur. Elle finance la formation professionnelle continue et le développement des compétences des salariés. Elle est calculée sur l'intégralité du salaire brut, sans plafond. Pour un salarié gagnant 15 000 DH, la taxe est de 240 DH par mois. Cette taxe est gérée par l'Office de la Formation Professionnelle et de la Promotion du Travail (OFPPT).</p>
+
+      <p><strong>Total employeur : environ 21,09%</strong> du salaire brut (avec les mêmes réserves sur le plafonnement).</p>
+
+      <h2>Le plafond de cotisation : 6 000 DH</h2>
+
+      <p>Le plafond de 6 000 DH par mois est un élément fondamental du système CNSS. Il s'applique aux cotisations suivantes :</p>
+
+      <ul>
+        <li>Prestations sociales salarié (0,52%) : plafonnées</li>
+        <li>Retraite salarié (3,96%) : plafonnée</li>
+        <li>Prestations sociales employeur (1,05%) : plafonnées</li>
+        <li>Retraite employeur (7,93%) : plafonnée</li>
+      </ul>
+
+      <p>Les cotisations suivantes ne sont PAS plafonnées :</p>
+
+      <ul>
+        <li>AMO salarié (2,26%) : calculée sur le salaire réel</li>
+        <li>AMO employeur (4,11%) : calculée sur le salaire réel</li>
+        <li>Allocations familiales (6,40%) : calculées sur le salaire réel</li>
+        <li>Formation professionnelle (1,60%) : calculée sur le salaire réel</li>
+      </ul>
+
+      <p>Ce plafonnement a une conséquence importante : le taux effectif de cotisation diminue à mesure que le salaire augmente. Un salarié gagnant 6 000 DH paie un taux effectif de 27,83%, tandis qu'un salarié gagnant 20 000 DH paie un taux effectif nettement inférieur car les cotisations plafonnées sont fixes en montant absolu.</p>
+
+      <h2>Evolution historique des cotisations</h2>
+
+      <p>Les taux de cotisation CNSS ont évolué au fil des décennies. Le plafond de cotisation, longtemps fixé à 6 000 DH, n'a pas été réévalué depuis plusieurs années, ce qui en fait un sujet de débat récurrent. Certains experts préconisent un relèvement du plafond pour améliorer le financement du régime et augmenter les pensions futures, tandis que d'autres s'inquiètent de l'impact sur le coût du travail.</p>
+
+      <p>L'introduction de l'AMO en 2005 a constitué une avancée majeure, étendant la couverture médicale à l'ensemble des salariés du secteur privé. La généralisation de la protection sociale, lancée par le Maroc en 2021, vise à étendre la couverture sociale à l'ensemble de la population, y compris les travailleurs indépendants et du secteur informel.</p>
+
+      <h2>Obligations de l'employeur</h2>
+
+      <p>L'employeur a l'obligation légale d'immatriculer ses salariés auprès de la CNSS dès le premier jour de travail. Il est responsable du calcul, de la retenue et du versement de l'ensemble des cotisations, y compris la part salariale. Les déclarations doivent être effectuées mensuellement pour les entreprises de 10 salariés ou plus, et trimestriellement pour les autres. Le non-respect de ces obligations expose l'employeur à des majorations de retard (3% par mois) et à des sanctions pénales.</p>
+
+      <h2>Conseils pratiques</h2>
+
+      <p>Pour les salariés, il est recommandé de vérifier régulièrement leur relevé de carrière CNSS via le portail en ligne www.cnss.ma ou l'application Damancom. Chaque jour de cotisation compte pour l'acquisition des droits à la retraite. Les salariés devraient s'assurer que leur employeur déclare correctement leur salaire et le nombre de jours travaillés. En cas d'anomalie, une réclamation peut être déposée auprès de la délégation CNSS la plus proche.</p>
+
+      <p>Pour les employeurs, une bonne gestion des cotisations CNSS passe par l'utilisation des outils de déclaration en ligne (portail Damancom), le respect des délais de déclaration et le calcul correct des assiettes plafonnées et déplafonnées. Notre <a href="/calculateur-cotisations-cnss/">calculateur de cotisations CNSS</a> peut servir d'outil de vérification rapide.</p>
+    </div>
+
+    <div class="mt-10 p-6 bg-brand-50 rounded-2xl border border-brand-100">
+      <h3 class="text-lg font-semibold text-brand-800 mb-2">Calculez vos cotisations</h3>
+      <p class="text-brand-700 text-sm mb-3">Utilisez notre calculateur gratuit pour obtenir le détail précis de vos cotisations CNSS.</p>
+      <a href="/calculateur-cotisations-cnss/" class="inline-flex items-center px-5 py-2.5 bg-brand-600 text-white font-medium rounded-lg hover:bg-brand-700 transition-colors text-sm">
+        Calculer mes cotisations
+      </a>
+    </div>
+  </article>
+</Layout>
