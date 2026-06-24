@@ -2,12 +2,36 @@
 import CalculateurLayout from '../layouts/CalculateurLayout.astro';
 import CotisationsCNSS from '../components/calculateurs/CotisationsCNSS';
 import { CONFIG } from '../config';
+import { buildFAQSchema } from '../lib/seo';
 
 const title = 'Calculateur cotisations CNSS 2025 - Salarié et employeur';
-const description = 'Calculez toutes les cotisations CNSS 2025 : part salariale, patronale, AMO, retraite et allocations familiales. Résultat détaillé et instantané.';
+const description = 'Calculez toutes les cotisations CNSS 2025 : part salariale, patronale, AMO, retraite et allocations familiales. Résultat détaillé et instantané en ligne.';
 const breadcrumbs = [
   { name: 'Accueil', url: CONFIG.siteUrl + '/' },
   { name: 'Calculateur cotisations CNSS', url: CONFIG.siteUrl + '/calculateur-cotisations-cnss/' },
+];
+
+const faqData = [
+  {
+    q: 'Quel est le taux total de cotisation CNSS en 2025 ?',
+    a: 'Le taux total de cotisation CNSS en 2025 est d\'environ 27,83% du salaire brut : 6,74% à la charge du salarié et environ 21,09% à la charge de l\'employeur. Ce taux couvre les prestations sociales, l\'AMO, la retraite, les allocations familiales et la formation professionnelle.',
+  },
+  {
+    q: 'Quel est le plafond de cotisation CNSS en 2025 ?',
+    a: 'Le plafond de cotisation CNSS est de 6 000 DH par mois. Ce plafond s\'applique aux cotisations de prestations sociales (0,52% salarié, 1,05% employeur) et de retraite (3,96% salarié, 7,93% employeur). L\'AMO, les allocations familiales et la formation professionnelle sont déplafonnées.',
+  },
+  {
+    q: 'Comment sont réparties les cotisations CNSS entre salarié et employeur ?',
+    a: 'Le salarié cotise 6,74% : prestations sociales (0,52%), AMO (2,26%) et retraite (3,96%). L\'employeur cotise environ 21,09% : allocations familiales (6,40%), prestations sociales (1,05%), AMO (4,11%), retraite (7,93%) et formation professionnelle (1,60%).',
+  },
+  {
+    q: 'Les cotisations CNSS sont-elles déductibles de l\'impôt sur le revenu ?',
+    a: 'Oui, les cotisations CNSS salariales sont intégralement déductibles du salaire brut imposable pour le calcul de l\'impôt sur le revenu (IR). Cela signifie que les 6,74% retenus sur votre salaire réduisent votre base imposable.',
+  },
+  {
+    q: 'Que se passe-t-il si mon salaire dépasse le plafond de 6 000 DH ?',
+    a: 'Si votre salaire dépasse 6 000 DH, les cotisations plafonnées (prestations sociales et retraite) restent calculées sur 6 000 DH. Seules les cotisations déplafonnées (AMO à 2,26%, allocations familiales à 6,40%, formation à 1,60% et AMO patronale à 4,11%) sont calculées sur votre salaire réel.',
+  },
 ];
 ---
 
@@ -16,6 +40,7 @@ const breadcrumbs = [
   description={description}
   breadcrumbs={breadcrumbs}
   appName="Calculateur cotisations CNSS Maroc"
+  extraSchema={buildFAQSchema(faqData)}
 >
   <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
     Calculateur de cotisations CNSS 2025
@@ -46,5 +71,24 @@ const breadcrumbs = [
     <h3>Comment utiliser ce calculateur</h3>
 
     <p>Entrez simplement votre salaire brut mensuel dans le champ prévu à cet effet. Le calculateur affichera instantanément le détail de chaque ligne de cotisation, avec l'assiette utilisée (salaire brut ou plafond selon le cas), le taux appliqué et le montant correspondant. Vous verrez également le net avant impôt sur le revenu, le coût total pour l'employeur et la répartition en graphique. Si votre salaire dépasse 6 000 DH, une note explicative vous indiquera l'impact du plafonnement sur vos cotisations.</p>
+  </section>
+
+  <section class="mt-16">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Questions fréquentes sur les cotisations CNSS</h2>
+    <div class="space-y-4">
+      {faqData.map((faq) => (
+        <details class="group bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <summary class="cursor-pointer px-6 py-4 font-medium text-gray-900 flex items-center justify-between hover:bg-gray-50 transition-colors">
+            {faq.q}
+            <span class="ml-4 text-gray-400 group-open:rotate-180 transition-transform">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          </summary>
+          <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{faq.a}</div>
+        </details>
+      ))}
+    </div>
   </section>
 </CalculateurLayout>

@@ -2,12 +2,36 @@
 import CalculateurLayout from '../layouts/CalculateurLayout.astro';
 import IPE from '../components/calculateurs/IPE';
 import { CONFIG } from '../config';
+import { buildFAQSchema } from '../lib/seo';
 
 const title = 'Calculateur IPE 2025 - Indemnité perte d\'emploi CNSS';
-const description = 'Simulez votre indemnité pour perte d\'emploi (IPE) CNSS au Maroc. Vérifiez votre éligibilité et calculez le montant de votre indemnité.';
+const description = 'Simulez votre indemnité pour perte d\'emploi (IPE) CNSS au Maroc. Vérifiez votre éligibilité, calculez le montant et la durée de versement. Outil gratuit.';
 const breadcrumbs = [
   { name: 'Accueil', url: CONFIG.siteUrl + '/' },
   { name: 'Calculateur IPE', url: CONFIG.siteUrl + '/calculateur-ipe/' },
+];
+
+const faqData = [
+  {
+    q: 'Quelles sont les conditions d\'éligibilité à l\'IPE au Maroc ?',
+    a: 'Trois conditions cumulatives : perte involontaire d\'emploi (licenciement, fin CDD, force majeure), au moins 780 jours de cotisation CNSS au total, et au moins 260 jours de cotisation au cours des 12 derniers mois. La démission ne donne pas droit à l\'IPE.',
+  },
+  {
+    q: 'Quel est le montant de l\'indemnité pour perte d\'emploi (IPE) ?',
+    a: 'Le montant de l\'IPE est égal à 70% du salaire moyen déclaré sur les 36 derniers mois. Ce montant est plafonné au SMIG, soit 3 111 DH par mois en 2025. La durée de versement est de 6 mois maximum.',
+  },
+  {
+    q: 'Quel est le délai pour faire une demande d\'IPE ?',
+    a: 'Le salarié doit s\'inscrire à l\'ANAPEC dans un délai de 60 jours suivant la perte d\'emploi. Il doit ensuite déposer sa demande auprès de la CNSS avec les pièces justificatives (attestation de travail, certificat ANAPEC, etc.).',
+  },
+  {
+    q: 'Pendant combien de temps peut-on percevoir l\'IPE ?',
+    a: 'L\'IPE est versée pendant une durée maximale de 6 mois. Le bénéficiaire doit rechercher activement un emploi et rester inscrit à l\'ANAPEC pendant toute cette période. Le versement cesse dès la reprise d\'une activité professionnelle.',
+  },
+  {
+    q: 'La démission donne-t-elle droit à l\'IPE ?',
+    a: 'Non, la démission ne donne pas droit à l\'indemnité pour perte d\'emploi. Seule la perte involontaire d\'emploi (licenciement, fin de CDD, force majeure) ouvre le droit à l\'IPE. Le départ négocié peut ouvrir droit à l\'IPE sous certaines conditions.',
+  },
 ];
 ---
 
@@ -16,6 +40,7 @@ const breadcrumbs = [
   description={description}
   breadcrumbs={breadcrumbs}
   appName="Calculateur IPE CNSS Maroc"
+  extraSchema={buildFAQSchema(faqData)}
 >
   <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
     Calculateur Indemnité Perte d'Emploi (IPE) 2025
@@ -42,5 +67,24 @@ const breadcrumbs = [
     <h3>Démarches à suivre</h3>
 
     <p>Le salarié ayant perdu son emploi doit s'inscrire à l'ANAPEC dans un délai de 60 jours. Il doit ensuite déposer une demande auprès de la CNSS accompagnée des pièces justificatives (attestation de travail, certificat de l'ANAPEC, etc.). Le premier versement intervient généralement dans le mois suivant l'acceptation du dossier.</p>
+  </section>
+
+  <section class="mt-16">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Questions fréquentes sur l'IPE</h2>
+    <div class="space-y-4">
+      {faqData.map((faq) => (
+        <details class="group bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <summary class="cursor-pointer px-6 py-4 font-medium text-gray-900 flex items-center justify-between hover:bg-gray-50 transition-colors">
+            {faq.q}
+            <span class="ml-4 text-gray-400 group-open:rotate-180 transition-transform">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          </summary>
+          <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{faq.a}</div>
+        </details>
+      ))}
+    </div>
   </section>
 </CalculateurLayout>

@@ -16,6 +16,27 @@ export function buildWebSiteSchema() {
   };
 }
 
+export function buildOrganizationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: CONFIG.siteName,
+    url: CONFIG.siteUrl,
+    description: CONFIG.description,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      email: CONFIG.contact,
+      contactType: 'customer service',
+      availableLanguage: ['fr', 'ar'],
+    },
+    founder: {
+      '@type': 'Person',
+      name: CONFIG.author.name,
+      url: CONFIG.author.url,
+    },
+  };
+}
+
 export function buildBreadcrumbSchema(items: BreadcrumbItem[]) {
   return {
     '@context': 'https://schema.org',

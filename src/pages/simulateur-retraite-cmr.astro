@@ -2,12 +2,36 @@
 import CalculateurLayout from '../layouts/CalculateurLayout.astro';
 import PensionCMR from '../components/calculateurs/PensionCMR';
 import { CONFIG } from '../config';
+import { buildFAQSchema } from '../lib/seo';
 
 const title = 'Simulateur retraite CMR 2025 - Fonctionnaires Maroc';
-const description = 'Simulez votre pension CMR pour fonctionnaires au Maroc. Calculez votre retraite selon votre traitement de base et années de service.';
+const description = 'Simulez votre pension CMR pour fonctionnaires civils au Maroc. Calculez votre retraite selon votre traitement de base et vos années de service. Outil 2025.';
 const breadcrumbs = [
   { name: 'Accueil', url: CONFIG.siteUrl + '/' },
   { name: 'Simulateur retraite CMR', url: CONFIG.siteUrl + '/simulateur-retraite-cmr/' },
+];
+
+const faqData = [
+  {
+    q: 'Comment est calculée la pension CMR pour les fonctionnaires au Maroc ?',
+    a: 'La pension CMR est calculée selon la formule : 2,5% × nombre d\'années de service × dernier traitement de base. Par exemple, un fonctionnaire ayant 28 ans de service touchera 70% de son dernier traitement (28 × 2,5% = 70%), qui est le taux maximum.',
+  },
+  {
+    q: 'Quel est l\'âge de départ à la retraite CMR pour les fonctionnaires civils ?',
+    a: 'L\'âge légal de départ à la retraite pour les fonctionnaires civils au Maroc est de 63 ans. Il existe des dérogations pour certaines catégories de fonctionnaires (militaires, enseignants, etc.) avec des âges différents.',
+  },
+  {
+    q: 'Quel est le taux de cotisation CMR pour les fonctionnaires ?',
+    a: 'Les fonctionnaires cotisent 10% de leur traitement de base mensuel. L\'État employeur verse également 10%, pour un total de 20%. Ces taux sont plus élevés que ceux de la CNSS pour la seule branche retraite, mais offrent une pension plus avantageuse.',
+  },
+  {
+    q: 'Quelle est la différence principale entre la retraite CMR et la retraite CNSS ?',
+    a: 'La CMR est plus avantageuse que la CNSS sur plusieurs points : pas de plafond sur le traitement de base, calcul sur le dernier salaire (et non une moyenne), taux de 2,5% par année de service, et pas de plafond absolu sur la pension. La pension CNSS est plafonnée à 4 200 DH/mois.',
+  },
+  {
+    q: 'Combien d\'années de service faut-il pour atteindre le taux maximum CMR ?',
+    a: 'Il faut 28 années de service pour atteindre le taux maximum de 70% (28 × 2,5% = 70%). Chaque année de service supplémentaire au-delà de 28 ans ne génère pas de droits à pension supplémentaires car le taux est plafonné à 70%.',
+  },
 ];
 ---
 
@@ -16,6 +40,7 @@ const breadcrumbs = [
   description={description}
   breadcrumbs={breadcrumbs}
   appName="Simulateur retraite CMR Maroc"
+  extraSchema={buildFAQSchema(faqData)}
 >
   <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
     Simulateur de retraite CMR 2025
@@ -42,5 +67,24 @@ const breadcrumbs = [
     <h3>Différences avec la CNSS</h3>
 
     <p>Les principales différences sont : l'absence de plafond sur le traitement de base, le calcul sur le dernier salaire plutôt que sur une moyenne, un taux de remplacement de 2,5% par année (contre un calcul par jours pour la CNSS), et un âge de départ à 63 ans pour les civils (contre 60 ans pour la CNSS). Ces différences font de la CMR un régime nettement plus favorable pour les fonctionnaires.</p>
+  </section>
+
+  <section class="mt-16">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Questions fréquentes sur la retraite CMR</h2>
+    <div class="space-y-4">
+      {faqData.map((faq) => (
+        <details class="group bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <summary class="cursor-pointer px-6 py-4 font-medium text-gray-900 flex items-center justify-between hover:bg-gray-50 transition-colors">
+            {faq.q}
+            <span class="ml-4 text-gray-400 group-open:rotate-180 transition-transform">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          </summary>
+          <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{faq.a}</div>
+        </details>
+      ))}
+    </div>
   </section>
 </CalculateurLayout>

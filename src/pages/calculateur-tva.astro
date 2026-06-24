@@ -2,12 +2,36 @@
 import CalculateurLayout from '../layouts/CalculateurLayout.astro';
 import CalculateurTVA from '../components/calculateurs/CalculateurTVA';
 import { CONFIG } from '../config';
+import { buildFAQSchema } from '../lib/seo';
 
-const title = 'Calculateur TVA Maroc 2025 - HT/TTC tous taux';
-const description = 'Calculez la TVA au Maroc : conversion HT vers TTC et TTC vers HT pour les taux de 20%, 14%, 10% et 7%. Référence complète des taux par produit.';
+const title = 'Calculateur TVA Maroc 2025 : convertisseur HT/TTC tous taux';
+const description = 'Calculez la TVA au Maroc : conversion HT vers TTC et TTC vers HT pour les taux de 20%, 14%, 10% et 7%. Outil gratuit avec référence des taux par produit.';
 const breadcrumbs = [
   { name: 'Accueil', url: CONFIG.siteUrl + '/' },
   { name: 'Calculateur TVA', url: CONFIG.siteUrl + '/calculateur-tva/' },
+];
+
+const faqData = [
+  {
+    q: 'Quel est le taux de TVA normal au Maroc en 2025 ?',
+    a: 'Le taux normal de TVA au Maroc est de 20%. Il s\'applique à la majorité des biens et services, y compris les produits manufacturés, l\'électronique, les véhicules, les services professionnels et les télécommunications.',
+  },
+  {
+    q: 'Quels sont les différents taux de TVA au Maroc ?',
+    a: 'Le Maroc applique quatre taux de TVA : 20% (taux normal), 14% (transport, beurre, thé), 10% (huiles alimentaires, riz, pâtes, hôtellerie, banque) et 7% (eau et électricité domestiques, médicaments, fournitures scolaires). Certains produits de base comme le pain et le lait frais sont exonérés.',
+  },
+  {
+    q: 'Comment calculer le TTC à partir du HT au Maroc ?',
+    a: 'Pour calculer le TTC, multipliez le montant HT par (1 + taux de TVA). Par exemple, pour 1 000 DH HT au taux de 20% : TTC = 1 000 × 1,20 = 1 200 DH. La TVA est de 200 DH.',
+  },
+  {
+    q: 'Comment retrouver le montant HT à partir du TTC ?',
+    a: 'Pour retrouver le HT à partir du TTC, divisez le montant TTC par (1 + taux de TVA). Par exemple, pour 1 200 DH TTC au taux de 20% : HT = 1 200 / 1,20 = 1 000 DH.',
+  },
+  {
+    q: 'Quels produits sont exonérés de TVA au Maroc ?',
+    a: 'Les produits de première nécessité sont exonérés de TVA au Maroc : le pain, le lait frais, le sucre brut, les dattes marocaines, la viande fraîche, les produits de la pêche frais, l\'huile d\'olive, les légumineuses et les céréales. Les exportations sont également exonérées.',
+  },
 ];
 ---
 
@@ -16,6 +40,7 @@ const breadcrumbs = [
   description={description}
   breadcrumbs={breadcrumbs}
   appName="Calculateur TVA Maroc"
+  extraSchema={buildFAQSchema(faqData)}
 >
   <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
     Calculateur TVA Maroc 2025
@@ -38,5 +63,24 @@ const breadcrumbs = [
     <h3>Comment calculer la TVA</h3>
 
     <p>Pour passer du HT au TTC, multipliez le montant HT par (1 + taux). Par exemple, pour 1 000 DH HT à 20% : 1 000 x 1,20 = 1 200 DH TTC. Pour l'opération inverse (TTC vers HT), divisez le montant TTC par (1 + taux). Par exemple, pour 1 200 DH TTC à 20% : 1 200 / 1,20 = 1 000 DH HT. Notre calculateur effectue ces opérations instantanément pour tous les taux en vigueur.</p>
+  </section>
+
+  <section class="mt-16">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Questions fréquentes sur la TVA au Maroc</h2>
+    <div class="space-y-4">
+      {faqData.map((faq) => (
+        <details class="group bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <summary class="cursor-pointer px-6 py-4 font-medium text-gray-900 flex items-center justify-between hover:bg-gray-50 transition-colors">
+            {faq.q}
+            <span class="ml-4 text-gray-400 group-open:rotate-180 transition-transform">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          </summary>
+          <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{faq.a}</div>
+        </details>
+      ))}
+    </div>
   </section>
 </CalculateurLayout>

@@ -9,17 +9,23 @@ interface Props {
   breadcrumbs: { name: string; url: string }[];
   appName: string;
   canonical?: string;
-  extraSchema?: object;
+  extraSchema?: object | object[];
 }
 
 const { title, description, breadcrumbs, appName, canonical, extraSchema } = Astro.props;
 const pageUrl = canonical || Astro.url.href;
 
-const schemas = [
+const schemas: object[] = [
   buildBreadcrumbSchema(breadcrumbs),
   buildSoftwareAppSchema({ name: appName, description, url: pageUrl }),
 ];
-if (extraSchema) schemas.push(extraSchema as any);
+if (extraSchema) {
+  if (Array.isArray(extraSchema)) {
+    schemas.push(...extraSchema);
+  } else {
+    schemas.push(extraSchema);
+  }
+}
 ---
 
 <Layout title={title} description={description} canonical={canonical} schema={schemas}>

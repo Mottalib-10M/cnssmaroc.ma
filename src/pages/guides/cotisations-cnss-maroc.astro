@@ -1,11 +1,34 @@
 ---
 import Layout from '../../components/layout/Layout.astro';
 import { CONFIG } from '../../config';
-import { buildBreadcrumbSchema, buildArticleSchema } from '../../lib/seo';
+import { buildBreadcrumbSchema, buildArticleSchema, buildFAQSchema } from '../../lib/seo';
 
 const title = 'Guide complet des cotisations CNSS au Maroc 2025';
-const description = 'Tout savoir sur les cotisations CNSS au Maroc : taux, plafonds, répartition salarié-employeur. Guide détaillé mis à jour pour 2025.';
+const description = 'Tout savoir sur les cotisations CNSS au Maroc : taux détaillés, plafonds, répartition salarié-employeur et exemples de calcul. Guide complet à jour pour 2025.';
 const url = CONFIG.siteUrl + '/guides/cotisations-cnss-maroc/';
+
+const faqData = [
+  {
+    q: "Quel est le taux total de cotisation CNSS au Maroc en 2025 ?",
+    a: "Le taux total est d'environ 27,83% du salaire brut : 6,74% à la charge du salarié (prestations sociales 0,52%, AMO 2,26%, retraite 3,96%) et environ 21,09% à la charge de l'employeur (allocations familiales 6,40%, prestations sociales 1,05%, AMO 4,11%, retraite 7,93%, formation 1,60%).",
+  },
+  {
+    q: "Pourquoi certaines cotisations CNSS sont-elles plafonnées ?",
+    a: "Le plafond de 6 000 DH/mois s'applique aux cotisations de prestations sociales et de retraite. Ce plafond limite les droits ouverts (pension maximale de 4 200 DH/mois) mais aussi les charges. Les cotisations AMO, allocations familiales et formation professionnelle sont déplafonnées car elles couvrent des risques sans plafond de prestation.",
+  },
+  {
+    q: "Comment l'employeur déclare-t-il les cotisations CNSS ?",
+    a: "L'employeur déclare les cotisations via le portail Damancom (www.cnss.ma). Les entreprises de 10 salariés ou plus déclarent mensuellement, les autres trimestriellement. L'employeur calcule, retient la part salariale sur le bulletin de paie et verse l'ensemble des cotisations à la CNSS.",
+  },
+  {
+    q: "Que risque un employeur qui ne déclare pas ses salariés à la CNSS ?",
+    a: "Le non-respect des obligations CNSS expose l'employeur à des majorations de retard de 3% par mois sur les cotisations impayées, des sanctions pénales et des poursuites judiciaires. Le salarié non déclaré perd ses droits aux prestations sociales, à la retraite et à la couverture médicale AMO.",
+  },
+  {
+    q: "Le taux effectif de cotisation change-t-il selon le salaire ?",
+    a: "Oui. Pour un salaire de 6 000 DH, le taux effectif est de 27,83%. Pour un salaire supérieur au plafond, le taux effectif diminue car les cotisations plafonnées restent fixes en montant (calculées sur 6 000 DH) tandis que seules les cotisations déplafonnées augmentent proportionnellement au salaire.",
+  },
+];
 
 const schemas = [
   buildBreadcrumbSchema([
@@ -20,6 +43,7 @@ const schemas = [
     datePublished: '2025-01-15',
     dateModified: '2025-01-15',
   }),
+  buildFAQSchema(faqData),
 ];
 ---
 
@@ -132,6 +156,26 @@ const schemas = [
 
       <p>Pour les employeurs, une bonne gestion des cotisations CNSS passe par l'utilisation des outils de déclaration en ligne (portail Damancom), le respect des délais de déclaration et le calcul correct des assiettes plafonnées et déplafonnées. Notre <a href="/calculateur-cotisations-cnss/">calculateur de cotisations CNSS</a> peut servir d'outil de vérification rapide.</p>
     </div>
+
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Questions fréquentes sur les cotisations CNSS</h2>
+      <div class="space-y-4">
+        {faqData.map((faq) => (
+          <details class="group bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <summary class="cursor-pointer px-6 py-4 font-medium text-gray-900 flex items-center justify-between hover:bg-gray-50 transition-colors">
+              {faq.q}
+              <span class="ml-4 text-gray-400 group-open:rotate-180 transition-transform">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{faq.a}</div>
+          </details>
+        ))}
+      </div>
+    </section>
 
     <div class="mt-10 p-6 bg-brand-50 rounded-2xl border border-brand-100">
       <h3 class="text-lg font-semibold text-brand-800 mb-2">Calculez vos cotisations</h3>

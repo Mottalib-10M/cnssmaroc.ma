@@ -2,12 +2,36 @@
 import CalculateurLayout from '../layouts/CalculateurLayout.astro';
 import PensionCNSS from '../components/calculateurs/PensionCNSS';
 import { CONFIG } from '../config';
+import { buildFAQSchema } from '../lib/seo';
 
-const title = 'Simulateur retraite CNSS 2025 - Pension estimée';
-const description = 'Simulez votre pension de retraite CNSS au Maroc. Calculez votre pension mensuelle selon votre salaire moyen et vos jours de cotisation.';
+const title = 'Simulateur retraite CNSS 2025 : estimez votre pension Maroc';
+const description = 'Simulez votre pension de retraite CNSS au Maroc. Calculez votre pension mensuelle selon votre salaire moyen et vos jours de cotisation. Résultat gratuit.';
 const breadcrumbs = [
   { name: 'Accueil', url: CONFIG.siteUrl + '/' },
   { name: 'Simulateur retraite CNSS', url: CONFIG.siteUrl + '/simulateur-retraite-cnss/' },
+];
+
+const faqData = [
+  {
+    q: 'Combien de jours de cotisation faut-il pour avoir droit à la retraite CNSS ?',
+    a: 'Il faut un minimum de 3 240 jours de cotisation CNSS pour avoir droit à la pension de retraite. Cela correspond à environ 15 ans de travail déclaré, à raison de 26 jours par mois.',
+  },
+  {
+    q: 'Quel est l\'âge de départ à la retraite CNSS au Maroc ?',
+    a: 'L\'âge légal de départ à la retraite CNSS est de 60 ans. Une retraite anticipée est possible à partir de 55 ans dans certains cas (métiers pénibles, handicap), mais elle entraîne une réduction de la pension.',
+  },
+  {
+    q: 'Quelle est la pension CNSS maximale possible ?',
+    a: 'La pension CNSS maximale est de 4 200 DH par mois, soit 70% du plafond de 6 000 DH. Pour atteindre ce maximum, il faut avoir cotisé environ 7 560 jours (35 ans) avec un salaire moyen d\'au moins 6 000 DH sur les 8 dernières années.',
+  },
+  {
+    q: 'Comment est calculée la pension de retraite CNSS ?',
+    a: 'La pension CNSS est égale au salaire moyen des 96 derniers mois (8 ans), plafonné à 6 000 DH, multiplié par le taux de remplacement. Le taux de base est de 50% pour 3 240 jours, augmenté de 1% par tranche de 216 jours supplémentaires, jusqu\'à un maximum de 70%.',
+  },
+  {
+    q: 'Existe-t-il une pension minimum CNSS garantie ?',
+    a: 'Oui, la CNSS garantit une pension minimum de 1 500 DH par mois pour tout assuré remplissant la condition de 3 240 jours de cotisation. Si le calcul normal donne un montant inférieur, la pension est portée à ce minimum.',
+  },
 ];
 ---
 
@@ -16,6 +40,7 @@ const breadcrumbs = [
   description={description}
   breadcrumbs={breadcrumbs}
   appName="Simulateur retraite CNSS Maroc"
+  extraSchema={buildFAQSchema(faqData)}
 >
   <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
     Simulateur de retraite CNSS 2025
@@ -46,5 +71,24 @@ const breadcrumbs = [
     <h3>Importance de la planification retraite</h3>
 
     <p>Compte tenu du plafond de 6 000 DH et du taux maximum de 70%, la pension CNSS maximale théorique est de 4 200 DH par mois. Pour les salariés ayant un niveau de vie plus élevé, il est recommandé de compléter la retraite CNSS par une épargne retraite complémentaire (CIMR, assurance vie, etc.). Notre simulateur vous aide à évaluer le niveau de votre future pension et à prendre les décisions de planification financière appropriées.</p>
+  </section>
+
+  <section class="mt-16">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Questions fréquentes sur la retraite CNSS</h2>
+    <div class="space-y-4">
+      {faqData.map((faq) => (
+        <details class="group bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <summary class="cursor-pointer px-6 py-4 font-medium text-gray-900 flex items-center justify-between hover:bg-gray-50 transition-colors">
+            {faq.q}
+            <span class="ml-4 text-gray-400 group-open:rotate-180 transition-transform">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          </summary>
+          <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{faq.a}</div>
+        </details>
+      ))}
+    </div>
   </section>
 </CalculateurLayout>

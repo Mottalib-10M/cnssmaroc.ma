@@ -1,11 +1,34 @@
 ---
 import Layout from '../../components/layout/Layout.astro';
 import { CONFIG } from '../../config';
-import { buildBreadcrumbSchema, buildArticleSchema } from '../../lib/seo';
+import { buildBreadcrumbSchema, buildArticleSchema, buildFAQSchema } from '../../lib/seo';
 
 const title = 'Guide TVA Maroc 2025 - Taux, calcul et exonérations';
-const description = 'Guide complet de la TVA au Maroc : taux de 20%, 14%, 10%, 7%, exonérations, liste des produits par catégorie et méthodes de calcul.';
+const description = 'Guide complet de la TVA au Maroc : taux de 20%, 14%, 10%, 7%, exonérations, liste des produits par catégorie et méthodes de calcul HT et TTC détaillées.';
 const url = CONFIG.siteUrl + '/guides/tva-maroc/';
+
+const faqData = [
+  {
+    q: "Quels sont les 4 taux de TVA applicables au Maroc ?",
+    a: "Le Maroc applique 4 taux de TVA : 20% (taux normal pour la majorité des biens et services), 14% (transport, beurre, thé), 10% (huiles alimentaires, riz, pâtes, banque, hôtellerie) et 7% (eau et électricité domestiques, médicaments, fournitures scolaires). Certains produits de base sont totalement exonérés.",
+  },
+  {
+    q: "Quels produits alimentaires sont exonérés de TVA au Maroc ?",
+    a: "Les produits de première nécessité exonérés de TVA comprennent : le pain (toutes variétés), le lait frais, le sucre brut, les dattes marocaines, la viande fraîche, les produits de la pêche frais ou congelés, l'huile d'olive, les légumineuses et les céréales. Ces exonérations visent à préserver le pouvoir d'achat des ménages.",
+  },
+  {
+    q: "Comment passer d'un prix HT à un prix TTC au Maroc ?",
+    a: "Multipliez le montant HT par (1 + taux de TVA). Pour le taux de 20% : TTC = HT × 1,20. Pour le taux de 14% : TTC = HT × 1,14. Pour le taux de 10% : TTC = HT × 1,10. Pour le taux de 7% : TTC = HT × 1,07.",
+  },
+  {
+    q: "Quelles sont les obligations de déclaration TVA pour les entreprises au Maroc ?",
+    a: "Les entreprises doivent s'inscrire au registre TVA, émettre des factures conformes, tenir une comptabilité et déposer des déclarations périodiques. Le régime mensuel s'applique aux CA supérieurs à 1 000 000 DH/an, le régime trimestriel pour les autres. La TVA due (collectée moins déductible) est reversée à l'État.",
+  },
+  {
+    q: "Le taux de TVA au Maroc va-t-il changer prochainement ?",
+    a: "La loi de finances 2024 a engagé une réforme progressive de la TVA visant à converger vers deux taux principaux (un taux normal et un taux réduit) pour simplifier le système. Certains taux ont déjà été ajustés et d'autres changements sont prévus dans les années à venir.",
+  },
+];
 
 const schemas = [
   buildBreadcrumbSchema([
@@ -20,6 +43,7 @@ const schemas = [
     datePublished: '2025-01-15',
     dateModified: '2025-01-15',
   }),
+  buildFAQSchema(faqData),
 ];
 ---
 
@@ -106,6 +130,26 @@ const schemas = [
 
       <p>Pour les consommateurs, il est utile de savoir quel taux de TVA s'applique aux produits que vous achetez régulièrement. Cela permet de vérifier les factures et de mieux comprendre la composition des prix. Pour les entrepreneurs et les professionnels, une bonne maîtrise de la TVA est essentielle pour la gestion de trésorerie, la tarification et les déclarations fiscales. Notre <a href="/calculateur-tva/">calculateur TVA</a> vous permet de convertir instantanément les montants entre HT et TTC pour tous les taux en vigueur.</p>
     </div>
+
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Questions fréquentes sur la TVA au Maroc</h2>
+      <div class="space-y-4">
+        {faqData.map((faq) => (
+          <details class="group bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <summary class="cursor-pointer px-6 py-4 font-medium text-gray-900 flex items-center justify-between hover:bg-gray-50 transition-colors">
+              {faq.q}
+              <span class="ml-4 text-gray-400 group-open:rotate-180 transition-transform">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{faq.a}</div>
+          </details>
+        ))}
+      </div>
+    </section>
 
     <div class="mt-10 p-6 bg-brand-50 rounded-2xl border border-brand-100">
       <h3 class="text-lg font-semibold text-brand-800 mb-2">Calculez la TVA</h3>

@@ -2,12 +2,36 @@
 import CalculateurLayout from '../layouts/CalculateurLayout.astro';
 import AllocFamiliales from '../components/calculateurs/AllocFamiliales';
 import { CONFIG } from '../config';
+import { buildFAQSchema } from '../lib/seo';
 
 const title = 'Calculateur allocations familiales CNSS 2025 Maroc';
-const description = 'Calculez vos allocations familiales CNSS au Maroc selon le nombre d\'enfants. 300 DH pour les 3 premiers, 36 DH pour les suivants.';
+const description = 'Calculez vos allocations familiales CNSS au Maroc selon le nombre d\'enfants à charge. Barème : 300 DH pour les 3 premiers, 36 DH pour les suivants en 2025.';
 const breadcrumbs = [
   { name: 'Accueil', url: CONFIG.siteUrl + '/' },
   { name: 'Allocations familiales', url: CONFIG.siteUrl + '/calculateur-allocations-familiales/' },
+];
+
+const faqData = [
+  {
+    q: 'Quel est le montant des allocations familiales CNSS par enfant en 2025 ?',
+    a: 'Les allocations familiales CNSS sont de 300 DH par mois pour chacun des 3 premiers enfants, et de 36 DH par mois pour chacun des 3 enfants suivants (4e, 5e et 6e). Au-delà de 6 enfants, aucune allocation supplémentaire n\'est versée.',
+  },
+  {
+    q: 'Quel est le montant maximum d\'allocations familiales CNSS ?',
+    a: 'Le montant maximum est de 1 008 DH par mois pour un salarié ayant 6 enfants à charge : 900 DH (3 × 300 DH) pour les 3 premiers enfants + 108 DH (3 × 36 DH) pour les 3 suivants. Cela représente 12 096 DH par an.',
+  },
+  {
+    q: 'Quelles sont les conditions pour bénéficier des allocations familiales CNSS ?',
+    a: 'Le salarié doit être déclaré à la CNSS et justifier d\'au moins 108 jours de cotisation au cours des 6 mois civils précédant le début de droit. Les enfants doivent avoir moins de 12 ans, ou moins de 18 ans (apprentissage), ou moins de 21 ans (études), ou sans limite d\'âge (handicap).',
+  },
+  {
+    q: 'Qui finance les allocations familiales CNSS ?',
+    a: 'Les allocations familiales sont entièrement financées par les cotisations patronales à hauteur de 6,40% du salaire brut, sans plafond. Aucune retenue n\'est effectuée sur le salaire de l\'employé. L\'employeur paie cette cotisation même si le salarié n\'a pas d\'enfants.',
+  },
+  {
+    q: 'Les allocations familiales CNSS sont-elles imposables ?',
+    a: 'Non, les allocations familiales versées par la CNSS sont exonérées de l\'impôt sur le revenu (IR) au Maroc. Elles constituent un complément de revenu non imposable pour les familles.',
+  },
 ];
 ---
 
@@ -16,6 +40,7 @@ const breadcrumbs = [
   description={description}
   breadcrumbs={breadcrumbs}
   appName="Calculateur allocations familiales CNSS"
+  extraSchema={buildFAQSchema(faqData)}
 >
   <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
     Calculateur d'allocations familiales CNSS 2025
@@ -38,5 +63,24 @@ const breadcrumbs = [
     <h3>Conditions d'attribution</h3>
 
     <p>Pour bénéficier des allocations familiales, le salarié doit être déclaré à la CNSS et justifier d'au moins 108 jours de cotisation au cours des six mois civils précédant le début de droit. Les enfants doivent avoir moins de 12 ans en principe, ou moins de 18 ans s'ils sont en apprentissage, ou moins de 21 ans s'ils poursuivent des études, ou sans limite d'âge s'ils sont handicapés.</p>
+  </section>
+
+  <section class="mt-16">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Questions fréquentes sur les allocations familiales</h2>
+    <div class="space-y-4">
+      {faqData.map((faq) => (
+        <details class="group bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <summary class="cursor-pointer px-6 py-4 font-medium text-gray-900 flex items-center justify-between hover:bg-gray-50 transition-colors">
+            {faq.q}
+            <span class="ml-4 text-gray-400 group-open:rotate-180 transition-transform">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          </summary>
+          <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{faq.a}</div>
+        </details>
+      ))}
+    </div>
   </section>
 </CalculateurLayout>

@@ -3,7 +3,7 @@ import '../../styles/global.css';
 import Header from './Header.astro';
 import Footer from './Footer.astro';
 import { CONFIG } from '../../config';
-import { buildWebSiteSchema } from '../../lib/seo';
+import { buildWebSiteSchema, buildOrganizationSchema } from '../../lib/seo';
 
 interface Props {
   title: string;
@@ -16,11 +16,12 @@ interface Props {
 const { title, description, canonical, schema, noindex = false } = Astro.props;
 const pageUrl = canonical || Astro.url.href;
 const websiteSchema = buildWebSiteSchema();
+const organizationSchema = buildOrganizationSchema();
 const allSchemas = schema
   ? Array.isArray(schema)
-    ? [websiteSchema, ...schema]
-    : [websiteSchema, schema]
-  : [websiteSchema];
+    ? [websiteSchema, organizationSchema, ...schema]
+    : [websiteSchema, organizationSchema, schema]
+  : [websiteSchema, organizationSchema];
 ---
 
 <!doctype html>
@@ -42,6 +43,9 @@ const allSchemas = schema
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="author" content={CONFIG.author.name} />
+    <meta name="google-site-verification" content="GOOGLE_VERIFICATION_CODE" />
+    <meta name="msvalidate.01" content="BING_VERIFICATION_CODE" />
+    <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="theme-color" content={CONFIG.brand.primary} />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -50,8 +54,11 @@ const allSchemas = schema
     ))}
   </head>
   <body class="min-h-screen flex flex-col">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-teal-600 focus:rounded focus:shadow-lg">
+      Aller au contenu
+    </a>
     <Header />
-    <main class="flex-1">
+    <main id="main-content" class="flex-1">
       <slot />
     </main>
     <Footer />
