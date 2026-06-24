@@ -1,8 +1,10 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { calculerPensionCNSS } from '../../lib/cnss-engine';
 import { formatDH, formatPourcentBase100, parseNombre, formatEntier } from '../../lib/format';
 import { JOURS_MINIMUM_PENSION, PLAFOND_MENSUEL, PENSION_MINIMUM, AGE_RETRAITE } from '../../data/cnss-rates';
 import ChampSalaire from '../ui/ChampSalaire';
+import ShareButtons from '../ui/ShareButtons';
+import { useUrlState, getCurrentUrl } from '../../hooks/useUrlState';
 
 function BarChart({ pension, salaire }: { pension: number; salaire: number }) {
   if (pension === 0 || salaire === 0) return null;
@@ -35,9 +37,9 @@ function BarChart({ pension, salaire }: { pension: number; salaire: number }) {
 }
 
 export default function PensionCNSS() {
-  const [salaireInput, setSalaireInput] = useState('');
-  const [joursInput, setJoursInput] = useState('');
-  const [ageInput, setAgeInput] = useState('');
+  const [salaireInput, setSalaireInput] = useUrlState('salaire', '');
+  const [joursInput, setJoursInput] = useUrlState('jours', '');
+  const [ageInput, setAgeInput] = useUrlState('age', '');
 
   const salaire = parseNombre(salaireInput);
   const jours = parseNombre(joursInput);
@@ -52,6 +54,10 @@ export default function PensionCNSS() {
     () => (joursProjection > 0 ? calculerPensionCNSS(salaire, joursProjection) : null),
     [salaire, joursProjection],
   );
+
+  const shareText = hasInput && result.eligible
+    ? `Ma pension CNSS estimée : ${formatDH(result.pensionMensuelle)}/mois (taux ${formatPourcentBase100(result.tauxRemplacement)}). Simulez la vôtre :`
+    : '';
 
   return (
     <div className="space-y-8">
@@ -165,6 +171,11 @@ export default function PensionCNSS() {
                   </p>
                 </div>
               )}
+
+              {/* Share buttons */}
+              <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+                <ShareButtons text={shareText} url={getCurrentUrl()} />
+              </div>
             </>
           )}
         </>

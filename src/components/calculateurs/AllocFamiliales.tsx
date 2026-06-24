@@ -1,13 +1,19 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { calculerAllocFamiliales } from '../../lib/cnss-engine';
 import { formatDH } from '../../lib/format';
 import { ALLOC_ENFANT_1_3, ALLOC_ENFANT_4_6, MAX_ENFANTS } from '../../data/cnss-rates';
+import ShareButtons from '../ui/ShareButtons';
+import { useUrlNumber, getCurrentUrl } from '../../hooks/useUrlState';
 
 export default function AllocFamiliales() {
-  const [nbEnfants, setNbEnfants] = useState(1);
+  const [nbEnfants, setNbEnfants] = useUrlNumber('enfants', 1);
 
   const montantMensuel = useMemo(() => calculerAllocFamiliales(nbEnfants), [nbEnfants]);
   const montantAnnuel = montantMensuel * 12;
+
+  const shareText = nbEnfants > 0
+    ? `Mes allocations familiales CNSS pour ${nbEnfants} enfant${nbEnfants > 1 ? 's' : ''} : ${formatDH(montantMensuel)}/mois. Calculez les vôtres :`
+    : '';
 
   return (
     <div className="space-y-8">
@@ -92,6 +98,11 @@ export default function AllocFamiliales() {
                 </tfoot>
               </table>
             </div>
+          </div>
+
+          {/* Share buttons */}
+          <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+            <ShareButtons text={shareText} url={getCurrentUrl()} />
           </div>
         </>
       )}

@@ -1,0 +1,98 @@
+---
+import '../../styles/global.css';
+import CotisationsCNSS from '../../components/calculateurs/CotisationsCNSS';
+import { CONFIG } from '../../config';
+
+const title = 'Calculateur cotisations CNSS - Widget intégrable';
+const description = 'Widget intégrable du calculateur de cotisations CNSS. Ajoutez ce calculateur à votre site web via iframe.';
+---
+
+<!doctype html>
+<html lang={CONFIG.lang} dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
+    <style>
+      body {
+        margin: 0;
+        padding: 16px;
+        background: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="max-w-3xl mx-auto">
+      <CotisationsCNSS client:idle />
+
+      <div class="mt-6 pt-4 border-t border-gray-200 text-center">
+        <p class="text-xs text-gray-400">
+          Propulsé par <a href={CONFIG.siteUrl} target="_blank" rel="noopener noreferrer" class="text-brand-600 hover:underline">{CONFIG.siteName}</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Embed instructions (visible only on direct access, not in iframe) -->
+    <script is:inline>
+      if (window.self === window.top) {
+        const el = document.getElementById('embed-instructions');
+        if (el) el.style.display = 'block';
+      }
+    </script>
+
+    <div id="embed-instructions" style="display:none" class="max-w-3xl mx-auto mt-10 p-6 bg-gray-50 rounded-2xl border border-gray-200">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Intégrer ce calculateur sur votre site</h2>
+      <p class="text-sm text-gray-600 mb-4">
+        Copiez le code ci-dessous et collez-le dans votre page HTML pour afficher le calculateur CNSS sur votre site web.
+      </p>
+
+      <div class="relative">
+        <pre class="bg-gray-900 text-green-400 text-sm p-4 rounded-xl overflow-x-auto"><code id="embed-code">&lt;iframe
+  src="{CONFIG.siteUrl}/embed/"
+  width="100%"
+  height="600"
+  style="border: 1px solid #e5e7eb; border-radius: 12px;"
+  title="Calculateur cotisations CNSS"
+  loading="lazy"
+&gt;&lt;/iframe&gt;</code></pre>
+        <button
+          id="copy-embed-btn"
+          class="absolute top-3 right-3 px-3 py-1.5 text-xs font-medium bg-gray-700 text-gray-200 rounded-lg hover:bg-gray-600 transition-colors"
+        >
+          Copier
+        </button>
+      </div>
+
+      <script is:inline>
+        document.getElementById('copy-embed-btn')?.addEventListener('click', function() {
+          const code = document.getElementById('embed-code')?.textContent || '';
+          navigator.clipboard.writeText(code).then(() => {
+            this.textContent = 'Copié !';
+            setTimeout(() => { this.textContent = 'Copier'; }, 2000);
+          });
+        });
+      </script>
+
+      <div class="mt-6 space-y-3">
+        <h3 class="text-sm font-semibold text-gray-700">Options de personnalisation</h3>
+        <ul class="text-sm text-gray-600 space-y-1 list-disc list-inside">
+          <li>Ajustez la hauteur (<code class="bg-gray-200 px-1 rounded text-xs">height</code>) selon vos besoins (minimum recommandé : 500px)</li>
+          <li>Pré-remplissez un salaire via l'URL : <code class="bg-gray-200 px-1 rounded text-xs">{CONFIG.siteUrl}/embed/?salaire=8000</code></li>
+          <li>Le widget est responsive et s'adapte à la largeur de son conteneur</li>
+        </ul>
+      </div>
+
+      <div class="mt-6 p-4 bg-brand-50 border border-brand-100 rounded-xl">
+        <p class="text-sm text-brand-800">
+          <strong>Backlink apprécié :</strong> Si vous intégrez ce widget, merci d'ajouter un lien vers 
+          <a href={CONFIG.siteUrl} class="underline">{CONFIG.siteUrl}</a> sur votre page. 
+          Cela nous aide à maintenir cet outil gratuit.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

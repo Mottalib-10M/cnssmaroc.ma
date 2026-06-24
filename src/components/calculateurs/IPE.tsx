@@ -1,13 +1,15 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { calculerIPE } from '../../lib/cnss-engine';
 import { formatDH, formatEntier, parseNombre } from '../../lib/format';
 import { IPE_JOURS_MINIMUM, IPE_JOURS_12_MOIS, IPE_DUREE_MOIS, SMIG_MENSUEL } from '../../data/cnss-rates';
 import ChampSalaire from '../ui/ChampSalaire';
+import ShareButtons from '../ui/ShareButtons';
+import { useUrlState, getCurrentUrl } from '../../hooks/useUrlState';
 
 export default function IPE() {
-  const [salaireInput, setSalaireInput] = useState('');
-  const [joursInput, setJoursInput] = useState('');
-  const [jours12Input, setJours12Input] = useState('');
+  const [salaireInput, setSalaireInput] = useUrlState('salaire', '');
+  const [joursInput, setJoursInput] = useUrlState('jours', '');
+  const [jours12Input, setJours12Input] = useUrlState('jours12', '');
 
   const salaire = parseNombre(salaireInput);
   const jours = parseNombre(joursInput);
@@ -15,6 +17,10 @@ export default function IPE() {
 
   const result = useMemo(() => calculerIPE(salaire, jours, jours12), [salaire, jours, jours12]);
   const hasInput = salaire > 0 && jours > 0 && jours12 > 0;
+
+  const shareText = hasInput && result.eligible
+    ? `Mon indemnité perte d'emploi (IPE) : ${formatDH(result.montantMensuel)}/mois pendant ${result.dureeMois} mois. Simulez la vôtre :`
+    : '';
 
   return (
     <div className="space-y-8">
@@ -101,6 +107,11 @@ export default function IPE() {
                   </p>
                 </div>
               )}
+
+              {/* Share buttons */}
+              <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+                <ShareButtons text={shareText} url={getCurrentUrl()} />
+              </div>
             </>
           )}
         </>

@@ -1,12 +1,14 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { calculerPensionCMR } from '../../lib/cnss-engine';
 import { formatDH, formatPourcentBase100, parseNombre } from '../../lib/format';
 import { AGE_RETRAITE_CMR, PLAFOND_TAUX_CMR } from '../../data/cnss-rates';
 import ChampSalaire from '../ui/ChampSalaire';
+import ShareButtons from '../ui/ShareButtons';
+import { useUrlState, getCurrentUrl } from '../../hooks/useUrlState';
 
 export default function PensionCMR() {
-  const [traitementInput, setTraitementInput] = useState('');
-  const [anneesInput, setAnneesInput] = useState('');
+  const [traitementInput, setTraitementInput] = useUrlState('traitement', '');
+  const [anneesInput, setAnneesInput] = useUrlState('annees', '');
 
   const traitement = parseNombre(traitementInput);
   const annees = parseNombre(anneesInput);
@@ -15,6 +17,10 @@ export default function PensionCMR() {
   const hasInput = traitement > 0 && annees > 0;
 
   const anneesMax70 = Math.ceil(PLAFOND_TAUX_CMR / 0.025);
+
+  const shareText = hasInput
+    ? `Ma pension CMR estimée : ${formatDH(result.pensionMensuelle)}/mois pour ${annees} ans de service. Simulez la vôtre :`
+    : '';
 
   return (
     <div className="space-y-8">
@@ -89,6 +95,11 @@ export default function PensionCMR() {
               </p>
             </div>
           )}
+
+          {/* Share buttons */}
+          <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+            <ShareButtons text={shareText} url={getCurrentUrl()} />
+          </div>
         </>
       )}
     </div>

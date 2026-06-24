@@ -3,11 +3,17 @@ import { calculerTVA, calculerTVAInverse } from '../../lib/cnss-engine';
 import { formatDH, parseNombre } from '../../lib/format';
 import { TAUX_TVA } from '../../data/tva-rates';
 import ChampSalaire from '../ui/ChampSalaire';
+import ShareButtons from '../ui/ShareButtons';
+import { useUrlState, getCurrentUrl } from '../../hooks/useUrlState';
 
 export default function CalculateurTVA() {
-  const [montantInput, setMontantInput] = useState('');
-  const [taux, setTaux] = useState(0.20);
-  const [direction, setDirection] = useState<'ht-ttc' | 'ttc-ht'>('ht-ttc');
+  const [montantInput, setMontantInput] = useUrlState('montant', '');
+  const [tauxStr, setTauxStr] = useUrlState('taux', '0.20');
+  const [direction, setDirectionRaw] = useUrlState('direction', 'ht-ttc');
+
+  const taux = parseFloat(tauxStr) || 0.20;
+  const setTaux = (v: number) => setTauxStr(String(v));
+  const setDirection = (v: 'ht-ttc' | 'ttc-ht') => setDirectionRaw(v);
 
   const montant = parseNombre(montantInput);
 
@@ -17,6 +23,12 @@ export default function CalculateurTVA() {
       ? calculerTVA(montant, taux)
       : calculerTVAInverse(montant, taux);
   }, [montant, taux, direction]);
+
+  const shareText = result
+    ? direction === 'ht-ttc'
+      ? `TVA Maroc : ${formatDH(montant)} HT = ${formatDH(result.montantTTC)} TTC (TVA ${(taux * 100).toFixed(0)}% = ${formatDH(result.montantTVA)}). Calculez la vôtre :`
+      : `TVA Maroc : ${formatDH(montant)} TTC = ${formatDH(result.montantHT)} HT (TVA ${(taux * 100).toFixed(0)}% = ${formatDH(result.montantTVA)}). Calculez la vôtre :`
+    : '';
 
   return (
     <div className="space-y-8">
@@ -77,20 +89,27 @@ export default function CalculateurTVA() {
       </div>
 
       {result && (
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="bg-gray-50 rounded-xl p-5 border border-gray-200">
-            <p className="text-xs font-medium text-gray-600 uppercase tracking-wider">Montant HT</p>
-            <p className="text-2xl font-bold text-gray-900 mt-1 tabular-nums">{formatDH(result.montantHT)}</p>
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="bg-gray-50 rounded-xl p-5 border border-gray-200">
+              <p className="text-xs font-medium text-gray-600 uppercase tracking-wider">Montant HT</p>
+              <p className="text-2xl font-bold text-gray-900 mt-1 tabular-nums">{formatDH(result.montantHT)}</p>
+            </div>
+            <div className="bg-amber-50 rounded-xl p-5 border border-amber-200">
+              <p className="text-xs font-medium text-amber-700 uppercase tracking-wider">TVA ({(taux * 100).toFixed(0)}%)</p>
+              <p className="text-2xl font-bold text-amber-800 mt-1 tabular-nums">{formatDH(result.montantTVA)}</p>
+            </div>
+            <div className="bg-brand-50 rounded-xl p-5 border border-brand-100">
+              <p className="text-xs font-medium text-brand-700 uppercase tracking-wider">Montant TTC</p>
+              <p className="text-2xl font-bold text-brand-800 mt-1 tabular-nums">{formatDH(result.montantTTC)}</p>
+            </div>
           </div>
-          <div className="bg-amber-50 rounded-xl p-5 border border-amber-200">
-            <p className="text-xs font-medium text-amber-700 uppercase tracking-wider">TVA ({(taux * 100).toFixed(0)}%)</p>
-            <p className="text-2xl font-bold text-amber-800 mt-1 tabular-nums">{formatDH(result.montantTVA)}</p>
+
+          {/* Share buttons */}
+          <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+            <ShareButtons text={shareText} url={getCurrentUrl()} />
           </div>
-          <div className="bg-brand-50 rounded-xl p-5 border border-brand-100">
-            <p className="text-xs font-medium text-brand-700 uppercase tracking-wider">Montant TTC</p>
-            <p className="text-2xl font-bold text-brand-800 mt-1 tabular-nums">{formatDH(result.montantTTC)}</p>
-          </div>
-        </div>
+        </>
       )}
 
       {/* Reference table */}

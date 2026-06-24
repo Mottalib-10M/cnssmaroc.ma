@@ -1,7 +1,9 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { calculerCotisationsCNSS, type LigneCotisation } from '../../lib/cnss-engine';
 import { formatDH, formatPourcent, parseNombre } from '../../lib/format';
 import ChampSalaire from '../ui/ChampSalaire';
+import ShareButtons from '../ui/ShareButtons';
+import { useUrlState, getCurrentUrl } from '../../hooks/useUrlState';
 
 function LignesTable({ titre, lignes, total, color }: { titre: string; lignes: LigneCotisation[]; total: number; color: string }) {
   return (
@@ -89,10 +91,14 @@ function PieChart({ salarie, employeur }: { salarie: number; employeur: number }
 }
 
 export default function CotisationsCNSS() {
-  const [salaireInput, setSalaireInput] = useState('');
+  const [salaireInput, setSalaireInput] = useUrlState('salaire', '');
   const brut = parseNombre(salaireInput);
   const result = useMemo(() => calculerCotisationsCNSS(brut), [brut]);
   const hasResult = brut > 0;
+
+  const shareText = hasResult
+    ? `Mes cotisations CNSS pour ${formatDH(brut)} : ${formatDH(result.salarie.total)}/mois (salarié). Calculez les vôtres :`
+    : '';
 
   return (
     <div className="space-y-8">
@@ -171,6 +177,11 @@ export default function CotisationsCNSS() {
               </p>
             </div>
           )}
+
+          {/* Share buttons */}
+          <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+            <ShareButtons text={shareText} url={getCurrentUrl()} />
+          </div>
         </>
       )}
     </div>
