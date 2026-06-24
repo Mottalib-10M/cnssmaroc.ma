@@ -1,0 +1,288 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import { CONFIG } from '../../config';
+import { buildBreadcrumbSchema, buildFAQSchema, buildArticleSchema } from '../../lib/seo';
+import { calculerCotisationsCNSS } from '../../lib/cnss-engine';
+import { formatDH, formatPourcent } from '../../lib/format';
+import { SALARY_AMOUNTS, formatSalaryLabel, getNearbySalaries } from '../../data/salary-pages';
+import { PLAFOND_MENSUEL } from '../../data/cnss-rates';
+
+export function getStaticPaths() {
+  return SALARY_AMOUNTS.map((montant) => ({
+    params: { montant: String(montant) },
+    props: { montant },
+  }));
+}
+
+interface Props {
+  montant: number;
+}
+
+const { montant } = Astro.props;
+const label = formatSalaryLabel(montant);
+const result = calculerCotisationsCNSS(montant);
+const nearby = getNearbySalaries(montant, 5);
+
+const isAboveCap = montant > PLAFOND_MENSUEL;
+const tauxEffectifSalarie = ((result.salarie.total / montant) * 100).toFixed(2);
+const tauxEffectifEmployeur = ((result.employeur.total / montant) * 100).toFixed(2);
+const tauxEffectifTotal = (((result.salarie.total + result.employeur.total) / montant) * 100).toFixed(2);
+
+const title = `Cotisation CNSS pour ${label} DH : calcul detaille 2026`;
+const description = `Calcul detaille des cotisations CNSS pour un salaire de ${label} DH/mois : part salarie ${formatDH(result.salarie.total)}, part employeur ${formatDH(result.employeur.total)}, net ${formatDH(result.netAvantIR)}.`;
+const url = CONFIG.siteUrl + `/cotisation/${montant}/`;
+
+const faqData = [
+  {
+    q: `Combien de cotisation CNSS pour un salaire de ${label} DH ?`,
+    a: `Pour un salaire brut de ${label} DH/mois, la cotisation salariale CNSS est de ${formatDH(result.salarie.total)} (${tauxEffectifSalarie}% effectif) et la cotisation patronale est de ${formatDH(result.employeur.total)} (${tauxEffectifEmployeur}% effectif). Le total des cotisations s'élève à ${formatDH(result.totalCotisations)}.`,
+  },
+  {
+    q: `Quel est le salaire net pour ${label} DH brut au Maroc ?`,
+    a: `Pour un salaire brut de ${label} DH, le net avant impôt sur le revenu est de ${formatDH(result.netAvantIR)} après déduction des cotisations CNSS salariales de ${formatDH(result.salarie.total)}. Le montant de l'IR dépend de la situation familiale et des déductions applicables.`,
+  },
+  {
+    q: `Combien coûte un salarié à ${label} DH pour l'employeur ?`,
+    a: `Le coût total pour l'employeur d'un salarié à ${label} DH brut est de ${formatDH(result.coutEmployeur)} par mois, soit le salaire brut plus les cotisations patronales de ${formatDH(result.employeur.total)}.`,
+  },
+  {
+    q: `Les cotisations sont-elles plafonnées pour un salaire de ${label} DH ?`,
+    a: isAboveCap
+      ? `Oui, à ${label} DH le salaire dépasse le plafond CNSS de 6 000 DH. Les cotisations de prestations sociales et retraite sont calculées sur 6 000 DH. Seules l'AMO (2,26% salarié, 4,11% employeur), les allocations familiales (6,40%) et la formation professionnelle (1,60%) sont calculées sur l'intégralité du salaire.`
+      : `Pour un salaire de ${label} DH, le plafond de 6 000 DH n'est pas atteint. Toutes les cotisations sont donc calculées sur le salaire réel de ${label} DH sans plafonnement.`,
+  },
+  {
+    q: `Quelle retraite CNSS pour un salaire de ${label} DH ?`,
+    a: isAboveCap
+      ? `La pension CNSS étant plafonnée à 6 000 DH, un salarié à ${label} DH aura la même pension qu'un salarié à 6 000 DH : entre 3 000 DH (50%, 3 240 jours) et 4 200 DH (70%, 7 560 jours). Il est recommandé de souscrire à une retraite complémentaire (CIMR).`
+      : `Pour un salaire de ${label} DH, la pension CNSS sera comprise entre ${formatDH(montant * 0.50)} (50% pour 3 240 jours) et ${formatDH(Math.min(montant * 0.70, 4200))} (70% pour 7 560 jours), selon le nombre de jours cotisés.`,
+  },
+];
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+    { name: 'Cotisations CNSS', url: CONFIG.siteUrl + '/calculateur-cotisations-cnss/' },
+    { name: `${label} DH`, url },
+  ]),
+  buildArticleSchema({
+    title,
+    description,
+    url,
+    datePublished: '2026-01-20',
+    dateModified: '2026-06-20',
+  }),
+  buildFAQSchema(faqData),
+];
+---
+
+<Layout title={title} description={description} schema={schemas}>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <nav aria-label="Fil d'Ariane" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-brand-700">Accueil</a></li>
+        <li class="flex items-center gap-1"><span>/</span><a href="/calculateur-cotisations-cnss/" class="hover:text-brand-700">Cotisations CNSS</a></li>
+        <li class="flex items-center gap-1"><span>/</span><span class="text-gray-800 font-medium">{label} DH</span></li>
+      </ol>
+    </nav>
+
+    <header class="mb-10">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        Cotisation CNSS pour un salaire de {label} DH/mois (2026)
+      </h1>
+      <p class="text-lg text-gray-600">
+        Détail complet des cotisations CNSS pour un salaire brut mensuel de {label} DH : parts salariale et patronale, net avant IR, coût employeur.
+      </p>
+      <div class="mt-4 flex items-center gap-3 text-sm text-gray-500">
+        <span>Par <a href={CONFIG.author.url} class="text-brand-700 hover:underline">{CONFIG.author.name}</a></span>
+        <span>- Mis à jour le 20 juin 2026</span>
+      </div>
+    </header>
+
+    <!-- Definition box for featured snippet -->
+    <div class="bg-brand-50 border-l-4 border-brand-600 p-5 rounded-r-lg mb-8">
+      <p class="font-semibold text-brand-800 text-lg mb-1">Cotisation CNSS pour {label} DH</p>
+      <p class="text-gray-700">Pour un salaire brut de <strong>{label} DH/mois</strong>, la cotisation salariale CNSS est de <strong>{formatDH(result.salarie.total)}</strong> et la cotisation patronale est de <strong>{formatDH(result.employeur.total)}</strong>. Le salaire net avant IR est de <strong>{formatDH(result.netAvantIR)}</strong>. Le coût total employeur est de <strong>{formatDH(result.coutEmployeur)}</strong>.</p>
+    </div>
+
+    <!-- Summary cards -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+      <div class="bg-white rounded-xl border border-gray-200 p-4 text-center">
+        <p class="text-xs text-gray-500 uppercase tracking-wide">Brut mensuel</p>
+        <p class="text-xl font-bold text-gray-900 mt-1">{formatDH(montant)}</p>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-200 p-4 text-center">
+        <p class="text-xs text-gray-500 uppercase tracking-wide">Net avant IR</p>
+        <p class="text-xl font-bold text-brand-700 mt-1">{formatDH(result.netAvantIR)}</p>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-200 p-4 text-center">
+        <p class="text-xs text-gray-500 uppercase tracking-wide">Part salarié</p>
+        <p class="text-xl font-bold text-orange-600 mt-1">{formatDH(result.salarie.total)}</p>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-200 p-4 text-center">
+        <p class="text-xs text-gray-500 uppercase tracking-wide">Coût employeur</p>
+        <p class="text-xl font-bold text-gray-900 mt-1">{formatDH(result.coutEmployeur)}</p>
+      </div>
+    </div>
+
+    <!-- Employee breakdown -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Part salarié pour {label} DH brut</h2>
+      <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="text-left px-4 py-3 font-medium text-gray-600">Cotisation</th>
+              <th class="text-right px-4 py-3 font-medium text-gray-600">Taux</th>
+              <th class="text-right px-4 py-3 font-medium text-gray-600">Assiette</th>
+              <th class="text-right px-4 py-3 font-medium text-gray-600">Montant</th>
+            </tr>
+          </thead>
+          <tbody>
+            {result.salarie.lignes.map((l) => (
+              <tr class="border-t border-gray-100">
+                <td class="px-4 py-3">
+                  {l.label}
+                  {l.plafonne && montant > PLAFOND_MENSUEL && (
+                    <span class="ml-1 text-xs text-amber-600">(plafonné)</span>
+                  )}
+                </td>
+                <td class="text-right px-4 py-3">{formatPourcent(l.taux)}</td>
+                <td class="text-right px-4 py-3">{formatDH(l.assiette)}</td>
+                <td class="text-right px-4 py-3 font-medium">{formatDH(l.montant)}</td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr class="border-t-2 border-gray-300 font-semibold">
+              <td class="px-4 py-3">Total retenu sur le salaire</td>
+              <td class="text-right px-4 py-3">{tauxEffectifSalarie}%</td>
+              <td class="text-right px-4 py-3"></td>
+              <td class="text-right px-4 py-3">{formatDH(result.salarie.total)}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+
+    <!-- Employer breakdown -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Part employeur pour {label} DH brut</h2>
+      <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="text-left px-4 py-3 font-medium text-gray-600">Cotisation</th>
+              <th class="text-right px-4 py-3 font-medium text-gray-600">Taux</th>
+              <th class="text-right px-4 py-3 font-medium text-gray-600">Assiette</th>
+              <th class="text-right px-4 py-3 font-medium text-gray-600">Montant</th>
+            </tr>
+          </thead>
+          <tbody>
+            {result.employeur.lignes.map((l) => (
+              <tr class="border-t border-gray-100">
+                <td class="px-4 py-3">
+                  {l.label}
+                  {l.plafonne && montant > PLAFOND_MENSUEL && (
+                    <span class="ml-1 text-xs text-amber-600">(plafonné)</span>
+                  )}
+                </td>
+                <td class="text-right px-4 py-3">{formatPourcent(l.taux)}</td>
+                <td class="text-right px-4 py-3">{formatDH(l.assiette)}</td>
+                <td class="text-right px-4 py-3 font-medium">{formatDH(l.montant)}</td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr class="border-t-2 border-gray-300 font-semibold">
+              <td class="px-4 py-3">Total charges employeur</td>
+              <td class="text-right px-4 py-3">{tauxEffectifEmployeur}%</td>
+              <td class="text-right px-4 py-3"></td>
+              <td class="text-right px-4 py-3">{formatDH(result.employeur.total)}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+
+    <!-- Editorial content -->
+    <div class="prose prose-gray max-w-none">
+      <h2>Comprendre les cotisations CNSS pour un salaire de {label} DH</h2>
+
+      <p>Un salarié du secteur privé au Maroc percevant un salaire brut mensuel de {label} DH est soumis au régime obligatoire de la Caisse Nationale de Sécurité Sociale. Les cotisations CNSS financent plusieurs branches de la protection sociale : les prestations sociales à court terme (maladie, maternité, décès), l'Assurance Maladie Obligatoire (AMO), la retraite de base, les allocations familiales et la formation professionnelle. Voici une analyse détaillée pour ce niveau de salaire.</p>
+
+      {isAboveCap ? (
+        <p>Avec un salaire de {label} DH, vous dépassez le plafond CNSS de 6 000 DH par mois. Cela signifie que les cotisations de prestations sociales (0,52% salarié / 1,05% employeur) et de retraite (3,96% salarié / 7,93% employeur) sont calculées uniquement sur 6 000 DH. En revanche, l'AMO (2,26% salarié / 4,11% employeur), les allocations familiales (6,40% employeur) et la taxe de formation professionnelle (1,60% employeur) sont calculées sur l'intégralité de votre salaire de {label} DH. Le taux effectif global de cotisation est donc de {tauxEffectifTotal}%, inférieur au taux théorique de 27,83% qui s'applique en dessous du plafond.</p>
+      ) : (
+        <p>Avec un salaire de {label} DH, vous êtes en dessous du plafond CNSS de 6 000 DH par mois. Cela signifie que toutes les cotisations sont calculées sur votre salaire réel. Le taux effectif de cotisation est donc identique aux taux théoriques : 6,74% pour le salarié et environ 21,09% pour l'employeur, soit un total d'environ 27,83%. Aucun effet de plafonnement ne réduit vos cotisations.</p>
+      )}
+
+      <h3>Détail de la part salariale : {formatDH(result.salarie.total)}</h3>
+
+      <p>Sur votre bulletin de paie, {formatDH(result.salarie.total)} seront retenus chaque mois au titre des cotisations CNSS. Cette retenue se décompose en trois lignes : {formatDH(result.salarie.lignes[0].montant)} pour les prestations sociales à court terme (indemnités journalières maladie, allocations maternité, allocation décès), {formatDH(result.salarie.lignes[1].montant)} pour l'AMO qui vous donne droit à la couverture médicale pour vous et vos ayants droit, et {formatDH(result.salarie.lignes[2].montant)} pour la cotisation retraite qui constitue vos droits à la pension de vieillesse. Ces cotisations sont intégralement déductibles de votre salaire brut imposable pour le calcul de l'IR.</p>
+
+      <h3>Détail de la part patronale : {formatDH(result.employeur.total)}</h3>
+
+      <p>Votre employeur verse {formatDH(result.employeur.total)} en cotisations patronales chaque mois, en plus de votre salaire brut de {label} DH. Le coût total du poste pour l'entreprise est donc de {formatDH(result.coutEmployeur)}. Ce montant comprend {formatDH(result.employeur.lignes[0].montant)} pour les allocations familiales, {formatDH(result.employeur.lignes[1].montant)} pour les prestations sociales, {formatDH(result.employeur.lignes[2].montant)} pour l'AMO patronale, {formatDH(result.employeur.lignes[3].montant)} pour la retraite et {formatDH(result.employeur.lignes[4].montant)} pour la formation professionnelle.</p>
+
+      <h3>Ce que la CNSS vous couvre à {label} DH</h3>
+
+      <p>En contrepartie de ces cotisations, le salarié à {label} DH bénéficie d'une protection sociale complète. L'AMO assure la prise en charge des frais médicaux (consultations, hospitalisations, médicaments). Les prestations sociales à court terme couvrent les indemnités journalières en cas de maladie (deux tiers du salaire pendant 52 semaines maximum) et les indemnités de maternité (100% du salaire pendant 14 semaines). La cotisation retraite ouvre des droits à la pension de vieillesse dès 3 240 jours de cotisation. Les allocations familiales, financées par l'employeur, octroient 300 DH par mois pour chacun des 3 premiers enfants et 36 DH pour les suivants.</p>
+
+      {isAboveCap && (
+        <Fragment>
+          <h3>Impact du plafonnement sur la retraite</h3>
+          <p>Le plafond de 6 000 DH a un impact direct sur votre future pension de retraite. Quel que soit votre salaire actuel de {label} DH, votre pension CNSS sera calculée sur un maximum de 6 000 DH. La pension maximale est donc de 4 200 DH par mois (70% de 6 000 DH, après 7 560 jours de cotisation). Cela représente un taux de remplacement effectif de seulement {((4200 / montant) * 100).toFixed(1)}% par rapport à votre salaire réel. Il est donc fortement recommandé de souscrire à un régime de retraite complémentaire comme la CIMR pour maintenir votre niveau de vie à la retraite.</p>
+        </Fragment>
+      )}
+
+      <h3>Conseils pour les salariés à {label} DH</h3>
+
+      <p>Vérifiez régulièrement votre relevé de carrière CNSS sur le portail cnss.ma pour vous assurer que votre employeur déclare correctement votre salaire de {label} DH et le nombre de jours travaillés. Chaque mois non déclaré réduit vos droits à la retraite. Si vous constatez une erreur, déposez une réclamation auprès de la délégation CNSS. Pensez également à anticiper votre protection sociale en vérifiant l'état de vos droits AMO et en vous renseignant sur les mutuelles complémentaires disponibles.</p>
+    </div>
+
+    <!-- FAQ section -->
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Questions fréquentes : cotisations CNSS à {label} DH</h2>
+      <div class="space-y-4">
+        {faqData.map((faq) => (
+          <details class="group bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <summary class="cursor-pointer px-6 py-4 font-medium text-gray-900 flex items-center justify-between hover:bg-gray-50 transition-colors">
+              {faq.q}
+              <span class="ml-4 text-gray-400 group-open:rotate-180 transition-transform">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{faq.a}</div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- Related salary amounts -->
+    <section class="mt-12">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Cotisations CNSS pour d'autres salaires</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+        {nearby.map((s) => (
+          <a href={`/cotisation/${s}/`} class="block bg-white rounded-xl border border-gray-200 p-3 text-center hover:border-brand-300 hover:shadow-sm transition-all">
+            <span class="text-sm font-semibold text-brand-700">{formatSalaryLabel(s)} DH</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Useful links -->
+    <section class="mt-10 p-6 bg-gray-50 rounded-2xl">
+      <h3 class="text-lg font-semibold text-gray-900 mb-3">Liens utiles</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/calculateur-cotisations-cnss/" class="text-brand-700 hover:underline">Calculateur de cotisations CNSS interactif</a></li>
+        <li><a href="/simulateur-retraite-cnss/" class="text-brand-700 hover:underline">Simuler votre pension de retraite CNSS</a></li>
+        <li><a href="/guides/cotisations-cnss-maroc/" class="text-brand-700 hover:underline">Guide complet des cotisations CNSS</a></li>
+        <li><a href="/guides/retraite-cnss/" class="text-brand-700 hover:underline">Guide de la retraite CNSS</a></li>
+        <li><a href="/guides/" class="text-brand-700 hover:underline">Tous nos guides CNSS</a></li>
+      </ul>
+    </section>
+  </article>
+</Layout>

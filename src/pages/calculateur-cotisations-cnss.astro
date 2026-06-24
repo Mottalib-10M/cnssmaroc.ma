@@ -91,4 +91,35 @@ const faqData = [
       ))}
     </div>
   </section>
+
+  <!-- Definition box for featured snippet -->
+  <div class="mt-12 bg-brand-50 border-l-4 border-brand-600 p-5 rounded-r-lg">
+    <p class="font-semibold text-brand-800 text-lg mb-1">Cotisations CNSS 2026</p>
+    <p class="text-gray-700">Le taux total de cotisation CNSS est de <strong>27,83%</strong> : <strong>6,74%</strong> pour le salarie (0,52% prestations sociales + 2,26% AMO + 3,96% retraite) et <strong>21,09%</strong> pour l'employeur. Le plafond est de <strong>6 000 DH/mois</strong> pour les cotisations de retraite et prestations sociales.</p>
+  </div>
+
+  <!-- Salary links -->
+  <section class="mt-10">
+    <h2 class="text-xl font-bold text-gray-900 mb-4">Cotisations CNSS par salaire</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3">
+      {[3000, 4000, 5000, 6000, 7000, 8000, 10000, 15000, 20000, 50000].map((s) => (
+        <a href={`/cotisation/${s}/`} class="block bg-white rounded-xl border border-gray-200 p-3 text-center hover:border-brand-300 hover:shadow-sm transition-all">
+          <span class="text-sm font-semibold text-brand-700">{new Intl.NumberFormat('fr-MA').format(s)} DH</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Liens utiles -->
+  <section class="mt-10 p-6 bg-gray-50 rounded-2xl">
+    <h3 class="text-lg font-semibold text-gray-900 mb-3">Liens utiles</h3>
+    <ul class="space-y-2 text-sm">
+      <li><a href="/simulateur-retraite-cnss/" class="text-brand-700 hover:underline">Simulateur de retraite CNSS</a></li>
+      <li><a href="/guides/cotisations-cnss-maroc/" class="text-brand-700 hover:underline">Guide complet des cotisations CNSS</a></li>
+      <li><a href="/guides/amo-maroc/" class="text-brand-700 hover:underline">Guide AMO Maroc</a></li>
+      <li><a href="/calculateurs/" class="text-brand-700 hover:underline">Tous nos calculateurs</a></li>
+      <li><a href="/guides/" class="text-brand-700 hover:underline">Tous nos guides</a></li>
+    </ul>
+  </section>
+
 </CalculateurLayout>

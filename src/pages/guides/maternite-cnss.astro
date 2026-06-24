@@ -1,0 +1,160 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import { CONFIG } from '../../config';
+import { buildBreadcrumbSchema, buildArticleSchema, buildFAQSchema } from '../../lib/seo';
+
+const title = 'Conge maternite CNSS Maroc 2026 : droits et indemnites';
+const description = 'Guide complet du conge maternite CNSS au Maroc : duree de 14 semaines, indemnites journalieres, conditions, demarches et droits de la salariee en 2026.';
+const url = CONFIG.siteUrl + '/guides/maternite-cnss/';
+
+const faqData = [
+  {
+    q: 'Quelle est la durée du congé maternité CNSS au Maroc ?',
+    a: 'Le congé maternité au Maroc est de 14 semaines (98 jours) : en général 7 semaines avant l\'accouchement et 7 semaines après. En cas de complications médicales attestées, le congé post-natal peut être prolongé de 14 jours supplémentaires. La salariée peut aussi reporter une partie du congé prénatal sur le post-natal.',
+  },
+  {
+    q: 'Quel est le montant de l\'indemnité de maternité CNSS ?',
+    a: 'L\'indemnité journalière de maternité CNSS est égale à 100% du salaire journalier moyen des 6 derniers mois, plafonné à la base de calcul des cotisations. Elle est versée pendant toute la durée du congé maternité (14 semaines). L\'employeur n\'est pas tenu de verser le salaire pendant cette période, la CNSS prenant le relais.',
+  },
+  {
+    q: 'Quelles sont les conditions pour bénéficier de l\'indemnité de maternité CNSS ?',
+    a: 'Pour bénéficier de l\'indemnité de maternité, la salariée doit : être immatriculée à la CNSS, justifier d\'au moins 54 jours de cotisation pendant les 10 mois précédant la date prévue de l\'accouchement, cesser toute activité salariée pendant la durée du congé, et résider au Maroc pendant le congé.',
+  },
+  {
+    q: 'Comment demander l\'indemnité de maternité CNSS ?',
+    a: 'La demande se fait via le formulaire de demande d\'indemnité de maternité, accompagné du certificat médical précisant la date prévue de l\'accouchement (ou l\'acte de naissance après l\'accouchement), de l\'attestation de cessation de travail délivrée par l\'employeur et de la copie de la CIN. Le dossier est à déposer à la délégation CNSS.',
+  },
+  {
+    q: 'La salariée peut-elle être licenciée pendant le congé maternité ?',
+    a: 'Non, le Code du travail marocain interdit le licenciement d\'une salariée pendant la grossesse et le congé maternité. La salariée bénéficie d\'une protection absolue contre le licenciement pendant toute cette période. Tout licenciement prononcé en violation de cette règle est considéré comme abusif et donne droit à des dommages et intérêts.',
+  },
+];
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+    { name: 'Guides', url: CONFIG.siteUrl + '/guides/' },
+    { name: 'Congé maternité CNSS', url },
+  ]),
+  buildArticleSchema({
+    title,
+    description,
+    url,
+    datePublished: '2026-06-20',
+    dateModified: '2026-06-20',
+  }),
+  buildFAQSchema(faqData),
+];
+---
+
+<Layout title={title} description={description} schema={schemas}>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <nav aria-label="Fil d'Ariane" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-brand-700">Accueil</a></li>
+        <li class="flex items-center gap-1"><span>/</span><a href="/guides/" class="hover:text-brand-700">Guides</a></li>
+        <li class="flex items-center gap-1"><span>/</span><span class="text-gray-800 font-medium">Congé maternité CNSS</span></li>
+      </ol>
+    </nav>
+
+    <header class="mb-10">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        Congé maternité CNSS au Maroc : droits et indemnités (2026)
+      </h1>
+      <p class="text-lg text-gray-600">
+        Tout savoir sur le congé maternité pour les salariées du secteur privé : durée, indemnités journalières, conditions d'éligibilité, démarches administratives et protection contre le licenciement.
+      </p>
+      <div class="mt-4 flex items-center gap-3 text-sm text-gray-500">
+        <span>Par <a href={CONFIG.author.url} class="text-brand-700 hover:underline">{CONFIG.author.name}</a></span>
+        <span>({CONFIG.author.credentials})</span>
+        <span>- Mis à jour le 20 juin 2026</span>
+      </div>
+    </header>
+
+    <!-- Definition box for featured snippet -->
+    <div class="bg-brand-50 border-l-4 border-brand-600 p-5 rounded-r-lg mb-8">
+      <p class="font-semibold text-brand-800 text-lg mb-1">Congé maternité CNSS : l'essentiel</p>
+      <p class="text-gray-700">Le congé maternité au Maroc est de <strong>14 semaines</strong> (98 jours). L'indemnité journalière est égale à <strong>100% du salaire journalier moyen</strong> des 6 derniers mois. Condition : au moins <strong>54 jours de cotisation</strong> pendant les 10 mois précédant l'accouchement. La salariée est protégée contre le licenciement pendant toute la période.</p>
+    </div>
+
+    <div class="prose prose-gray max-w-none">
+      <h2>Cadre légal du congé maternité au Maroc</h2>
+
+      <p>Le congé maternité au Maroc est régi par le Code du travail (loi 65-99) et par le dahir portant loi relatif à la sécurité sociale. Toute salariée du secteur privé, affiliée à la CNSS, a droit à un congé maternité rémunéré pour chaque grossesse. Ce droit est garanti indépendamment de l'ancienneté dans l'entreprise, à condition de remplir les conditions minimales de cotisation auprès de la CNSS.</p>
+
+      <p>Le Code du travail marocain protège également la salariée enceinte contre toute forme de discrimination liée à sa grossesse. L'employeur ne peut pas refuser d'embaucher, muter ou licencier une femme en raison de sa grossesse. Ces protections s'appliquent dès le début de la grossesse et se prolongent pendant toute la durée du congé maternité et au-delà.</p>
+
+      <h2>Durée du congé maternité</h2>
+
+      <p>La durée légale du congé maternité au Maroc est de 14 semaines, soit 98 jours calendaires. Cette durée se répartit en principe de la manière suivante : une période prénatale d'environ 7 semaines avant la date prévue de l'accouchement et une période postnatale de 7 semaines après l'accouchement. Toutefois, la salariée dispose d'une certaine flexibilité dans la répartition entre les deux périodes.</p>
+
+      <p>En cas de complications médicales liées à la grossesse ou à l'accouchement, dûment attestées par un certificat médical, le congé postnatal peut être prolongé de 14 jours supplémentaires, portant la durée totale à 16 semaines (112 jours). Cette prolongation nécessite un certificat médical spécifique et une demande distincte auprès de la CNSS.</p>
+
+      <p>Si l'accouchement survient avant la date prévue, le congé postnatal est automatiquement rallongé des jours non utilisés du congé prénatal, de sorte que la durée totale de 14 semaines soit préservée. En cas d'accouchement tardif, le congé prénatal est prolongé jusqu'à l'accouchement sans réduction du congé postnatal.</p>
+
+      <h2>Conditions d'éligibilité à l'indemnité de maternité</h2>
+
+      <p>Pour bénéficier de l'indemnité journalière de maternité versée par la CNSS, la salariée doit remplir les conditions suivantes :</p>
+
+      <ul>
+        <li><strong>Affiliation CNSS :</strong> Être immatriculée à la Caisse Nationale de Sécurité Sociale au moment de l'arrêt de travail pour maternité.</li>
+        <li><strong>Cotisations minimales :</strong> Justifier d'au moins 54 jours de cotisation pendant les 10 mois civils précédant la date prévue de l'accouchement.</li>
+        <li><strong>Cessation d'activité :</strong> Avoir cessé toute activité salariée pendant la durée du congé maternité.</li>
+        <li><strong>Résidence au Maroc :</strong> Résider au Maroc pendant la durée du congé.</li>
+      </ul>
+
+      <h2>Montant de l'indemnité de maternité</h2>
+
+      <p>L'indemnité journalière de maternité est calculée sur la base du salaire journalier moyen soumis à cotisation au cours des 6 mois précédant l'arrêt de travail. Contrairement aux indemnités journalières de maladie (qui ne représentent que les deux tiers du salaire), l'indemnité de maternité est versée à hauteur de 100% du salaire journalier moyen. Elle est versée pour chaque jour de congé, y compris les week-ends et jours fériés.</p>
+
+      <p>Le montant est toutefois plafonné en fonction de l'assiette de cotisation applicable aux prestations sociales à court terme. Pour une salariée dont le salaire est inférieur ou égal au plafond de 6 000 DH, l'indemnité mensuelle sera proche de 100% de son salaire. Au-delà du plafond, la CNSS ne compense que la partie plafonnée. Il appartient alors à l'employeur de compléter volontairement la différence, selon les dispositions du contrat de travail ou de la convention collective applicable.</p>
+
+      <h2>Démarches pour obtenir l'indemnité</h2>
+
+      <p>La demande d'indemnité de maternité s'effectue auprès de la délégation CNSS dont relève l'employeur. Le dossier comprend le formulaire de demande dûment rempli et signé par l'employeur et la salariée, le certificat médical précisant la date prévue de l'accouchement (pour la demande initiale) ou l'acte de naissance (pour la demande définitive), l'attestation de cessation de travail délivrée par l'employeur, et une copie de la carte d'identité nationale de la salariée.</p>
+
+      <p>Il est recommandé de déposer la demande dès le début du congé maternité pour accélérer le traitement du dossier. La CNSS dispose de délais réglementaires pour traiter les demandes, mais en pratique, les versements interviennent généralement dans les semaines suivant le dépôt du dossier complet. Le suivi de la demande est possible via le portail en ligne cnss.ma ou l'application Damancom.</p>
+
+      <h2>Protection de la salariée enceinte</h2>
+
+      <p>Le Code du travail marocain offre une protection renforcée aux femmes enceintes et en congé maternité. Le licenciement d'une salariée pendant la grossesse et le congé maternité est strictement interdit, sauf en cas de faute grave non liée à la grossesse. La salariée a le droit de s'absenter pour les examens médicaux liés à la grossesse, sans retenue de salaire. De plus, après le congé maternité, la salariée peut bénéficier d'une heure d'allaitement par jour pendant 12 mois, répartie en deux demi-heures.</p>
+
+      <p>Si la salariée souhaite ne pas reprendre le travail après le congé maternité, elle dispose de la possibilité de démissionner sans préavis, à condition de notifier l'employeur dans les délais prévus par le Code du travail. Elle peut également demander un congé sans solde d'une durée maximale de 90 jours pour s'occuper de son enfant.</p>
+
+      <h2>Cas particuliers</h2>
+
+      <p>En cas de fausse couche ou de naissance d'un enfant mort-né après le 6e mois de grossesse, la salariée conserve son droit au congé postnatal de 7 semaines. En cas d'adoption, le Code du travail ne prévoit pas de congé maternité spécifique, mais certaines conventions collectives ou contrats de travail peuvent prévoir des dispositions en la matière. En cas de naissance multiple, la durée du congé reste de 14 semaines, bien que des discussions soient en cours pour l'allonger.</p>
+    </div>
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Questions fréquentes sur le congé maternité CNSS</h2>
+      <div class="space-y-4">
+        {faqData.map((faq) => (
+          <details class="group bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <summary class="cursor-pointer px-6 py-4 font-medium text-gray-900 flex items-center justify-between hover:bg-gray-50 transition-colors">
+              {faq.q}
+              <span class="ml-4 text-gray-400 group-open:rotate-180 transition-transform">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{faq.a}</div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- Useful links -->
+    <section class="mt-10 p-6 bg-gray-50 rounded-2xl">
+      <h3 class="text-lg font-semibold text-gray-900 mb-3">Liens utiles</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/calculateur-cotisations-cnss/" class="text-brand-700 hover:underline">Calculateur de cotisations CNSS</a></li>
+        <li><a href="/guides/cotisations-cnss-maroc/" class="text-brand-700 hover:underline">Guide des cotisations CNSS</a></li>
+        <li><a href="/guides/amo-maroc/" class="text-brand-700 hover:underline">Guide AMO Maroc</a></li>
+        <li><a href="/guides/remboursement-amo/" class="text-brand-700 hover:underline">Remboursement AMO : taux et procédures</a></li>
+        <li><a href="/guides/" class="text-brand-700 hover:underline">Tous nos guides</a></li>
+      </ul>
+    </section>
+  </article>
+</Layout>

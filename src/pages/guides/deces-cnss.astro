@@ -1,0 +1,161 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import { CONFIG } from '../../config';
+import { buildBreadcrumbSchema, buildArticleSchema, buildFAQSchema } from '../../lib/seo';
+
+const title = 'Pension de deces CNSS : droits des ayants droit 2026';
+const description = 'Guide pension de deces CNSS au Maroc : conditions, beneficiaires (conjoints, orphelins, ascendants), montants, allocation deces et demarches en 2026.';
+const url = CONFIG.siteUrl + '/guides/deces-cnss/';
+
+const faqData = [
+  {
+    q: 'Qui sont les bénéficiaires de la pension de décès CNSS ?',
+    a: 'Les bénéficiaires de la pension de survivants CNSS sont : le conjoint survivant (50% de la pension du défunt), les orphelins de moins de 16 ans ou 21 ans s\'ils sont étudiants ou handicapés (25% chacun, maximum 50%), et les ascendants à charge en l\'absence de conjoint et d\'enfants. Le total ne peut pas dépasser 100% de la pension.',
+  },
+  {
+    q: 'Quelle est la différence entre l\'allocation décès et la pension de survivants ?',
+    a: 'L\'allocation décès est un versement unique (capital décès) pour couvrir les frais funéraires, d\'un montant fixe. La pension de survivants est une rente mensuelle versée aux ayants droit du défunt. Les deux prestations ne sont pas exclusives : les ayants droit peuvent bénéficier des deux.',
+  },
+  {
+    q: 'Quelles conditions de cotisation pour la pension de décès CNSS ?',
+    a: 'Pour ouvrir droit à la pension de survivants, l\'assuré décédé devait soit : bénéficier d\'une pension de vieillesse ou d\'invalidité au moment du décès, soit justifier d\'au moins 54 jours de cotisation pendant les 6 mois précédant le décès. Ces conditions sont vérifiées sur le relevé de carrière CNSS du défunt.',
+  },
+  {
+    q: 'La veuve perd-elle sa pension CNSS en cas de remariage ?',
+    a: 'Oui, la pension de conjoint survivant est supprimée en cas de remariage. Le conjoint survivant doit signaler tout remariage à la CNSS. En revanche, les pensions des orphelins ne sont pas affectées par le remariage du parent survivant. En cas de divorce avant le décès, l\'ex-conjoint n\'a pas droit à la pension.',
+  },
+  {
+    q: 'Comment demander la pension de décès CNSS ?',
+    a: 'La demande se dépose à la délégation CNSS avec : le formulaire de demande, l\'acte de décès, le livret de famille ou acte de mariage, les copies des CIN des bénéficiaires, les certificats de scolarité pour les orphelins de plus de 16 ans, et le certificat de vie. Le délai de traitement est de quelques semaines à quelques mois.',
+  },
+];
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+    { name: 'Guides', url: CONFIG.siteUrl + '/guides/' },
+    { name: 'Pension de décès CNSS', url },
+  ]),
+  buildArticleSchema({
+    title,
+    description,
+    url,
+    datePublished: '2026-06-20',
+    dateModified: '2026-06-20',
+  }),
+  buildFAQSchema(faqData),
+];
+---
+
+<Layout title={title} description={description} schema={schemas}>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <nav aria-label="Fil d'Ariane" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-brand-700">Accueil</a></li>
+        <li class="flex items-center gap-1"><span>/</span><a href="/guides/" class="hover:text-brand-700">Guides</a></li>
+        <li class="flex items-center gap-1"><span>/</span><span class="text-gray-800 font-medium">Pension de décès CNSS</span></li>
+      </ol>
+    </nav>
+
+    <header class="mb-10">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        Pension de décès CNSS : droits des ayants droit (2026)
+      </h1>
+      <p class="text-lg text-gray-600">
+        Tout savoir sur la pension de survivants et l'allocation décès CNSS au Maroc : bénéficiaires, conditions d'attribution, montants, répartition et démarches administratives.
+      </p>
+      <div class="mt-4 flex items-center gap-3 text-sm text-gray-500">
+        <span>Par <a href={CONFIG.author.url} class="text-brand-700 hover:underline">{CONFIG.author.name}</a></span>
+        <span>({CONFIG.author.credentials})</span>
+        <span>- Mis à jour le 20 juin 2026</span>
+      </div>
+    </header>
+
+    <!-- Definition box -->
+    <div class="bg-brand-50 border-l-4 border-brand-600 p-5 rounded-r-lg mb-8">
+      <p class="font-semibold text-brand-800 text-lg mb-1">Pension de décès CNSS</p>
+      <p class="text-gray-700">Au décès d'un assuré CNSS, ses ayants droit peuvent bénéficier d'une <strong>pension de survivants</strong> (rente mensuelle) et d'une <strong>allocation décès</strong> (capital). Répartition : <strong>50% au conjoint</strong>, <strong>25% par orphelin</strong> (max 50%), total plafonné à 100%. Condition : 54 jours de cotisation dans les 6 derniers mois ou pension en cours.</p>
+    </div>
+
+    <div class="prose prose-gray max-w-none">
+      <h2>Les prestations de décès CNSS</h2>
+
+      <p>Le décès d'un assuré social affilié à la CNSS ouvre droit à deux types de prestations distinctes pour ses ayants droit : l'allocation décès (un versement unique en capital) et la pension de survivants (une rente mensuelle versée de manière continue). Ces prestations visent à compenser partiellement la perte de revenus subie par la famille du défunt et à assurer une protection financière aux personnes qui dépendaient économiquement de lui.</p>
+
+      <p>La législation marocaine en matière de sécurité sociale prévoit des règles précises concernant les bénéficiaires, les conditions d'attribution et le calcul des montants. La compréhension de ces règles est essentielle pour que les familles puissent faire valoir leurs droits dans les meilleures conditions.</p>
+
+      <h2>L'allocation décès (capital décès)</h2>
+
+      <p>L'allocation décès est un versement unique destiné principalement à couvrir les frais funéraires et à apporter une aide financière immédiate à la famille du défunt. Elle est versée en priorité au conjoint survivant, puis aux enfants à charge, puis aux ascendants. Le montant est fixe et déterminé par la réglementation en vigueur. Pour y avoir droit, l'assuré décédé devait être en situation d'activité au moment du décès ou bénéficier d'une pension de vieillesse ou d'invalidité.</p>
+
+      <p>La demande d'allocation décès doit être formulée dans un délai raisonnable après le décès. Le dossier comprend l'acte de décès, le livret de famille, la copie de la CIN du bénéficiaire et le formulaire de demande. Le versement intervient généralement dans un délai de quelques semaines après le dépôt du dossier complet.</p>
+
+      <h2>La pension de survivants</h2>
+
+      <h3>Conditions d'attribution</h3>
+
+      <p>La pension de survivants est versée aux ayants droit lorsque l'assuré décédé remplissait l'une des conditions suivantes au moment du décès : il percevait une pension de vieillesse CNSS, il percevait une pension d'invalidité CNSS, ou il justifiait d'au moins 54 jours de cotisation pendant les 6 mois civils précédant le décès. Si aucune de ces conditions n'est remplie, les ayants droit ne peuvent pas prétendre à la pension de survivants mais peuvent néanmoins bénéficier de l'allocation décès sous certaines conditions.</p>
+
+      <h3>Bénéficiaires et répartition</h3>
+
+      <p>La pension de survivants est répartie entre les ayants droit selon les règles suivantes :</p>
+
+      <ul>
+        <li><strong>Conjoint survivant :</strong> 50% de la pension que le défunt percevait ou aurait eu droit de percevoir. Le conjoint doit avoir été marié au défunt au moment du décès. En cas de pluralité de conjoints, la part de 50% est répartie entre eux à parts égales.</li>
+        <li><strong>Orphelins :</strong> 25% par enfant orphelin âgé de moins de 16 ans (ou 21 ans s'il poursuit des études, ou sans limite d'âge s'il est handicapé). Le total des parts orphelins ne peut pas dépasser 50% de la pension du défunt.</li>
+        <li><strong>Ascendants :</strong> En l'absence de conjoint et d'enfants bénéficiaires, les ascendants du défunt (père, mère) qui étaient à sa charge peuvent bénéficier de la pension, dans la limite des parts disponibles.</li>
+      </ul>
+
+      <p>Le total de toutes les parts ne peut pas dépasser 100% de la pension du défunt. En cas de dépassement, les parts sont réduites proportionnellement. La pension minimum de survivants ne peut pas être inférieure à 1 500 DH par mois (montant global réparti entre les bénéficiaires).</p>
+
+      <h3>Calcul du montant</h3>
+
+      <p>Le montant de la pension de survivants est calculé sur la base de la pension que le défunt percevait (s'il était déjà retraité ou invalide) ou qu'il aurait eu droit de percevoir (s'il était encore en activité). La pension de référence est calculée selon les mêmes règles que la pension de vieillesse : salaire moyen des 96 derniers mois, plafonné à 6 000 DH, multiplié par le taux de remplacement (50% à 70% selon le nombre de jours cotisés).</p>
+
+      <h2>Cessation de la pension</h2>
+
+      <p>La pension de conjoint survivant est supprimée en cas de remariage du bénéficiaire. Le conjoint survivant doit signaler tout changement de situation matrimoniale à la CNSS. La pension des orphelins cesse lorsque l'enfant atteint l'âge de 16 ans (ou 21 ans en cas de poursuite d'études), sauf pour les enfants handicapés. Les orphelins de père et de mère cumulent les parts des deux parents, dans la limite des plafonds prévus.</p>
+
+      <h2>Démarches administratives</h2>
+
+      <p>La demande de pension de survivants doit être déposée auprès de la délégation CNSS compétente. Le dossier comprend le formulaire de demande de pension de survivants, l'acte de décès, le livret de famille ou l'acte de mariage, les copies des CIN des bénéficiaires adultes, les certificats de scolarité pour les orphelins de plus de 16 ans, le certificat de vie du ou des bénéficiaires et, le cas échéant, un certificat médical pour les enfants handicapés.</p>
+
+      <p>Il est recommandé de déposer la demande dans les meilleurs délais après le décès. Bien qu'il n'y ait pas de délai de forclusion strict, les droits à la pension courent à compter du premier jour du mois suivant le décès, et les arriérés ne sont généralement pas versés de manière rétroactive au-delà d'une certaine durée. Le suivi du dossier est possible via le portail cnss.ma.</p>
+
+      <h2>Cumul avec d'autres prestations</h2>
+
+      <p>La pension de survivants CNSS peut être cumulée avec les revenus d'activité salariée du bénéficiaire. Un conjoint survivant qui travaille peut donc percevoir à la fois son salaire et la pension de survivants. En revanche, le cumul de deux pensions de survivants provenant de deux régimes différents (par exemple CNSS et CMR) peut être soumis à des règles spécifiques. Les allocations familiales continuent à être versées pour les orphelins à charge dans les conditions habituelles.</p>
+    </div>
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Questions fréquentes sur la pension de décès CNSS</h2>
+      <div class="space-y-4">
+        {faqData.map((faq) => (
+          <details class="group bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <summary class="cursor-pointer px-6 py-4 font-medium text-gray-900 flex items-center justify-between hover:bg-gray-50 transition-colors">
+              {faq.q}
+              <span class="ml-4 text-gray-400 group-open:rotate-180 transition-transform">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{faq.a}</div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- Useful links -->
+    <section class="mt-10 p-6 bg-gray-50 rounded-2xl">
+      <h3 class="text-lg font-semibold text-gray-900 mb-3">Liens utiles</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/guides/pension-invalidite-cnss/" class="text-brand-700 hover:underline">Pension d'invalidité CNSS</a></li>
+        <li><a href="/guides/retraite-cnss/" class="text-brand-700 hover:underline">Guide de la retraite CNSS</a></li>
+        <li><a href="/guides/accident-travail-cnss/" class="text-brand-700 hover:underline">Accident de travail CNSS</a></li>
+        <li><a href="/calculateur-allocations-familiales/" class="text-brand-700 hover:underline">Calculateur allocations familiales</a></li>
+        <li><a href="/guides/" class="text-brand-700 hover:underline">Tous nos guides</a></li>
+      </ul>
+    </section>
+  </article>
+</Layout>

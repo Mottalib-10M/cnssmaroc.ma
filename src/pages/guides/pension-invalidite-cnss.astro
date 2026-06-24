@@ -1,0 +1,156 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import { CONFIG } from '../../config';
+import { buildBreadcrumbSchema, buildArticleSchema, buildFAQSchema } from '../../lib/seo';
+
+const title = 'Pension invalidite CNSS Maroc : conditions et calcul';
+const description = 'Guide pension invalidite CNSS au Maroc : conditions d\'attribution, categories d\'invalidite, montant, cumul avec d\'autres prestations et demarches 2026.';
+const url = CONFIG.siteUrl + '/guides/pension-invalidite-cnss/';
+
+const faqData = [
+  {
+    q: 'Quelles sont les conditions pour obtenir une pension d\'invalidité CNSS ?',
+    a: 'Pour obtenir la pension d\'invalidité CNSS, il faut : avoir moins de 60 ans, présenter une invalidité réduisant d\'au moins deux tiers la capacité de travail, justifier d\'au moins 1 080 jours de cotisation dont 108 jours pendant les 12 mois précédant l\'invalidité, et ne pas être en état de reprendre un travail rémunéré.',
+  },
+  {
+    q: 'Quel est le montant de la pension d\'invalidité CNSS ?',
+    a: 'La pension d\'invalidité CNSS est calculée comme la pension de vieillesse : 50% du salaire moyen des 8 dernières années (plafonné à 6 000 DH) pour 3 240 jours de cotisation, avec majoration de 1% par tranche de 216 jours supplémentaires. La pension minimum est de 1 500 DH/mois, quel que soit le nombre de jours cotisés.',
+  },
+  {
+    q: 'La pension d\'invalidité se transforme-t-elle en pension de retraite ?',
+    a: 'Oui, à l\'âge de 60 ans, la pension d\'invalidité est automatiquement convertie en pension de vieillesse. Le montant ne peut être inférieur à celui de la pension d\'invalidité perçue. Les jours d\'invalidité sont assimilés à des jours de cotisation pour le calcul de la pension de vieillesse.',
+  },
+  {
+    q: 'Peut-on cumuler pension d\'invalidité et revenus d\'activité ?',
+    a: 'En principe, la pension d\'invalidité est incompatible avec la reprise d\'une activité salariée normale. Toutefois, si le bénéficiaire reprend un travail réduit ou adapté, la CNSS peut maintenir partiellement la pension en fonction des revenus d\'activité. La suspension totale intervient si les revenus dépassent un certain seuil.',
+  },
+  {
+    q: 'Comment demander la pension d\'invalidité CNSS ?',
+    a: 'La demande se dépose auprès de la délégation CNSS avec : le formulaire de demande, un certificat médical détaillé précisant le degré d\'invalidité, les pièces d\'identité, le relevé de carrière CNSS et l\'attestation de cessation de travail. La CNSS soumet le dossier à son médecin-conseil pour évaluation.',
+  },
+];
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+    { name: 'Guides', url: CONFIG.siteUrl + '/guides/' },
+    { name: 'Pension d\'invalidité CNSS', url },
+  ]),
+  buildArticleSchema({
+    title,
+    description,
+    url,
+    datePublished: '2026-06-20',
+    dateModified: '2026-06-20',
+  }),
+  buildFAQSchema(faqData),
+];
+---
+
+<Layout title={title} description={description} schema={schemas}>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <nav aria-label="Fil d'Ariane" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-brand-700">Accueil</a></li>
+        <li class="flex items-center gap-1"><span>/</span><a href="/guides/" class="hover:text-brand-700">Guides</a></li>
+        <li class="flex items-center gap-1"><span>/</span><span class="text-gray-800 font-medium">Pension d'invalidité CNSS</span></li>
+      </ol>
+    </nav>
+
+    <header class="mb-10">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        Pension d'invalidité CNSS au Maroc : conditions et calcul (2026)
+      </h1>
+      <p class="text-lg text-gray-600">
+        Tout savoir sur la pension d'invalidité CNSS : conditions d'attribution, catégories d'invalidité, mode de calcul, montant minimum et démarches administratives.
+      </p>
+      <div class="mt-4 flex items-center gap-3 text-sm text-gray-500">
+        <span>Par <a href={CONFIG.author.url} class="text-brand-700 hover:underline">{CONFIG.author.name}</a></span>
+        <span>({CONFIG.author.credentials})</span>
+        <span>- Mis à jour le 20 juin 2026</span>
+      </div>
+    </header>
+
+    <!-- Definition box -->
+    <div class="bg-brand-50 border-l-4 border-brand-600 p-5 rounded-r-lg mb-8">
+      <p class="font-semibold text-brand-800 text-lg mb-1">Pension d'invalidité CNSS</p>
+      <p class="text-gray-700">La pension d'invalidité est versée au salarié dont la capacité de travail est réduite d'au moins <strong>deux tiers</strong> suite à une maladie ou un accident non professionnel. Conditions : moins de 60 ans, au moins <strong>1 080 jours de cotisation</strong> dont 108 dans les 12 derniers mois. Montant minimum : <strong>1 500 DH/mois</strong>.</p>
+    </div>
+
+    <div class="prose prose-gray max-w-none">
+      <h2>Qu'est-ce que la pension d'invalidité CNSS ?</h2>
+
+      <p>La pension d'invalidité CNSS est une prestation versée aux salariés du secteur privé qui se trouvent dans l'incapacité de poursuivre leur activité professionnelle en raison d'une maladie ou d'un accident d'origine non professionnelle. Elle constitue un revenu de remplacement destiné à compenser la perte de revenus résultant de l'invalidité. Il est important de distinguer cette pension de la rente d'accident de travail, qui relève d'un régime différent et couvre spécifiquement les accidents survenus dans le cadre professionnel.</p>
+
+      <p>La pension d'invalidité fait partie des prestations à long terme de la CNSS, au même titre que la pension de vieillesse et la pension de survivants. Elle est financée par les cotisations de retraite (3,96% salarié + 7,93% employeur) prélevées sur les salaires plafonnés à 6 000 DH par mois.</p>
+
+      <h2>Conditions d'attribution</h2>
+
+      <p>Pour bénéficier de la pension d'invalidité CNSS, le salarié doit remplir simultanément plusieurs conditions strictes :</p>
+
+      <ul>
+        <li><strong>Age :</strong> Le demandeur doit être âgé de moins de 60 ans à la date de la constatation de l'invalidité. Au-delà de 60 ans, c'est la pension de vieillesse qui s'applique.</li>
+        <li><strong>Degré d'invalidité :</strong> L'invalidité doit entraîner une réduction d'au moins deux tiers (66,67%) de la capacité de travail ou de gain. Cette condition est évaluée par le médecin-conseil de la CNSS sur la base du dossier médical.</li>
+        <li><strong>Cotisations minimales :</strong> Le salarié doit justifier d'au moins 1 080 jours de cotisation au total, dont au moins 108 jours de cotisation pendant les 12 mois civils précédant le début de l'invalidité.</li>
+        <li><strong>Cessation d'activité :</strong> Le salarié doit avoir cessé son activité salariée et ne pas être en mesure de reprendre un emploi rémunéré normalement.</li>
+      </ul>
+
+      <h2>Catégories d'invalidité</h2>
+
+      <p>Le système CNSS reconnaît plusieurs degrés d'invalidité, évalués par le médecin-conseil de la Caisse. L'invalidité de première catégorie concerne les assurés qui, bien qu'invalides, conservent une capacité résiduelle de travail leur permettant d'exercer une activité réduite ou adaptée. L'invalidité de deuxième catégorie s'applique aux assurés totalement incapables d'exercer une quelconque activité professionnelle. L'invalidité de troisième catégorie concerne les assurés qui, en plus d'être totalement invalides, nécessitent l'assistance d'une tierce personne pour les actes essentiels de la vie quotidienne.</p>
+
+      <p>La catégorie d'invalidité détermine non seulement le montant de la pension mais aussi les conditions de cumul éventuel avec des revenus d'activité. Plus la catégorie est élevée, plus les conditions de cumul sont restrictives.</p>
+
+      <h2>Calcul du montant de la pension</h2>
+
+      <p>La pension d'invalidité CNSS est calculée de la même manière que la pension de vieillesse. Le salaire de référence est la moyenne mensuelle des salaires soumis à cotisation pendant les 96 derniers mois (8 dernières années) d'activité, plafonné à 6 000 DH. Le taux de remplacement de base est de 50% pour 3 240 jours de cotisation, majoré de 1% par tranche supplémentaire de 216 jours, dans la limite de 70%.</p>
+
+      <p>Si le salarié n'atteint pas les 3 240 jours requis pour la pension de vieillesse, la pension d'invalidité est néanmoins accordée (à condition de remplir le minimum de 1 080 jours), avec un taux réduit proportionnel au nombre de jours cotisés. Le montant ne peut pas être inférieur à la pension minimum de 1 500 DH par mois. Pour l'invalidité de troisième catégorie, une majoration pour tierce personne peut être ajoutée au montant de base.</p>
+
+      <h2>Conversion en pension de vieillesse</h2>
+
+      <p>Lorsque le bénéficiaire de la pension d'invalidité atteint l'âge de 60 ans, sa pension d'invalidité est automatiquement convertie en pension de vieillesse. Le montant de la pension de vieillesse ne peut pas être inférieur à celui de la pension d'invalidité précédemment perçue. Les périodes d'invalidité sont assimilées à des périodes de cotisation pour le calcul des droits à la retraite, ce qui est avantageux pour le calcul du taux de remplacement.</p>
+
+      <h2>Démarches et pièces justificatives</h2>
+
+      <p>La demande de pension d'invalidité doit être déposée auprès de la délégation CNSS dont relève le dernier employeur. Le dossier comprend le formulaire de demande de pension d'invalidité, un ou plusieurs certificats médicaux détaillés précisant la nature de l'invalidité, le degré de réduction de la capacité de travail et le pronostic, la copie de la carte d'identité nationale, le relevé de carrière CNSS, l'attestation de cessation de travail de l'employeur et les éventuels résultats d'examens complémentaires.</p>
+
+      <p>La CNSS soumet le dossier à son médecin-conseil qui procède à un examen médical et rend un avis sur le degré d'invalidité. La décision de la CNSS est notifiée au demandeur par courrier. En cas de refus, le salarié peut former un recours devant la commission médicale d'appel ou saisir le tribunal compétent.</p>
+
+      <h2>Révision et contrôle</h2>
+
+      <p>La pension d'invalidité n'est pas définitive. La CNSS peut procéder à des contrôles médicaux périodiques pour vérifier que l'état d'invalidité persiste. Si l'état de santé s'améliore significativement, la pension peut être réduite ou supprimée. Inversement, si l'état s'aggrave, le bénéficiaire peut demander une révision à la hausse. Ces révisions sont effectuées par le médecin-conseil de la CNSS.</p>
+    </div>
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Questions fréquentes sur la pension d'invalidité</h2>
+      <div class="space-y-4">
+        {faqData.map((faq) => (
+          <details class="group bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <summary class="cursor-pointer px-6 py-4 font-medium text-gray-900 flex items-center justify-between hover:bg-gray-50 transition-colors">
+              {faq.q}
+              <span class="ml-4 text-gray-400 group-open:rotate-180 transition-transform">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{faq.a}</div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- Useful links -->
+    <section class="mt-10 p-6 bg-gray-50 rounded-2xl">
+      <h3 class="text-lg font-semibold text-gray-900 mb-3">Liens utiles</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/guides/accident-travail-cnss/" class="text-brand-700 hover:underline">Accident de travail CNSS</a></li>
+        <li><a href="/guides/retraite-cnss/" class="text-brand-700 hover:underline">Guide de la retraite CNSS</a></li>
+        <li><a href="/guides/deces-cnss/" class="text-brand-700 hover:underline">Pension de décès CNSS</a></li>
+        <li><a href="/simulateur-retraite-cnss/" class="text-brand-700 hover:underline">Simulateur de retraite CNSS</a></li>
+        <li><a href="/guides/" class="text-brand-700 hover:underline">Tous nos guides</a></li>
+      </ul>
+    </section>
+  </article>
+</Layout>

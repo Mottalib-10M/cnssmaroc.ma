@@ -1,0 +1,140 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import { CONFIG } from '../../config';
+import { buildBreadcrumbSchema } from '../../lib/seo';
+
+const title = 'Guides CNSS Maroc 2026 : protection sociale et droits';
+const description = 'Tous nos guides sur la CNSS au Maroc : cotisations, retraite, AMO, maternite, accidents de travail, invalidite et deces. Informations a jour pour 2026.';
+const url = CONFIG.siteUrl + '/guides/';
+
+const guides = [
+  {
+    title: 'Cotisations CNSS Maroc : taux et calcul 2026',
+    desc: 'Taux détaillés, plafonds, répartition salarié-employeur et exemples de calcul pour toutes les cotisations CNSS.',
+    href: '/guides/cotisations-cnss-maroc/',
+    tag: 'Cotisations',
+  },
+  {
+    title: 'Retraite CNSS : calcul de la pension 2026',
+    desc: 'Conditions d\'éligibilité, formule de calcul, plafonds et conseils pour maximiser votre pension de retraite CNSS.',
+    href: '/guides/retraite-cnss/',
+    tag: 'Retraite',
+  },
+  {
+    title: 'AMO Maroc : assurance maladie obligatoire',
+    desc: 'Couverture médicale, taux de cotisation, remboursements AMO, différences CNSS vs CNOPS et le RAMED.',
+    href: '/guides/amo-maroc/',
+    tag: 'Santé',
+  },
+  {
+    title: 'TVA Maroc : taux et exonérations 2026',
+    desc: 'Les 4 taux de TVA au Maroc (20%, 14%, 10%, 7%), produits exonérés et méthodes de calcul HT/TTC.',
+    href: '/guides/tva-maroc/',
+    tag: 'Fiscalité',
+  },
+  {
+    title: 'Congé maternité CNSS : droits et indemnités',
+    desc: 'Durée du congé maternité, conditions, montant des indemnités journalières et démarches auprès de la CNSS.',
+    href: '/guides/maternite-cnss/',
+    tag: 'Maternité',
+  },
+  {
+    title: 'Accident de travail CNSS : indemnisation',
+    desc: 'Procédure de déclaration, indemnités, rente d\'incapacité et droits du salarié en cas d\'accident de travail.',
+    href: '/guides/accident-travail-cnss/',
+    tag: 'Accidents',
+  },
+  {
+    title: 'Pension d\'invalidité CNSS : conditions et calcul',
+    desc: 'Conditions d\'octroi, taux d\'invalidité, montant de la pension et procédure de demande auprès de la CNSS.',
+    href: '/guides/pension-invalidite-cnss/',
+    tag: 'Invalidité',
+  },
+  {
+    title: 'Remboursement AMO : taux et procédures',
+    desc: 'Taux de remboursement par type de soin, pièces justificatives, délais et suivi des dossiers AMO.',
+    href: '/guides/remboursement-amo/',
+    tag: 'Santé',
+  },
+  {
+    title: 'Pension de décès CNSS : droits des ayants droit',
+    desc: 'Conditions d\'attribution, bénéficiaires, montant de la pension de survivants et démarches à suivre.',
+    href: '/guides/deces-cnss/',
+    tag: 'Décès',
+  },
+];
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+    { name: 'Guides', url },
+  ]),
+];
+---
+
+<Layout title={title} description={description} schema={schemas}>
+  <section class="bg-gradient-to-br from-brand-600 to-brand-800 text-white py-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      <nav aria-label="Fil d'Ariane" class="mb-6">
+        <ol class="flex flex-wrap items-center justify-center gap-1 text-sm text-brand-200">
+          <li><a href="/" class="hover:text-white">Accueil</a></li>
+          <li class="flex items-center gap-1"><span>/</span><span class="text-white font-medium">Guides</span></li>
+        </ol>
+      </nav>
+      <h1 class="text-3xl sm:text-4xl font-bold leading-tight">
+        Guides CNSS et protection sociale au Maroc
+      </h1>
+      <p class="mt-4 text-lg text-brand-100 max-w-2xl mx-auto">
+        Retrouvez tous nos guides détaillés pour comprendre vos droits sociaux, vos cotisations et vos prestations CNSS au Maroc en 2026.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {guides.map((guide) => (
+        <a href={guide.href} class="group block bg-white rounded-2xl border border-gray-200 p-6 hover:border-brand-300 hover:shadow-md transition-all">
+          <span class="inline-block px-2.5 py-0.5 text-xs font-medium text-brand-700 bg-brand-50 rounded-full mb-3">{guide.tag}</span>
+          <h2 class="text-lg font-semibold text-gray-900 group-hover:text-brand-700 transition-colors">{guide.title}</h2>
+          <p class="mt-2 text-sm text-gray-600">{guide.desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-gray-50 py-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <article class="prose prose-gray max-w-none">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">La protection sociale au Maroc : un système en pleine transformation</h2>
+
+        <p>Le système de protection sociale marocain repose principalement sur la Caisse Nationale de Sécurité Sociale (CNSS) pour les salariés du secteur privé et la Caisse Marocaine des Retraites (CMR) pour les fonctionnaires. Créée en 1959, la CNSS administre le régime obligatoire de sécurité sociale qui couvre aujourd'hui plus de 3,5 millions de salariés déclarés et leurs familles. Ce régime offre une protection contre les principaux risques sociaux : maladie, maternité, invalidité, vieillesse, décès et accidents de travail.</p>
+
+        <p>Les cotisations CNSS, partagées entre l'employeur (environ 21,09%) et le salarié (6,74%), financent l'ensemble des prestations. Le plafond de cotisation, fixé à 6 000 DH par mois pour certaines branches, détermine le niveau maximal des prestations plafonnées, notamment la pension de retraite. L'Assurance Maladie Obligatoire (AMO), instaurée en 2005, a élargi la couverture médicale à l'ensemble des salariés du privé et constitue une avancée sociale majeure.</p>
+
+        <p>Depuis 2021, le Maroc a engagé un vaste chantier de généralisation de la protection sociale visant à étendre la couverture à l'ensemble de la population. Cette réforme structurelle prévoit la généralisation de l'AMO, des allocations familiales, de la retraite et de l'indemnité pour perte d'emploi. Nos guides couvrent en détail chaque aspect de ce système pour vous permettre de connaître et de faire valoir vos droits.</p>
+
+        <h3>Pourquoi consulter nos guides ?</h3>
+
+        <p>La réglementation CNSS est souvent perçue comme complexe par les salariés et les employeurs. Les taux de cotisation, les plafonds, les conditions d'éligibilité aux prestations et les démarches administratives évoluent régulièrement. Nos guides sont rédigés dans un langage clair et accesssible, illustrés par des exemples concrets et mis à jour pour refléter les barèmes en vigueur en 2026. Que vous soyez salarié du secteur privé, employeur, comptable ou consultant RH, vous y trouverez les informations dont vous avez besoin pour comprendre le système et optimiser votre protection sociale.</p>
+      </article>
+
+      <div class="mt-8 text-sm text-gray-500">
+        <p>Par <a href={CONFIG.author.url} class="text-brand-700 hover:underline">{CONFIG.author.name}</a> ({CONFIG.author.credentials}) - Mis à jour en 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Useful links -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-10">
+    <div class="p-6 bg-gray-50 rounded-2xl">
+      <h3 class="text-lg font-semibold text-gray-900 mb-3">Liens utiles</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/calculateur-cotisations-cnss/" class="text-brand-700 hover:underline">Calculateur de cotisations CNSS</a></li>
+        <li><a href="/simulateur-retraite-cnss/" class="text-brand-700 hover:underline">Simulateur de retraite CNSS</a></li>
+        <li><a href="/calculateurs/" class="text-brand-700 hover:underline">Tous nos calculateurs et simulateurs</a></li>
+        <li><a href="/cotisation/5000/" class="text-brand-700 hover:underline">Cotisation CNSS pour 5 000 DH</a></li>
+        <li><a href="/cotisation/10000/" class="text-brand-700 hover:underline">Cotisation CNSS pour 10 000 DH</a></li>
+      </ul>
+    </div>
+  </section>
+</Layout>

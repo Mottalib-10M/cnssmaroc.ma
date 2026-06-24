@@ -33,7 +33,7 @@ const faqData = [
 const schemas = [
   buildBreadcrumbSchema([
     { name: 'Accueil', url: CONFIG.siteUrl + '/' },
-    { name: 'Guides', url: CONFIG.siteUrl + '/guides/cotisations-cnss-maroc/' },
+    { name: 'Guides', url: CONFIG.siteUrl + '/guides/' },
     { name: 'Retraite CNSS', url },
   ]),
   buildArticleSchema({
@@ -52,7 +52,7 @@ const schemas = [
     <nav aria-label="Fil d'Ariane" class="mb-6">
       <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500">
         <li><a href="/" class="hover:text-brand-700">Accueil</a></li>
-        <li class="flex items-center gap-1"><span>/</span><a href="/guides/cotisations-cnss-maroc/" class="hover:text-brand-700">Guides</a></li>
+        <li class="flex items-center gap-1"><span>/</span><a href="/guides/" class="hover:text-brand-700">Guides</a></li>
         <li class="flex items-center gap-1"><span>/</span><span class="text-gray-800 font-medium">Retraite CNSS</span></li>
       </ol>
     </nav>
@@ -204,6 +204,18 @@ const schemas = [
           </details>
         ))}
       </div>
+    </section>
+
+    <!-- Liens utiles -->
+    <section class="mt-10 p-6 bg-gray-50 rounded-2xl">
+      <h3 class="text-lg font-semibold text-gray-900 mb-3">Liens utiles</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/simulateur-retraite-cnss/" class="text-brand-700 hover:underline">Simulateur de retraite CNSS</a></li>
+        <li><a href="/guides/pension-invalidite-cnss/" class="text-brand-700 hover:underline">Pension d'invalidite CNSS</a></li>
+        <li><a href="/guides/deces-cnss/" class="text-brand-700 hover:underline">Pension de deces CNSS</a></li>
+        <li><a href="/cotisation/6000/" class="text-brand-700 hover:underline">Cotisation CNSS pour 6 000 DH (plafond)</a></li>
+        <li><a href="/guides/" class="text-brand-700 hover:underline">Tous nos guides</a></li>
+      </ul>
     </section>
 
     <div class="mt-10 p-6 bg-brand-50 rounded-2xl border border-brand-100">

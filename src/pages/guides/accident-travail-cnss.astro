@@ -1,0 +1,149 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import { CONFIG } from '../../config';
+import { buildBreadcrumbSchema, buildArticleSchema, buildFAQSchema } from '../../lib/seo';
+
+const title = 'Accident de travail CNSS : indemnisation et procedure';
+const description = 'Guide complet accident de travail au Maroc : declaration, indemnites journalieres, rente d\'incapacite, procedure CNSS et droits du salarie. Mise a jour 2026.';
+const url = CONFIG.siteUrl + '/guides/accident-travail-cnss/';
+
+const faqData = [
+  {
+    q: 'Comment déclarer un accident de travail au Maroc ?',
+    a: 'L\'employeur doit déclarer l\'accident de travail à la CNSS et à l\'inspection du travail dans les 48 heures suivant l\'accident. La déclaration se fait via le formulaire spécifique accompagné du certificat médical initial. Le salarié doit informer son employeur dans les 24 heures. Le non-respect de ces délais peut compromettre les droits à indemnisation.',
+  },
+  {
+    q: 'Quelle indemnité en cas d\'accident de travail au Maroc ?',
+    a: 'En cas d\'incapacité temporaire, le salarié perçoit des indemnités journalières égales aux deux tiers de son salaire journalier moyen à partir du lendemain de l\'accident, sans délai de carence. En cas d\'incapacité permanente, une rente est calculée en fonction du taux d\'incapacité fixé par expertise médicale et du salaire annuel.',
+  },
+  {
+    q: 'L\'accident de trajet est-il couvert par la CNSS ?',
+    a: 'Oui, l\'accident de trajet est assimilé à un accident de travail et bénéficie de la même couverture. Il s\'agit de l\'accident survenu pendant le trajet aller-retour entre le domicile et le lieu de travail, par le chemin le plus direct, sauf détour justifié par un motif légitime (achat de provisions, dépose d\'enfants à l\'école).',
+  },
+  {
+    q: 'Qui paie les frais médicaux en cas d\'accident de travail ?',
+    a: 'L\'ensemble des frais médicaux liés à l\'accident de travail sont pris en charge : hospitalisation, interventions chirurgicales, médicaments, rééducation, prothèses et appareillages. La prise en charge est intégrale (100%), sans ticket modérateur, et s\'applique jusqu\'à la guérison ou la consolidation de l\'état de santé du salarié.',
+  },
+  {
+    q: 'Peut-on contester le taux d\'incapacité fixé après un accident de travail ?',
+    a: 'Oui, le salarié peut contester le taux d\'incapacité permanente fixé par l\'expertise médicale. La contestation se fait par voie judiciaire devant le tribunal compétent. Le salarié peut demander une contre-expertise médicale. Le délai de contestation est généralement de 30 jours à compter de la notification du taux.',
+  },
+];
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+    { name: 'Guides', url: CONFIG.siteUrl + '/guides/' },
+    { name: 'Accident de travail CNSS', url },
+  ]),
+  buildArticleSchema({
+    title,
+    description,
+    url,
+    datePublished: '2026-06-20',
+    dateModified: '2026-06-20',
+  }),
+  buildFAQSchema(faqData),
+];
+---
+
+<Layout title={title} description={description} schema={schemas}>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <nav aria-label="Fil d'Ariane" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-brand-700">Accueil</a></li>
+        <li class="flex items-center gap-1"><span>/</span><a href="/guides/" class="hover:text-brand-700">Guides</a></li>
+        <li class="flex items-center gap-1"><span>/</span><span class="text-gray-800 font-medium">Accident de travail CNSS</span></li>
+      </ol>
+    </nav>
+
+    <header class="mb-10">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        Accident de travail CNSS : indemnisation et procédure (2026)
+      </h1>
+      <p class="text-lg text-gray-600">
+        Que faire en cas d'accident de travail au Maroc ? Déclaration, indemnités journalières, rente d'incapacité permanente, prise en charge médicale et droits du salarié expliqués en détail.
+      </p>
+      <div class="mt-4 flex items-center gap-3 text-sm text-gray-500">
+        <span>Par <a href={CONFIG.author.url} class="text-brand-700 hover:underline">{CONFIG.author.name}</a></span>
+        <span>({CONFIG.author.credentials})</span>
+        <span>- Mis à jour le 20 juin 2026</span>
+      </div>
+    </header>
+
+    <!-- Definition box -->
+    <div class="bg-brand-50 border-l-4 border-brand-600 p-5 rounded-r-lg mb-8">
+      <p class="font-semibold text-brand-800 text-lg mb-1">Accident de travail : définition</p>
+      <p class="text-gray-700">Est considéré comme accident de travail tout accident survenu <strong>par le fait ou à l'occasion du travail</strong>, quelle qu'en soit la cause, à tout salarié travaillant pour un ou plusieurs employeurs. L'accident de trajet (domicile-travail) est également couvert. L'employeur doit déclarer l'accident dans les <strong>48 heures</strong>.</p>
+    </div>
+
+    <div class="prose prose-gray max-w-none">
+      <h2>Définition légale de l'accident de travail</h2>
+
+      <p>Au Maroc, la législation sur les accidents de travail est principalement régie par le dahir du 6 février 1963 relatif à la réparation des accidents du travail, complété par ses textes d'application. Un accident de travail est défini comme tout accident survenu par le fait ou à l'occasion du travail à toute personne salariée ou travaillant, à quelque titre que ce soit, pour un ou plusieurs employeurs. Cette définition est large et couvre non seulement les accidents survenus sur le lieu de travail, mais aussi ceux qui surviennent dans le cadre de missions ou de déplacements professionnels.</p>
+
+      <p>L'accident de trajet est assimilé à l'accident de travail. Il concerne l'accident survenu sur le parcours aller-retour entre le domicile du salarié et son lieu de travail, ainsi que le trajet entre le lieu de travail et le lieu de restauration. Le trajet doit être le plus direct possible, mais des détours justifiés par des nécessités de la vie courante (dépose d'enfants à l'école, achat de denrées alimentaires) sont admis.</p>
+
+      <h2>Obligations de l'employeur</h2>
+
+      <p>L'employeur a plusieurs obligations en matière d'accidents de travail. En amont, il doit souscrire une assurance obligatoire contre les accidents de travail et les maladies professionnelles auprès d'une compagnie d'assurance agréée. Cette assurance est distincte des cotisations CNSS et couvre les risques professionnels. En cas d'accident, l'employeur doit déclarer l'accident à son assureur et à l'inspection du travail dans les 48 heures suivant l'accident ou la connaissance qu'il en a eue.</p>
+
+      <p>La déclaration doit être accompagnée d'un certificat médical initial décrivant les lésions et précisant la durée probable de l'incapacité temporaire. L'employeur doit également délivrer au salarié un certificat de travail mentionnant la date et les circonstances de l'accident. Le non-respect de l'obligation de déclaration expose l'employeur à des sanctions et ne le dégage pas de sa responsabilité.</p>
+
+      <h2>Indemnisation de l'incapacité temporaire</h2>
+
+      <p>Pendant la période d'incapacité temporaire de travail consécutive à un accident de travail, le salarié a droit à des indemnités journalières. Ces indemnités sont versées à partir du lendemain de l'accident (il n'y a pas de délai de carence comme pour les arrêts maladie ordinaires). Le montant est égal aux deux tiers (66,67%) du salaire journalier moyen du salarié, calculé sur la base des rémunérations des 12 derniers mois précédant l'accident.</p>
+
+      <p>Les indemnités sont versées pendant toute la durée de l'incapacité temporaire, jusqu'à la guérison complète ou la consolidation de l'état de santé du salarié. La consolidation est le moment où les lésions se fixent et prennent un caractère permanent. C'est à cette date que le taux d'incapacité permanente éventuel est évalué. Pendant toute cette période, le contrat de travail est suspendu et le salarié conserve son poste.</p>
+
+      <h2>Rente d'incapacité permanente</h2>
+
+      <p>Si l'accident de travail entraîne une incapacité permanente, partielle ou totale, le salarié a droit à une rente. Le taux d'incapacité permanente est fixé par un médecin expert et approuvé par le tribunal. La rente est calculée en fonction du taux d'incapacité et du salaire annuel du salarié, selon un barème progressif qui majore les taux d'incapacité élevés.</p>
+
+      <p>Pour les taux d'incapacité inférieurs à 10%, la rente peut être convertie en un capital versé en une seule fois. Au-delà de 10%, la rente est versée trimestriellement. En cas d'incapacité permanente totale (100%), la rente est majorée de 50% si le salarié a besoin d'une tierce personne pour les actes de la vie quotidienne.</p>
+
+      <h2>Prise en charge médicale</h2>
+
+      <p>L'ensemble des frais médicaux occasionnés par l'accident de travail sont pris en charge à 100%, sans aucun ticket modérateur. Cette prise en charge intégrale couvre les frais d'hospitalisation et d'intervention chirurgicale, les consultations médicales et examens spécialisés, les médicaments et produits pharmaceutiques, la rééducation fonctionnelle et la kinésithérapie, les prothèses, orthèses et appareillages, ainsi que les frais de transport médical. La prise en charge s'étend jusqu'à la guérison complète ou la consolidation, et comprend également les soins ultérieurs nécessaires liés aux séquelles de l'accident.</p>
+
+      <h2>Procédure judiciaire</h2>
+
+      <p>Si le salarié et l'assureur ne parviennent pas à un accord sur le montant de l'indemnisation, le dossier est porté devant le tribunal de première instance. Le juge ordonne une expertise médicale pour évaluer le taux d'incapacité, examine les pièces du dossier et rend un jugement fixant les indemnités dues. Le salarié peut se faire assister par un avocat. Les frais de justice sont en principe à la charge de l'assureur en cas de condamnation.</p>
+
+      <h2>Maladies professionnelles</h2>
+
+      <p>Les maladies professionnelles sont traitées de manière similaire aux accidents de travail en termes d'indemnisation. Elles sont définies par des tableaux réglementaires qui listent les maladies reconnues, les travaux susceptibles de les provoquer et les délais de prise en charge. Le salarié atteint d'une maladie professionnelle doit la déclarer et fournir un certificat médical. L'indemnisation suit les mêmes règles que pour les accidents de travail.</p>
+    </div>
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Questions fréquentes sur les accidents de travail</h2>
+      <div class="space-y-4">
+        {faqData.map((faq) => (
+          <details class="group bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <summary class="cursor-pointer px-6 py-4 font-medium text-gray-900 flex items-center justify-between hover:bg-gray-50 transition-colors">
+              {faq.q}
+              <span class="ml-4 text-gray-400 group-open:rotate-180 transition-transform">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{faq.a}</div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- Useful links -->
+    <section class="mt-10 p-6 bg-gray-50 rounded-2xl">
+      <h3 class="text-lg font-semibold text-gray-900 mb-3">Liens utiles</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/guides/pension-invalidite-cnss/" class="text-brand-700 hover:underline">Pension d'invalidité CNSS</a></li>
+        <li><a href="/guides/deces-cnss/" class="text-brand-700 hover:underline">Pension de décès CNSS</a></li>
+        <li><a href="/guides/cotisations-cnss-maroc/" class="text-brand-700 hover:underline">Guide des cotisations CNSS</a></li>
+        <li><a href="/calculateur-cotisations-cnss/" class="text-brand-700 hover:underline">Calculateur de cotisations CNSS</a></li>
+        <li><a href="/guides/" class="text-brand-700 hover:underline">Tous nos guides</a></li>
+      </ul>
+    </section>
+  </article>
+</Layout>

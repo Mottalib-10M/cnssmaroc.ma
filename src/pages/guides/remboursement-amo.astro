@@ -1,0 +1,157 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import { CONFIG } from '../../config';
+import { buildBreadcrumbSchema, buildArticleSchema, buildFAQSchema } from '../../lib/seo';
+
+const title = 'Remboursement AMO CNSS 2026 : taux et procedures';
+const description = 'Guide remboursement AMO CNSS 2026 : taux par type de soin, pieces justificatives, delais de depot, suivi en ligne et maladies de longue duree au Maroc.';
+const url = CONFIG.siteUrl + '/guides/remboursement-amo/';
+
+const faqData = [
+  {
+    q: 'Quels sont les taux de remboursement AMO au Maroc ?',
+    a: 'Les taux de remboursement AMO varient selon le type de soin et le secteur. En secteur public, le taux peut atteindre 70% à 100% pour les maladies de longue durée. En secteur privé, les consultations sont remboursées à environ 70% du tarif de référence, les médicaments entre 70% et 100% selon la catégorie, et l\'hospitalisation à 70%-90%.',
+  },
+  {
+    q: 'Quel est le délai pour déposer une demande de remboursement AMO ?',
+    a: 'Le délai de prescription pour les demandes de remboursement AMO est de 2 ans à compter de la date des soins. Passé ce délai, la demande est prescrite et ne peut plus être traitée. Il est recommandé de déposer les dossiers dans les meilleurs délais pour un remboursement rapide.',
+  },
+  {
+    q: 'Quelles pièces fournir pour un remboursement AMO ?',
+    a: 'Le dossier de remboursement AMO comprend : le formulaire de demande de remboursement, les feuilles de soins signées par le praticien, les ordonnances médicales, les factures originales ou quittances, les résultats d\'analyses ou d\'examens le cas échéant, et une copie de la CIN. Pour l\'hospitalisation, ajouter le bulletin d\'entrée et de sortie.',
+  },
+  {
+    q: 'Comment suivre une demande de remboursement AMO en ligne ?',
+    a: 'Le suivi des demandes de remboursement est possible via le portail cnss.ma ou l\'application Damancom. Connectez-vous avec votre numéro d\'immatriculation CNSS et consultez la rubrique "AMO - Suivi des remboursements". Vous y verrez l\'état de traitement de vos dossiers et les montants remboursés.',
+  },
+  {
+    q: 'Les maladies de longue durée sont-elles mieux remboursées par l\'AMO ?',
+    a: 'Oui, les maladies de longue durée (ALD) bénéficient d\'une prise en charge renforcée. Le taux de remboursement peut atteindre 100% dans le secteur public pour les soins directement liés à l\'ALD. La liste des ALD reconnues comprend notamment le diabète, l\'hypertension, le cancer, l\'insuffisance rénale et les maladies cardiovasculaires.',
+  },
+];
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+    { name: 'Guides', url: CONFIG.siteUrl + '/guides/' },
+    { name: 'Remboursement AMO', url },
+  ]),
+  buildArticleSchema({
+    title,
+    description,
+    url,
+    datePublished: '2026-06-20',
+    dateModified: '2026-06-20',
+  }),
+  buildFAQSchema(faqData),
+];
+---
+
+<Layout title={title} description={description} schema={schemas}>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+    <nav aria-label="Fil d'Ariane" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-brand-700">Accueil</a></li>
+        <li class="flex items-center gap-1"><span>/</span><a href="/guides/" class="hover:text-brand-700">Guides</a></li>
+        <li class="flex items-center gap-1"><span>/</span><span class="text-gray-800 font-medium">Remboursement AMO</span></li>
+      </ol>
+    </nav>
+
+    <header class="mb-10">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        Remboursement AMO CNSS 2026 : taux et procédures
+      </h1>
+      <p class="text-lg text-gray-600">
+        Tout savoir sur les remboursements AMO au Maroc : taux par type de soin, pièces justificatives, délais de dépôt, suivi en ligne et prise en charge des maladies de longue durée.
+      </p>
+      <div class="mt-4 flex items-center gap-3 text-sm text-gray-500">
+        <span>Par <a href={CONFIG.author.url} class="text-brand-700 hover:underline">{CONFIG.author.name}</a></span>
+        <span>({CONFIG.author.credentials})</span>
+        <span>- Mis à jour le 20 juin 2026</span>
+      </div>
+    </header>
+
+    <!-- Definition box -->
+    <div class="bg-brand-50 border-l-4 border-brand-600 p-5 rounded-r-lg mb-8">
+      <p class="font-semibold text-brand-800 text-lg mb-1">Remboursement AMO : l'essentiel</p>
+      <p class="text-gray-700">L'AMO CNSS rembourse entre <strong>70% et 100%</strong> des frais médicaux selon le type de soin et le secteur. Délai de dépôt : <strong>2 ans maximum</strong>. Suivi possible en ligne via <strong>cnss.ma</strong>. Prise en charge renforcée (jusqu'à 100%) pour les <strong>maladies de longue durée</strong> (ALD).</p>
+    </div>
+
+    <div class="prose prose-gray max-w-none">
+      <h2>Principes du remboursement AMO</h2>
+
+      <p>L'Assurance Maladie Obligatoire (AMO) gérée par la CNSS fonctionne sur le principe du tiers payant ou du remboursement a posteriori. Dans le premier cas, l'assuré ne paie que le ticket modérateur (la part non remboursée) directement au prestataire de soins, l'AMO réglant directement sa part au praticien ou à l'établissement de santé. Dans le second cas, l'assuré avance la totalité des frais et se fait rembourser par la CNSS sur présentation d'un dossier de demande de remboursement.</p>
+
+      <p>Le remboursement est calculé sur la base d'un tarif de référence fixé par l'Agence Nationale de l'Assurance Maladie (ANAM). Ce tarif peut être inférieur au montant réellement facturé par le praticien, ce qui signifie que le remboursement effectif ne couvre pas toujours la totalité des frais engagés. La différence reste à la charge de l'assuré ou de sa mutuelle complémentaire éventuelle.</p>
+
+      <h2>Taux de remboursement par type de soin</h2>
+
+      <h3>Consultations médicales</h3>
+
+      <p>Les consultations de médecins généralistes et spécialistes sont remboursées à environ 70% du tarif de référence ANAM dans le secteur public, et à un taux similaire dans le secteur privé conventionné. Le ticket modérateur de 30% reste à la charge de l'assuré. Les consultations dans le cadre du parcours de soins coordonné (avec orientation par le médecin traitant) bénéficient généralement de meilleurs taux de remboursement.</p>
+
+      <h3>Médicaments</h3>
+
+      <p>Les médicaments sont remboursés selon leur catégorie dans la liste des médicaments remboursables établie par l'ANAM. Les médicaments essentiels et vitaux sont remboursés à 100%, les médicaments importants à 70% et les médicaments de confort à des taux inférieurs. Le remboursement se fait sur la base du prix de référence fixé par le ministère de la Santé. Les médicaments génériques sont remboursés au même taux que les princeps mais sur la base du prix du générique.</p>
+
+      <h3>Hospitalisation</h3>
+
+      <p>Les frais d'hospitalisation sont remboursés à des taux allant de 70% à 90% du tarif de référence, selon le type d'établissement (public ou privé) et la nature de l'intervention. L'hospitalisation dans le secteur public bénéficie des meilleurs taux de remboursement. Les frais de séjour, d'intervention chirurgicale, d'anesthésie et de pharmacie hospitalière sont couverts. Un devis préalable est recommandé pour les hospitalisations programmées afin de connaître à l'avance la part remboursée.</p>
+
+      <h3>Analyses et imagerie médicale</h3>
+
+      <p>Les analyses de biologie médicale (prises de sang, analyses d'urine, etc.) sont remboursées à environ 70% du tarif de référence. Les examens d'imagerie médicale (radiographies, échographies, scanners, IRM) sont également remboursés à environ 70%, avec un tarif de référence spécifique pour chaque type d'examen. Les examens prescrits dans le cadre d'une ALD peuvent bénéficier d'un taux de remboursement majoré.</p>
+
+      <h2>Maladies de longue durée (ALD)</h2>
+
+      <p>Les maladies de longue durée bénéficient d'un régime spécial avec une prise en charge renforcée. La liste des ALD reconnues par l'AMO comprend notamment le diabète, l'hypertension artérielle, les maladies cardiovasculaires, le cancer, l'insuffisance rénale chronique, les maladies auto-immunes, la sclérose en plaques, les affections psychiatriques de longue durée et le VIH/SIDA.</p>
+
+      <p>Pour les soins directement liés à l'ALD, le taux de remboursement est majoré et peut atteindre 100% dans le secteur public, avec suppression totale du ticket modérateur. La reconnaissance en ALD nécessite un dossier médical spécifique validé par le médecin-conseil de la CNSS. Une fois reconnue, l'ALD ouvre droit à une prise en charge renforcée pour une durée déterminée, renouvelable.</p>
+
+      <h2>Procédure de demande de remboursement</h2>
+
+      <p>Pour obtenir un remboursement AMO, l'assuré doit constituer un dossier comprenant les pièces justificatives suivantes : le formulaire de demande de remboursement dûment rempli et signé, les feuilles de soins signées par le praticien avec le cachet du cabinet, les ordonnances médicales originales, les factures et quittances de paiement originales, les résultats d'analyses ou d'examens le cas échéant, et une copie de la carte d'identité nationale.</p>
+
+      <p>Le dossier est à déposer à la délégation CNSS dont relève l'assuré ou auprès de l'organisme gestionnaire délégué. Le délai de prescription est de 2 ans à compter de la date des soins. Il est fortement recommandé de ne pas attendre ce délai et de déposer les dossiers régulièrement, idéalement dans les semaines suivant les soins, pour un traitement rapide.</p>
+
+      <h2>Suivi en ligne des remboursements</h2>
+
+      <p>La CNSS met à disposition des assurés un portail en ligne (cnss.ma) et une application mobile (Damancom) permettant de suivre l'état des demandes de remboursement. Après connexion avec le numéro d'immatriculation CNSS, l'assuré peut consulter les dossiers déposés, leur état de traitement, les montants remboursés et les dates de virement. Le suivi en ligne permet de détecter rapidement les dossiers incomplets ou rejetés et de les corriger.</p>
+
+      <h2>Complémentaire santé et mutuelle</h2>
+
+      <p>Compte tenu du ticket modérateur (part non remboursée par l'AMO) et des dépassements d'honoraires fréquents dans le secteur privé, il est souvent judicieux de souscrire à une mutuelle complémentaire santé. La complémentaire prend en charge tout ou partie du ticket modérateur et peut couvrir des prestations non prises en charge par l'AMO (soins dentaires avancés, optique, médecines douces). Plusieurs mutuelles et assureurs proposent des contrats complémentaires adaptés aux salariés du secteur privé.</p>
+    </div>
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Questions fréquentes sur le remboursement AMO</h2>
+      <div class="space-y-4">
+        {faqData.map((faq) => (
+          <details class="group bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <summary class="cursor-pointer px-6 py-4 font-medium text-gray-900 flex items-center justify-between hover:bg-gray-50 transition-colors">
+              {faq.q}
+              <span class="ml-4 text-gray-400 group-open:rotate-180 transition-transform">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-4 text-gray-600 text-sm leading-relaxed">{faq.a}</div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- Useful links -->
+    <section class="mt-10 p-6 bg-gray-50 rounded-2xl">
+      <h3 class="text-lg font-semibold text-gray-900 mb-3">Liens utiles</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/guides/amo-maroc/" class="text-brand-700 hover:underline">Guide complet AMO Maroc</a></li>
+        <li><a href="/guides/maternite-cnss/" class="text-brand-700 hover:underline">Congé maternité CNSS</a></li>
+        <li><a href="/guides/cotisations-cnss-maroc/" class="text-brand-700 hover:underline">Guide des cotisations CNSS</a></li>
+        <li><a href="/calculateur-cotisations-cnss/" class="text-brand-700 hover:underline">Calculateur de cotisations CNSS</a></li>
+        <li><a href="/guides/" class="text-brand-700 hover:underline">Tous nos guides</a></li>
+      </ul>
+    </section>
+  </article>
+</Layout>
