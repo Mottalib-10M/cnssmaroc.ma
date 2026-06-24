@@ -15,6 +15,7 @@ interface Props {
 
 const { title, description, canonical, schema, noindex = false } = Astro.props;
 const pageUrl = canonical || Astro.url.href;
+const ogImage = CONFIG.siteUrl + '/og-default.png';
 const websiteSchema = buildWebSiteSchema();
 const organizationSchema = buildOrganizationSchema();
 const allSchemas = schema
@@ -33,15 +34,21 @@ const allSchemas = schema
     <meta name="description" content={description} />
     <link rel="canonical" href={pageUrl} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={pageUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content={CONFIG.locale} />
     <meta property="og:site_name" content={CONFIG.siteName} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="CNSS Maroc - Calculateur cotisations et retraite" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <meta name="author" content={CONFIG.author.name} />
     <meta name="google-site-verification" content="GOOGLE_VERIFICATION_CODE" />
     <meta name="msvalidate.01" content="BING_VERIFICATION_CODE" />
@@ -62,5 +69,15 @@ const allSchemas = schema
       <slot />
     </main>
     <Footer />
+    <!-- Clarity analytics (deferred 3s) -->
+    <script is:inline>
+      setTimeout(function(){
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window,document,"clarity","script","CLARITY_PROJECT_ID");
+      },3000);
+    </script>
   </body>
 </html>

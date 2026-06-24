@@ -13,6 +13,14 @@ export function buildWebSiteSchema() {
     url: CONFIG.siteUrl,
     description: CONFIG.description,
     inLanguage: CONFIG.lang,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: CONFIG.siteUrl + '/?q={search_term_string}',
+      },
+      'query-input': 'required name=search_term_string',
+    },
   };
 }
 
@@ -23,6 +31,15 @@ export function buildOrganizationSchema() {
     name: CONFIG.siteName,
     url: CONFIG.siteUrl,
     description: CONFIG.description,
+    logo: {
+      '@type': 'ImageObject',
+      url: CONFIG.siteUrl + '/og-default.png',
+      width: 1200,
+      height: 630,
+    },
+    sameAs: [
+      'https://cnssmaroc.ma',
+    ],
     contactPoint: {
       '@type': 'ContactPoint',
       email: CONFIG.contact,
@@ -34,6 +51,28 @@ export function buildOrganizationSchema() {
       name: CONFIG.author.name,
       url: CONFIG.author.url,
     },
+  };
+}
+
+export function buildPersonSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: CONFIG.author.name,
+    url: CONFIG.author.url,
+    jobTitle: CONFIG.author.credentials,
+    worksFor: {
+      '@type': 'Organization',
+      name: CONFIG.siteName,
+      url: CONFIG.siteUrl,
+    },
+    knowsAbout: [
+      'Cotisations CNSS',
+      'Protection sociale Maroc',
+      'Retraite CNSS',
+      'AMO Maroc',
+      'TVA Maroc',
+    ],
   };
 }
 
@@ -80,6 +119,12 @@ export function buildArticleSchema(opts: {
     url: opts.url,
     datePublished: opts.datePublished,
     dateModified: opts.dateModified,
+    image: {
+      '@type': 'ImageObject',
+      url: CONFIG.siteUrl + '/og-default.png',
+      width: 1200,
+      height: 630,
+    },
     author: {
       '@type': 'Person',
       name: CONFIG.author.name,
@@ -89,6 +134,12 @@ export function buildArticleSchema(opts: {
       '@type': 'Organization',
       name: CONFIG.siteName,
       url: CONFIG.siteUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: CONFIG.siteUrl + '/og-default.png',
+        width: 1200,
+        height: 630,
+      },
     },
     inLanguage: CONFIG.lang,
   };
