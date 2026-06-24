@@ -3,8 +3,8 @@ import Layout from '../../components/layout/Layout.astro';
 import { CONFIG } from '../../config';
 import { buildBreadcrumbSchema, buildArticleSchema, buildFAQSchema } from '../../lib/seo';
 
-const title = 'Guide retraite CNSS Maroc 2025 - Calcul et conditions';
-const description = 'Tout savoir sur la pension de retraite CNSS au Maroc : conditions, formule de calcul, plafond et conseils pour maximiser votre pension. Guide complet 2025.';
+const title = 'Guide retraite CNSS Maroc 2026 - Calcul et conditions';
+const description = 'Tout savoir sur la pension de retraite CNSS au Maroc : conditions, formule de calcul, plafond et conseils pour maximiser votre pension. Guide complet 2026.';
 const url = CONFIG.siteUrl + '/guides/retraite-cnss/';
 
 const faqData = [
@@ -40,8 +40,8 @@ const schemas = [
     title,
     description,
     url,
-    datePublished: '2025-01-15',
-    dateModified: '2025-01-15',
+    datePublished: '2026-01-15',
+    dateModified: '2026-01-15',
   }),
   buildFAQSchema(faqData),
 ];
@@ -59,7 +59,7 @@ const schemas = [
 
     <header class="mb-10">
       <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-        Guide complet de la retraite CNSS au Maroc (2025)
+        Guide complet de la retraite CNSS au Maroc (2026)
       </h1>
       <p class="text-lg text-gray-600">
         Tout comprendre sur votre pension de retraite CNSS : conditions d'éligibilité, calcul de la pension, maximisation de vos droits et comparaison avec la CMR.
@@ -67,7 +67,7 @@ const schemas = [
       <div class="mt-4 flex items-center gap-3 text-sm text-gray-500">
         <span>Par <a href={CONFIG.author.url} class="text-brand-700 hover:underline">{CONFIG.author.name}</a></span>
         <span>({CONFIG.author.credentials})</span>
-        <span>- Mis à jour le 15 janvier 2025</span>
+        <span>- Mis à jour le 15 janvier 2026</span>
       </div>
     </header>
 

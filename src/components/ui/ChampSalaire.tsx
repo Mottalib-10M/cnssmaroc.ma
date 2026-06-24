@@ -28,6 +28,12 @@ export default function ChampSalaire({
     onChange(cleaned);
   }
 
+  function handleBlur() {
+    if (!value) return;
+    const stripped = value.replace(/^0+(?=\d)/, '');
+    if (stripped !== value) onChange(stripped);
+  }
+
   return (
     <div>
       <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-1">
@@ -40,6 +46,7 @@ export default function ChampSalaire({
           inputMode="decimal"
           value={value}
           onChange={(e) => handleChange(e.target.value)}
+          onBlur={handleBlur}
           placeholder={placeholder}
           className="w-full rounded-lg border border-gray-300 px-4 py-3 pr-14 text-lg focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 outline-none transition-all"
           autoComplete="off"

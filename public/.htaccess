@@ -13,7 +13,12 @@ RewriteRule ^(.*)$ /$1/ [L,R=301]
   Header set X-Content-Type-Options "nosniff"
   Header set X-Frame-Options "SAMEORIGIN"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  Header set Permissions-Policy "interest-cohort=()"
 </IfModule>
+
+# Custom 404
+ErrorDocument 404 /404/index.html
 
 # Caching
 <IfModule mod_expires.c>

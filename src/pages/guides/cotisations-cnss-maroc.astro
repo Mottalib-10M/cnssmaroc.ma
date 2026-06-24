@@ -3,13 +3,13 @@ import Layout from '../../components/layout/Layout.astro';
 import { CONFIG } from '../../config';
 import { buildBreadcrumbSchema, buildArticleSchema, buildFAQSchema } from '../../lib/seo';
 
-const title = 'Guide complet des cotisations CNSS au Maroc 2025';
-const description = 'Tout savoir sur les cotisations CNSS au Maroc : taux détaillés, plafonds, répartition salarié-employeur et exemples de calcul. Guide complet à jour pour 2025.';
+const title = 'Guide complet des cotisations CNSS Maroc : taux 2026';
+const description = 'Tout savoir sur les cotisations CNSS au Maroc : taux détaillés, plafonds, répartition salarié-employeur et exemples de calcul. Guide complet à jour pour 2026.';
 const url = CONFIG.siteUrl + '/guides/cotisations-cnss-maroc/';
 
 const faqData = [
   {
-    q: "Quel est le taux total de cotisation CNSS au Maroc en 2025 ?",
+    q: "Quel est le taux total de cotisation CNSS au Maroc en 2026 ?",
     a: "Le taux total est d'environ 27,83% du salaire brut : 6,74% à la charge du salarié (prestations sociales 0,52%, AMO 2,26%, retraite 3,96%) et environ 21,09% à la charge de l'employeur (allocations familiales 6,40%, prestations sociales 1,05%, AMO 4,11%, retraite 7,93%, formation 1,60%).",
   },
   {
@@ -40,8 +40,8 @@ const schemas = [
     title,
     description,
     url,
-    datePublished: '2025-01-15',
-    dateModified: '2025-01-15',
+    datePublished: '2026-01-15',
+    dateModified: '2026-01-15',
   }),
   buildFAQSchema(faqData),
 ];
@@ -59,7 +59,7 @@ const schemas = [
 
     <header class="mb-10">
       <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-        Guide complet des cotisations CNSS au Maroc (2025)
+        Guide complet des cotisations CNSS au Maroc (2026)
       </h1>
       <p class="text-lg text-gray-600">
         Comprendre en détail chaque ligne de cotisation, les plafonds, la répartition entre salarié et employeur, et l'évolution historique du système.
@@ -67,12 +67,12 @@ const schemas = [
       <div class="mt-4 flex items-center gap-3 text-sm text-gray-500">
         <span>Par <a href={CONFIG.author.url} class="text-brand-700 hover:underline">{CONFIG.author.name}</a></span>
         <span>({CONFIG.author.credentials})</span>
-        <span>- Mis à jour le 15 janvier 2025</span>
+        <span>- Mis à jour le 15 janvier 2026</span>
       </div>
     </header>
 
     <div class="prose prose-gray max-w-none">
-      <p>La Caisse Nationale de Sécurité Sociale (CNSS) est l'organisme public marocain en charge de la gestion du régime de sécurité sociale obligatoire pour les salariés du secteur privé. Le financement de ce régime repose sur un système de cotisations sociales partagées entre l'employeur et le salarié. Ce guide détaille l'ensemble des cotisations en vigueur en 2025, leurs taux, les règles de plafonnement et leur répartition.</p>
+      <p>La Caisse Nationale de Sécurité Sociale (CNSS) est l'organisme public marocain en charge de la gestion du régime de sécurité sociale obligatoire pour les salariés du secteur privé. Le financement de ce régime repose sur un système de cotisations sociales partagées entre l'employeur et le salarié. Ce guide détaille l'ensemble des cotisations en vigueur en 2026, leurs taux, les règles de plafonnement et leur répartition.</p>
 
       <h2>Vue d'ensemble du système de cotisations</h2>
 

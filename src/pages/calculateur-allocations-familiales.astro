@@ -4,8 +4,8 @@ import AllocFamiliales from '../components/calculateurs/AllocFamiliales';
 import { CONFIG } from '../config';
 import { buildFAQSchema } from '../lib/seo';
 
-const title = 'Calculateur allocations familiales CNSS 2025 Maroc';
-const description = 'Calculez vos allocations familiales CNSS au Maroc selon le nombre d\'enfants à charge. Barème : 300 DH pour les 3 premiers, 36 DH pour les suivants en 2025.';
+const title = 'Calculateur allocations familiales CNSS 2026 Maroc';
+const description = 'Calculez vos allocations familiales CNSS au Maroc selon le nombre d\'enfants à charge. Barème : 300 DH pour les 3 premiers, 36 DH pour les suivants en 2026.';
 const breadcrumbs = [
   { name: 'Accueil', url: CONFIG.siteUrl + '/' },
   { name: 'Allocations familiales', url: CONFIG.siteUrl + '/calculateur-allocations-familiales/' },
@@ -13,7 +13,7 @@ const breadcrumbs = [
 
 const faqData = [
   {
-    q: 'Quel est le montant des allocations familiales CNSS par enfant en 2025 ?',
+    q: 'Quel est le montant des allocations familiales CNSS par enfant en 2026 ?',
     a: 'Les allocations familiales CNSS sont de 300 DH par mois pour chacun des 3 premiers enfants, et de 36 DH par mois pour chacun des 3 enfants suivants (4e, 5e et 6e). Au-delà de 6 enfants, aucune allocation supplémentaire n\'est versée.',
   },
   {
@@ -43,7 +43,7 @@ const faqData = [
   extraSchema={buildFAQSchema(faqData)}
 >
   <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-    Calculateur d'allocations familiales CNSS 2025
+    Calculateur d'allocations familiales CNSS 2026
   </h1>
   <p class="text-lg text-gray-600 mb-8 max-w-3xl">
     Estimez le montant de vos allocations familiales CNSS en fonction du nombre d'enfants à votre charge. Résultat mensuel et annuel.
@@ -58,11 +58,19 @@ const faqData = [
 
     <h3>Barème en vigueur</h3>
 
-    <p>Le barème des allocations familiales CNSS en 2025 est le suivant : 300 DH par mois pour chacun des trois premiers enfants, et 36 DH par mois pour chacun des trois enfants suivants (4e, 5e et 6e). Au-delà de 6 enfants, aucune allocation supplémentaire n'est versée. Ainsi, le montant maximum est de 1 008 DH par mois pour un salarié ayant 6 enfants à charge (900 + 108).</p>
+    <p>Le barème des allocations familiales CNSS en 2026 est le suivant : 300 DH par mois pour chacun des trois premiers enfants, et 36 DH par mois pour chacun des trois enfants suivants (4e, 5e et 6e). Au-delà de 6 enfants, aucune allocation supplémentaire n'est versée. Ainsi, le montant maximum est de 1 008 DH par mois pour un salarié ayant 6 enfants à charge (900 + 108).</p>
 
     <h3>Conditions d'attribution</h3>
 
     <p>Pour bénéficier des allocations familiales, le salarié doit être déclaré à la CNSS et justifier d'au moins 108 jours de cotisation au cours des six mois civils précédant le début de droit. Les enfants doivent avoir moins de 12 ans en principe, ou moins de 18 ans s'ils sont en apprentissage, ou moins de 21 ans s'ils poursuivent des études, ou sans limite d'âge s'ils sont handicapés.</p>
+
+    <h3>Comment faire la demande</h3>
+
+    <p>La demande d'allocations familiales se fait auprès de la délégation CNSS la plus proche de votre domicile ou de votre lieu de travail. Vous devez fournir une copie de votre carte nationale, les actes de naissance des enfants et un certificat de scolarité pour les enfants de plus de 12 ans. Le traitement du dossier prend généralement deux à quatre semaines. Le versement est mensuel et peut être consulté sur le portail Damancom ou via l'application mobile de la CNSS.</p>
+
+    <h3>Montants détaillés et exemples</h3>
+
+    <p>Voici des exemples concrets selon le nombre d'enfants à charge. Avec un enfant, vous recevez 300 DH par mois soit 3 600 DH par an. Avec deux enfants, le montant passe à 600 DH mensuels soit 7 200 DH annuels. Trois enfants donnent droit à 900 DH par mois. Au-delà, chaque enfant supplémentaire (jusqu'au sixième) ajoute 36 DH mensuels. Ces allocations sont exonérées de l'impôt sur le revenu et constituent un complément de ressources non négligeable pour les familles marocaines, en particulier celles à revenus modestes.</p>
   </section>
 
   <section class="mt-16">
