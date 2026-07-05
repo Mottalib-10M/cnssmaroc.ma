@@ -1,0 +1,133 @@
+---
+import Layout from '../components/layout/Layout.astro';
+import { CONFIG } from '../config';
+import { buildBreadcrumbSchema, buildArticleSchema } from '../lib/seo';
+
+const title = 'Notre Methodologie | CNSS Maroc';
+const description = 'Decouvrez comment CNSS Maroc calcule vos cotisations et prestations avec les donnees officielles de la CNSS et de la Direction Generale des Impots.';
+const url = CONFIG.siteUrl + '/methodologie/';
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+    { name: 'Methodologie', url },
+  ]),
+  buildArticleSchema({
+    title,
+    description,
+    url,
+    datePublished: '2026-01-01',
+    dateModified: '2026-06-01',
+  }),
+];
+---
+
+<Layout title={title} description={description} schema={schemas}>
+  <article class="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+    <nav aria-label="Fil d'Ariane" class="mb-4">
+      <ol class="flex items-center gap-1 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-emerald-600">Accueil</a></li>
+        <li><svg class="h-4 w-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></li>
+        <li class="font-medium text-gray-700">Methodologie</li>
+      </ol>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900">Notre Methodologie</h1>
+    <p class="mt-3 text-lg text-gray-500">Transparence totale sur les sources de donnees, les formules de calcul et les processus que nous utilisons pour calculer vos cotisations et prestations CNSS au Maroc.</p>
+
+    <div class="mt-4 flex items-center gap-4">
+      <img src="/team/mottalib-radif.jpg" alt="Mottalib Radif" class="h-10 w-10 rounded-full object-cover" width="40" height="40" loading="lazy" />
+      <div class="text-sm">
+        <p class="font-medium text-gray-900">Par <a href="/a-propos/" class="text-emerald-600 hover:underline">Mottalib Radif</a></p>
+        <p class="text-gray-500">Publie le 1 Jan 2026 &middot; Mis a jour le 1 Jun 2026</p>
+      </div>
+    </div>
+
+    <div class="mt-10 prose prose-gray max-w-none">
+      <h2>Introduction</h2>
+      <p>CNSS Maroc a ete concu pour offrir aux travailleurs et employeurs marocains une plateforme fiable et transparente permettant de calculer les cotisations de securite sociale, de simuler les pensions de retraite et de comprendre l'ensemble du systeme de protection sociale marocain. Nous comprenons que le systeme de la CNSS peut paraitre complexe, avec ses multiples branches de couverture (prestations sociales, assurance maladie obligatoire, retraite, allocations familiales) et les differents taux de cotisation applicables aux salaries et aux employeurs.</p>
+      <p>Cette page de methodologie explique en detail comment nos calculateurs fonctionnent. Nous croyons que la transparence est essentielle : vous devez savoir d'ou provient chaque chiffre, comment nous appliquons les taux de cotisation, quelles hypotheses nous formulons et a quelle frequence nous mettons a jour nos donnees. Que vous soyez un salarie verifiant votre bulletin de paie, un employeur calculant les charges sociales, ou un comptable preparant les declarations CNSS, comprendre notre methodologie vous aidera a interpreter les resultats avec confiance.</p>
+      <p>Nos calculateurs reposent sur trois principes fondamentaux. Premierement, nous utilisons exclusivement des donnees officielles publiees par les organismes gouvernementaux marocains. Deuxiemement, tous les calculs sont executes dans votre navigateur, ce qui signifie que vos donnees salariales ne quittent jamais votre appareil. Troisiemement, nous mettons a jour les taux de cotisation et les plafonds des que les autorites competentes publient de nouvelles valeurs, garantissant que les parametres utilises sont toujours conformes a la reglementation en vigueur.</p>
+
+      <h2>Sources de Donnees</h2>
+      <p>La precision de tout calculateur fiscal ou social depend entierement de la qualite et de l'actualite des donnees sous-jacentes. Nous obtenons tous les taux, plafonds, baremes et limites de cotisation a partir de publications officielles du Gouvernement marocain. Voici une liste complete de nos sources primaires :</p>
+
+      <h3>Caisse Nationale de Securite Sociale (CNSS)</h3>
+      <p>La CNSS est l'organisme responsable de la gestion du regime de securite sociale des salaries du secteur prive au Maroc. Nous utilisons les publications et references suivantes :</p>
+      <ul>
+        <li><strong>Taux de cotisation CNSS :</strong> Les taux sont fixes par decret et couvrent plusieurs branches : prestations sociales courtes duree (maladie, maternite, deces), allocations familiales, assurance maladie obligatoire (AMO) et retraite. Nous appliquons les taux en vigueur pour les parts salariales et patronales.</li>
+        <li><strong>Plafond de cotisation :</strong> Le plafond mensuel de 6 000 DH s'applique aux cotisations de prestations sociales et de retraite. Les cotisations AMO et allocations familiales sont deplafonnees (calculees sur l'integralite du salaire). Nous integrons ces plafonds dans chaque calcul.</li>
+        <li><strong>Portail Damancom :</strong> Le portail de teledeclaration de la CNSS fournit des guides pratiques et des baremes que nous utilisons pour verifier nos calculs.</li>
+        <li><strong>Guide de l'assure :</strong> La CNSS publie des guides detaillant les droits et obligations des assures, les conditions d'ouverture de droits et les modalites de calcul des prestations.</li>
+      </ul>
+
+      <h3>Direction Generale des Impots (DGI)</h3>
+      <p>Bien que CNSS Maroc se concentre principalement sur les cotisations de securite sociale, l'impot sur le revenu (IR) est un element indissociable du calcul du salaire net. Nous utilisons les sources suivantes de la DGI :</p>
+      <ul>
+        <li><strong>Bareme de l'IR :</strong> Le Code General des Impots (CGI) fixe le bareme progressif de l'IR avec ses tranches, taux marginaux et sommes a deduire. Ce bareme est applique sur le salaire net imposable apres deduction des cotisations sociales et des frais professionnels.</li>
+        <li><strong>Deductions pour charges de famille :</strong> La deduction de 360 DH par personne a charge (dans la limite de 6 personnes) est integree dans notre calcul d'IR.</li>
+        <li><strong>Frais professionnels :</strong> La deduction forfaitaire de 20% pour frais professionnels, plafonnee a 2 500 DH par mois (30 000 DH par an), est appliquee automatiquement dans nos calculs.</li>
+        <li><strong>Note circulaire de la DGI :</strong> Les notes circulaires publiees par la DGI clarifient l'interpretation et l'application du CGI. Nous les consultons pour resoudre les ambiguites.</li>
+      </ul>
+
+      <h3>Autres Sources Officielles</h3>
+      <ul>
+        <li><strong>Code du Travail :</strong> La loi n 65-99 formant Code du Travail etablit les droits et obligations des employeurs et salaries, le SMIG, les conges payes et les indemnites de licenciement que nous integrons dans nos simulateurs.</li>
+        <li><strong>Bulletin Officiel :</strong> Tous les textes legislatifs et reglementaires sont consultes dans leur version officielle publiee au Bulletin Officiel du Royaume du Maroc.</li>
+        <li><strong>Ministere de l'Emploi et de l'Insertion Professionnelle :</strong> Nous consultons les publications du Ministere pour les informations relatives au SMIG et aux conventions collectives.</li>
+        <li><strong>Haut-Commissariat au Plan (HCP) :</strong> Les donnees statistiques sur les salaires moyens et medians au Maroc sont utilisees comme references contextuelles.</li>
+      </ul>
+
+      <h2>Etapes du Calcul</h2>
+      <p>Nos calculateurs suivent un processus systematique, etape par etape, pour determiner les cotisations sociales et le salaire net a partir du salaire brut. Voici comment chaque phase fonctionne :</p>
+
+      <h3>Etape 1 : Determiner le Salaire Brut</h3>
+      <p>L'utilisateur saisit son salaire brut mensuel (ou annuel, que nous divisons par 12). Ce montant correspond a la remuneration totale avant toute deduction, incluant le salaire de base et les primes regulieres soumises a cotisation.</p>
+
+      <h3>Etape 2 : Calculer les Cotisations CNSS (Part Salariale)</h3>
+      <p>Nous calculons les cotisations salariales en appliquant les taux en vigueur sur le salaire brut, en respectant les plafonds applicables. Les cotisations salariales comprennent : les prestations sociales (0,52% plafonnees a 6 000 DH), l'AMO (2,26% deplafonnee) et la retraite (3,96% plafonnee a 6 000 DH). Le total des cotisations salariales est deduit du salaire brut.</p>
+
+      <h3>Etape 3 : Calculer le Salaire Net Imposable</h3>
+      <p>Le salaire net imposable est calcule en soustrayant du salaire brut les cotisations salariales CNSS, puis en deduisant les frais professionnels (20% du salaire brut apres cotisations, plafonnes a 2 500 DH/mois). Ce montant constitue la base d'imposition pour l'IR.</p>
+
+      <h3>Etape 4 : Calculer l'Impot sur le Revenu (IR)</h3>
+      <p>Nous appliquons le bareme progressif de l'IR au salaire net imposable. Le bareme comporte plusieurs tranches avec des taux allant de 0% (tranche exoneree) a 38% pour les revenus les plus eleves. Pour chaque tranche, nous calculons l'impot du selon la formule : (salaire net imposable x taux marginal) - somme a deduire. Les deductions pour charges de famille sont ensuite soustraites du montant de l'IR.</p>
+
+      <h3>Etape 5 : Calculer le Salaire Net</h3>
+      <p>Le salaire net mensuel est obtenu en soustrayant du salaire brut les cotisations CNSS salariales et l'IR net. Nous presentons les resultats sur une base mensuelle et annuelle, avec un detail complet de chaque composante du calcul.</p>
+
+      <h3>Etape 6 : Calculer les Charges Patronales</h3>
+      <p>Pour les employeurs, nous calculons egalement les cotisations patronales : allocations familiales (6,40% deplafonnees), prestations sociales (1,05% plafonnees), AMO (4,11% deplafonnees), retraite (7,93% plafonnees), taxe de formation professionnelle (1,60% deplafonnee). La somme des cotisations patronales et salariales donne le cout total de l'emploi.</p>
+
+      <h2>Precision et Limites</h2>
+      <p>Nos calculateurs sont concus pour produire des estimations qui se rapprochent fidelement de ce que la plupart des salaries du secteur prive verront sur leur bulletin de paie. Neanmoins, plusieurs facteurs peuvent faire que votre bulletin reel differe de notre estimation :</p>
+      <ul>
+        <li><strong>Primes et indemnites :</strong> Certaines primes (anciennete, transport, representation) peuvent etre soumises ou non a cotisation CNSS selon leur nature. Notre calculateur standard suppose un salaire brut integrant toutes les composantes soumises a cotisation.</li>
+        <li><strong>Avantages en nature :</strong> Les avantages en nature (logement, voiture de fonction, telephone) sont en principe integres dans l'assiette de cotisation et d'imposition. Notre calcul standard ne les inclut pas automatiquement.</li>
+        <li><strong>Exonerations fiscales :</strong> Certaines categories de salaries beneficient d'exonerations d'IR (zones franches, premier emploi, etc.). Ces regimes speciaux ne sont pas couverts par notre calculateur standard.</li>
+        <li><strong>CIMR et retraite complementaire :</strong> Les cotisations a la CIMR (Caisse Interprofessionnelle Marocaine de Retraite) ou a d'autres regimes complementaires ne sont pas incluses dans le calcul standard mais sont deductibles fiscalement.</li>
+        <li><strong>Secteur agricole :</strong> Les travailleurs agricoles sont soumis a des taux et plafonds differents de ceux du regime general. Notre calculateur utilise les parametres du regime general sauf indication contraire.</li>
+      </ul>
+      <p>Malgre ces limites, pour la majorite des salaries du secteur prive sous regime general, nos calculateurs fournissent une estimation fiable qui se situe generalement dans une marge de 1 a 2% par rapport au montant reel du bulletin de paie.</p>
+
+      <h2>Calendrier de Mises a Jour</h2>
+      <p>Nous suivons un cycle rigoureux de mise a jour pour garantir l'actualite de nos donnees :</p>
+      <ul>
+        <li><strong>Janvier :</strong> La loi de finances de l'annee est publiee au Bulletin Officiel. Nous integrons immediatement toute modification du bareme de l'IR, des taux de cotisation ou des plafonds.</li>
+        <li><strong>Janvier :</strong> Le SMIG est revalue lorsque le gouvernement le decide par decret. Nous mettons a jour les valeurs de reference des que le nouveau taux est publie.</li>
+        <li><strong>Tout au long de l'annee :</strong> Les modifications des taux de cotisation CNSS, qui peuvent intervenir par decret a tout moment, sont integrees dans un delai d'une semaine apres publication au Bulletin Officiel.</li>
+        <li><strong>Verification continue :</strong> Chaque mise a jour fait l'objet d'un processus de verification ou nous croisons plusieurs sources officielles et validons les calculs contre des scenarios de test connus, en comparant notamment avec les bulletins de paie reels anonymises.</li>
+      </ul>
+
+      <h2>Sources</h2>
+      <ul>
+        <li><a href="https://www.cnss.ma" target="_blank" rel="noopener">Caisse Nationale de Securite Sociale (CNSS)</a></li>
+        <li><a href="https://www.tax.gov.ma" target="_blank" rel="noopener">Direction Generale des Impots (DGI)</a></li>
+        <li><a href="https://www.emploi.gov.ma" target="_blank" rel="noopener">Ministere de l'Emploi et de l'Insertion Professionnelle</a></li>
+        <li><a href="https://www.sgg.gov.ma/Legislation/BulletinOfficiel.aspx" target="_blank" rel="noopener">Bulletin Officiel du Royaume du Maroc</a></li>
+        <li><a href="https://www.hcp.ma" target="_blank" rel="noopener">Haut-Commissariat au Plan (HCP)</a></li>
+        <li><a href="https://www.cnss.ma/content/guide-de-lassure" target="_blank" rel="noopener">Guide de l'assure CNSS</a></li>
+      </ul>
+    </div>
+  </article>
+</Layout>

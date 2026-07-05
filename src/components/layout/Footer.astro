@@ -5,6 +5,7 @@ const year = new Date().getFullYear();
 
 <footer class="bg-gray-900 text-gray-300 mt-16">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+    <nav aria-label="Navigation de pied de page">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
       <div class="md:col-span-1">
         <p class="font-bold text-white text-lg mb-2">{CONFIG.siteName}</p>
@@ -30,6 +31,8 @@ const year = new Date().getFullYear();
           <li><a href="/guides/retraite-cnss/" class="hover:text-white transition-colors">Guide retraite CNSS</a></li>
           <li><a href="/guides/tva-maroc/" class="hover:text-white transition-colors">Guide TVA Maroc</a></li>
           <li><a href="/guides/amo-maroc/" class="hover:text-white transition-colors">Guide AMO Maroc</a></li>
+          <li><a href="/glossaire/" class="hover:text-white transition-colors">Glossaire CNSS</a></li>
+          <li><a href="/actualites/" class="hover:text-white transition-colors">Actualites</a></li>
         </ul>
       </div>
 
@@ -37,13 +40,26 @@ const year = new Date().getFullYear();
         <h3 class="font-semibold text-white mb-3 text-sm uppercase tracking-wider">Informations</h3>
         <ul class="space-y-2 text-sm">
           <li><a href="/a-propos/" class="hover:text-white transition-colors">À propos</a></li>
+          <li><a href="/methodologie/" class="hover:text-white transition-colors">Methodologie</a></li>
+          <li><a href="/contact/" class="hover:text-white transition-colors">Contact</a></li>
+          <li><a href="/confidentialite/" class="hover:text-white transition-colors">Confidentialité</a></li>
           <li><a href="/mentions-legales/" class="hover:text-white transition-colors">Mentions légales</a></li>
-          <li><a href={`mailto:${CONFIG.contact}`} class="hover:text-white transition-colors">{CONFIG.contact}</a></li>
         </ul>
       </div>
     </div>
+    </nav>
 
-    <div class="border-t border-gray-800 mt-10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+    <div class="border-t border-gray-800 mt-10 pt-6">
+      <h3 class="font-semibold text-white mb-3 text-sm uppercase tracking-wider">Sites utiles</h3>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+        <li><a href="https://salairemaroc.ma" target="_blank" rel="noopener" class="hover:text-white transition-colors">Calculateur Salaire Net Maroc</a></li>
+        <li><a href="https://autoentrepreneurmaroc.ma" target="_blank" rel="noopener" class="hover:text-white transition-colors">Guide Auto-Entrepreneur Maroc</a></li>
+        <li><a href="https://banquesmaroc.ma" target="_blank" rel="noopener" class="hover:text-white transition-colors">Comparateur Banques Maroc</a></li>
+        <li><a href="https://emploipublic.ma" target="_blank" rel="noopener" class="hover:text-white transition-colors">Concours Fonction Publique Maroc</a></li>
+      </ul>
+    </div>
+
+    <div class="border-t border-gray-800 mt-6 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-500">
       <p>&copy; {year} {CONFIG.siteName}. Tous droits réservés.</p>
       <p>Par <a href={CONFIG.author.url} class="text-gray-400 hover:text-white transition-colors">{CONFIG.author.name}</a> ({CONFIG.author.credentials})</p>
     </div>

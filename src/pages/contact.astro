@@ -1,0 +1,71 @@
+---
+import Layout from '../components/layout/Layout.astro';
+import { CONFIG } from '../config';
+import { buildBreadcrumbSchema } from '../lib/seo';
+
+const title = 'Contactez-nous - CNSS Maroc | Questions et Assistance';
+const description = 'Contactez l\'équipe CNSS Maroc pour vos questions sur les cotisations, la retraite et la protection sociale. Réponse sous 48h par email à contact@cnssmaroc.ma.';
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+    { name: 'Contact', url: CONFIG.siteUrl + '/contact/' },
+  ]),
+];
+---
+
+<Layout title={title} description={description} schema={schemas}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+    <nav aria-label="Fil d'Ariane" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-brand-700">Accueil</a></li>
+        <li class="flex items-center gap-1"><span>/</span><span class="text-gray-800 font-medium">Contact</span></li>
+      </ol>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">Contactez-nous</h1>
+
+    <div class="prose prose-gray max-w-none">
+      <p>Vous avez une question sur nos calculateurs, nos guides ou les informations publiées sur <strong>CNSS Maroc</strong> ? Nous sommes à votre écoute. Notre objectif est de fournir des outils fiables et des informations précises sur la protection sociale au Maroc, et vos retours nous aident à nous améliorer continuellement.</p>
+
+      <h2>Nous écrire par email</h2>
+
+      <p>Le moyen le plus efficace de nous contacter est par email. Vous pouvez nous écrire à l'adresse suivante :</p>
+
+      <p class="text-lg"><strong><a href={`mailto:${CONFIG.contact}`}>{CONFIG.contact}</a></strong></p>
+
+      <p>Nous nous efforçons de répondre à tous les messages dans un délai de <strong>48 heures ouvrables</strong>. Les demandes reçues le week-end ou les jours fériés seront traitées dès le jour ouvrable suivant.</p>
+
+      <h2>Quand nous contacter ?</h2>
+
+      <p>N'hésitez pas à nous écrire dans les cas suivants :</p>
+
+      <ul>
+        <li><strong>Signalement d'erreur :</strong> si vous constatez une erreur dans un calcul, un taux ou une information publiée sur le site, merci de nous le signaler avec le maximum de détails (page concernée, valeur attendue, source officielle).</li>
+        <li><strong>Suggestion d'amélioration :</strong> si vous souhaitez voir un nouveau calculateur, un nouveau guide ou une fonctionnalité supplémentaire.</li>
+        <li><strong>Question sur un calcul :</strong> si vous ne comprenez pas un résultat obtenu avec nos outils ou si vous avez besoin d'une clarification sur la méthodologie utilisée.</li>
+        <li><strong>Information obsolète :</strong> si une modification législative ou réglementaire n'est pas encore reflétée sur notre site.</li>
+      </ul>
+
+      <h2>Questions fréquentes</h2>
+
+      <h3>Vos calculateurs sont-ils officiels ?</h3>
+      <p>Non. CNSS Maroc est un site indépendant et informatif. Nos calculateurs sont basés sur les taux et barèmes officiels publiés par la CNSS, la CMR et la DGI, mais ils ne se substituent pas aux calculs officiels de ces organismes. Pour des décomptes officiels, adressez-vous directement à la CNSS ou à un expert-comptable agréé.</p>
+
+      <h3>Mes données sont-elles collectées lorsque j'utilise un calculateur ?</h3>
+      <p>Non. Tous les calculs sont effectués entièrement dans votre navigateur. Aucune donnée saisie dans nos outils n'est transmise à un serveur. Consultez notre <a href="/confidentialite/">politique de confidentialité</a> pour plus de détails.</p>
+
+      <h3>Puis-je intégrer vos calculateurs sur mon site ?</h3>
+      <p>Nous proposons des versions intégrables de certains calculateurs. Contactez-nous par email pour discuter des modalités d'intégration.</p>
+
+      <h2>Avertissement</h2>
+
+      <p>CNSS Maroc ne fournit pas de conseils juridiques, fiscaux ou comptables personnalisés. Pour des questions spécifiques à votre situation individuelle (litiges avec la CNSS, calcul de droits personnels, contestation de cotisations), nous vous recommandons de consulter un expert-comptable, un avocat spécialisé en droit social ou de contacter directement les services de la <a href="https://www.cnss.ma" target="_blank" rel="noopener">CNSS</a>.</p>
+    </div>
+
+    <div class="mt-10 p-6 rounded-xl bg-gray-50 border border-gray-200">
+      <p class="text-sm text-gray-600"><strong>Responsable éditorial :</strong> {CONFIG.author.name}, {CONFIG.author.credentials}</p>
+      <p class="text-sm text-gray-600 mt-1"><strong>Email :</strong> <a href={`mailto:${CONFIG.contact}`} class="text-brand-700 hover:underline">{CONFIG.contact}</a></p>
+    </div>
+  </div>
+</Layout>

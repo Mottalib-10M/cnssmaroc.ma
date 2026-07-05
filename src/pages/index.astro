@@ -30,9 +30,22 @@ const faqData = [
   },
 ];
 
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mottalib Radif",
+  "jobTitle": "Personal Finance Expert",
+  "alumniOf": {
+    "@type": "EducationalOrganization",
+    "name": "INSEAD"
+  },
+  "url": "https://cnssmaroc.ma/a-propos/"
+};
+
 const schemas = [
   buildBreadcrumbSchema([{ name: 'Accueil', url: CONFIG.siteUrl + '/' }]),
   buildFAQSchema(faqData),
+  personSchema,
 ];
 ---
 

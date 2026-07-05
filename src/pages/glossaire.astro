@@ -1,0 +1,271 @@
+---
+import Layout from '../components/layout/Layout.astro';
+import { CONFIG } from '../config';
+import { buildBreadcrumbSchema } from '../lib/seo';
+
+const title = 'Glossaire CNSS Maroc 2026 : Tous les Termes Définis';
+const description = 'Glossaire CNSS Maroc : définitions claires des termes de la sécurité sociale, cotisations, retraite, AMO et prestations sociales au Maroc. Guide complet.';
+
+const breadcrumbs = [
+  { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+  { name: 'Glossaire', url: CONFIG.siteUrl + '/glossaire/' },
+];
+
+const definedTermSetSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTermSet',
+  name: 'Glossaire CNSS Maroc',
+  description: 'Termes et définitions relatifs à la Caisse Nationale de Sécurité Sociale au Maroc.',
+  inLanguage: 'fr',
+  url: CONFIG.siteUrl + '/glossaire/',
+};
+
+const schemas = [
+  buildBreadcrumbSchema(breadcrumbs),
+  definedTermSetSchema,
+];
+
+const letters = ['A', 'B', 'C', 'D', 'I', 'M', 'P', 'R', 'S', 'T'];
+---
+
+<Layout title={title} description={description} schema={schemas}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+    <nav aria-label="Fil d'Ariane" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-brand-700">Accueil</a></li>
+        <li class="flex items-center gap-1"><span>/</span><span class="text-gray-800 font-medium">Glossaire</span></li>
+      </ol>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Glossaire CNSS Maroc</h1>
+    <p class="text-lg text-gray-600 mb-8 max-w-3xl">
+      Retrouvez les définitions de tous les termes liés à la <strong>Caisse Nationale de Sécurité Sociale</strong> au Maroc : cotisations, prestations, retraite, assurance maladie et plus encore.
+    </p>
+
+    <!-- Navigation A-Z -->
+    <nav aria-label="Navigation alphabétique" class="mb-10 flex flex-wrap gap-2">
+      {letters.map((letter) => (
+        <a href={`#${letter}`} class="w-9 h-9 flex items-center justify-center rounded-lg bg-gray-100 text-sm font-semibold text-gray-700 hover:bg-brand-700 hover:text-white transition-colors">
+          {letter}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Glossaire -->
+    <div class="space-y-10">
+
+      <!-- A -->
+      <section id="A">
+        <h2 class="text-2xl font-bold text-brand-700 mb-4 border-b border-gray-200 pb-2">A</h2>
+        <dl class="space-y-4">
+          <div>
+            <dt class="font-semibold text-gray-900">Affiliation</dt>
+            <dd class="text-gray-600 mt-1">Acte par lequel un employeur s'inscrit auprès de la CNSS pour déclarer ses salariés. L'affiliation est obligatoire pour toute entreprise employant du personnel salarié au Maroc.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">Allocation de décès</dt>
+            <dd class="text-gray-600 mt-1">Capital versé par la CNSS aux ayants droit d'un assuré décédé. Ce montant forfaitaire aide à couvrir les frais funéraires et à soutenir la famille du défunt.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">Allocation familiale</dt>
+            <dd class="text-gray-600 mt-1">Prestation mensuelle versée par la CNSS aux salariés ayant des enfants à charge. Le montant varie selon le nombre d'enfants. Utilisez notre <a href="/calculateur-allocations-familiales/" class="text-brand-700 hover:underline">calculateur d'allocations familiales</a> pour estimer vos droits.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">AMO (Assurance Maladie Obligatoire)</dt>
+            <dd class="text-gray-600 mt-1">Régime d'assurance maladie obligatoire géré par la CNSS pour les salariés du secteur privé. L'AMO couvre une partie des frais médicaux, d'hospitalisation et de médicaments. Consultez notre <a href="/guides/amo-maroc/" class="text-brand-700 hover:underline">guide AMO Maroc</a> pour en savoir plus.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">Accident du travail</dt>
+            <dd class="text-gray-600 mt-1">Accident survenu par le fait ou à l'occasion du travail, ou pendant le trajet domicile-travail. Le salarié victime bénéficie d'une prise en charge spécifique et d'indemnités journalières.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">Assiette de cotisation</dt>
+            <dd class="text-gray-600 mt-1">Base de calcul sur laquelle sont appliqués les taux de <a href="/calculateur-cotisations-cnss/" class="text-brand-700 hover:underline">cotisations CNSS</a>. Elle comprend le salaire brut et certaines primes, dans la limite du plafond de cotisation.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">Attestation CNSS</dt>
+            <dd class="text-gray-600 mt-1">Document officiel délivré par la CNSS attestant de l'affiliation d'un employeur ou de l'immatriculation d'un salarié. Ce document est souvent requis dans les procédures administratives.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- B -->
+      <section id="B">
+        <h2 class="text-2xl font-bold text-brand-700 mb-4 border-b border-gray-200 pb-2">B</h2>
+        <dl class="space-y-4">
+          <div>
+            <dt class="font-semibold text-gray-900">Bordereau de paiement</dt>
+            <dd class="text-gray-600 mt-1">Document récapitulatif que l'employeur transmet à la CNSS avec le paiement des cotisations. Il détaille les salaires déclarés et les montants des cotisations salariales et patronales.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">Bulletin de paie</dt>
+            <dd class="text-gray-600 mt-1">Document remis mensuellement au salarié détaillant le salaire brut, les retenues (CNSS, AMO, IR) et le salaire net. C'est un document obligatoire selon le Code du travail marocain.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- C -->
+      <section id="C">
+        <h2 class="text-2xl font-bold text-brand-700 mb-4 border-b border-gray-200 pb-2">C</h2>
+        <dl class="space-y-4">
+          <div>
+            <dt class="font-semibold text-gray-900">Carte CNSS</dt>
+            <dd class="text-gray-600 mt-1">Carte délivrée à chaque assuré portant son numéro d'immatriculation CNSS. Elle facilite l'identification auprès des prestataires de soins et des services administratifs.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">CIMR (Caisse Interprofessionnelle Marocaine de Retraite)</dt>
+            <dd class="text-gray-600 mt-1">Organisme gérant le régime de retraite complémentaire au Maroc. La CIMR propose des pensions supplémentaires pour les salariés affiliés, en complément de la retraite CNSS.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">CNSS (Caisse Nationale de Sécurité Sociale)</dt>
+            <dd class="text-gray-600 mt-1">Organisme public marocain chargé de la protection sociale des salariés du secteur privé. La CNSS gère les allocations familiales, les prestations à court terme et les pensions de retraite. Utilisez notre <a href="/calculateur-cotisations-cnss/" class="text-brand-700 hover:underline">calculateur de cotisations CNSS</a> pour estimer vos contributions.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">Congé de maternité</dt>
+            <dd class="text-gray-600 mt-1">Période de repos accordée à la salariée enceinte, d'une durée de 14 semaines. Pendant ce congé, la CNSS verse des indemnités journalières de maternité pour compenser la perte de salaire.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">Cotisation patronale</dt>
+            <dd class="text-gray-600 mt-1">Part des cotisations sociales prise en charge par l'employeur. Elle couvre les allocations familiales, les prestations sociales et l'AMO. Simulez les montants avec notre <a href="/calculateur-cotisations-cnss/" class="text-brand-700 hover:underline">calculateur CNSS</a>.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">Cotisation salariale</dt>
+            <dd class="text-gray-600 mt-1">Part des cotisations sociales prélevée directement sur le salaire brut du salarié. Elle finance les prestations à court et long terme ainsi que l'AMO.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- D -->
+      <section id="D">
+        <h2 class="text-2xl font-bold text-brand-700 mb-4 border-b border-gray-200 pb-2">D</h2>
+        <dl class="space-y-4">
+          <div>
+            <dt class="font-semibold text-gray-900">Déclaration de salaire</dt>
+            <dd class="text-gray-600 mt-1">Formulaire mensuel ou trimestriel que l'employeur transmet à la CNSS, déclarant les salaires versés à ses salariés. Cette déclaration sert de base au calcul des cotisations.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">Droit à pension</dt>
+            <dd class="text-gray-600 mt-1">Condition requise pour bénéficier d'une pension de retraite CNSS. Le salarié doit justifier d'au moins 3 240 jours de cotisation (soit environ 13,5 ans). Simulez votre pension avec notre <a href="/simulateur-retraite-cnss/" class="text-brand-700 hover:underline">simulateur de retraite CNSS</a>.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- I -->
+      <section id="I">
+        <h2 class="text-2xl font-bold text-brand-700 mb-4 border-b border-gray-200 pb-2">I</h2>
+        <dl class="space-y-4">
+          <div>
+            <dt class="font-semibold text-gray-900">Immatriculation</dt>
+            <dd class="text-gray-600 mt-1">Inscription d'un salarié auprès de la CNSS. Chaque salarié reçoit un numéro d'immatriculation unique qui le suit tout au long de sa carrière professionnelle.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">Indemnité journalière</dt>
+            <dd class="text-gray-600 mt-1">Prestation versée par la CNSS au salarié en cas de maladie ou de maternité pour compenser partiellement la perte de revenu. Le montant dépend du salaire moyen déclaré.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">IR (Impôt sur le Revenu)</dt>
+            <dd class="text-gray-600 mt-1">Impôt progressif prélevé à la source sur les salaires au Maroc. Le barème comporte plusieurs tranches avec des taux allant de 0% à 38%. Le calcul de l'IR intervient après déduction des cotisations CNSS et AMO.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- M -->
+      <section id="M">
+        <h2 class="text-2xl font-bold text-brand-700 mb-4 border-b border-gray-200 pb-2">M</h2>
+        <dl class="space-y-4">
+          <div>
+            <dt class="font-semibold text-gray-900">Maladie professionnelle</dt>
+            <dd class="text-gray-600 mt-1">Maladie contractée par un salarié du fait de son activité professionnelle, figurant sur la liste officielle des maladies professionnelles. Elle ouvre droit à une prise en charge spécifique.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- P -->
+      <section id="P">
+        <h2 class="text-2xl font-bold text-brand-700 mb-4 border-b border-gray-200 pb-2">P</h2>
+        <dl class="space-y-4">
+          <div>
+            <dt class="font-semibold text-gray-900">Pension de vieillesse</dt>
+            <dd class="text-gray-600 mt-1">Pension de retraite versée mensuellement par la CNSS aux assurés ayant atteint l'âge de 60 ans (ou 55 ans pour certains métiers pénibles) et justifiant d'au moins 3 240 jours de cotisation. Estimez le montant avec notre <a href="/simulateur-retraite-cnss/" class="text-brand-700 hover:underline">simulateur de retraite CNSS</a>.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">Pension d'invalidité</dt>
+            <dd class="text-gray-600 mt-1">Prestation versée par la CNSS à un assuré dont la capacité de travail est réduite d'au moins deux tiers, suite à une maladie ou un accident non professionnel.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">Plafond de cotisation</dt>
+            <dd class="text-gray-600 mt-1">Montant maximal du salaire pris en compte pour le calcul de certaines cotisations CNSS. Au-delà de ce plafond (6 000 DH/mois), les cotisations ne sont plus dues sur la partie excédentaire pour les prestations à court terme.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- R -->
+      <section id="R">
+        <h2 class="text-2xl font-bold text-brand-700 mb-4 border-b border-gray-200 pb-2">R</h2>
+        <dl class="space-y-4">
+          <div>
+            <dt class="font-semibold text-gray-900">Régime général</dt>
+            <dd class="text-gray-600 mt-1">Système de protection sociale applicable aux salariés du secteur privé au Maroc, géré par la CNSS. Il couvre les prestations familiales, les indemnités journalières et les pensions de retraite.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">Retraite complémentaire</dt>
+            <dd class="text-gray-600 mt-1">Régime de retraite facultatif venant en complément de la pension CNSS. La CIMR est le principal organisme proposant ce type de couverture au Maroc. Simulez votre pension avec notre <a href="/simulateur-retraite-cmr/" class="text-brand-700 hover:underline">simulateur de retraite CMR</a>.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- S -->
+      <section id="S">
+        <h2 class="text-2xl font-bold text-brand-700 mb-4 border-b border-gray-200 pb-2">S</h2>
+        <dl class="space-y-4">
+          <div>
+            <dt class="font-semibold text-gray-900">SMIG (Salaire Minimum Interprofessionnel Garanti)</dt>
+            <dd class="text-gray-600 mt-1">Salaire horaire minimum légal que tout employeur doit verser à ses salariés dans les secteurs de l'industrie, du commerce et des professions libérales. Le SMIG est fixé par décret et réévalué périodiquement.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- T -->
+      <section id="T">
+        <h2 class="text-2xl font-bold text-brand-700 mb-4 border-b border-gray-200 pb-2">T</h2>
+        <dl class="space-y-4">
+          <div>
+            <dt class="font-semibold text-gray-900">Taux de cotisation</dt>
+            <dd class="text-gray-600 mt-1">Pourcentage appliqué au salaire brut (ou à l'assiette de cotisation) pour déterminer le montant des cotisations CNSS. Les taux diffèrent selon la branche (prestations sociales, AMO, allocations familiales). Calculez vos cotisations avec notre <a href="/calculateur-cotisations-cnss/" class="text-brand-700 hover:underline">calculateur de cotisations CNSS</a>.</dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900">Trimestre validé</dt>
+            <dd class="text-gray-600 mt-1">Unité de mesure utilisée pour déterminer les droits à la retraite. Un trimestre est validé lorsque le salarié a déclaré un certain nombre de jours de cotisation sur une période de trois mois.</dd>
+          </div>
+        </dl>
+      </section>
+
+    </div>
+
+    <!-- Liens utiles -->
+    <section class="mt-12 pt-8 border-t border-gray-200">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Outils et ressources CNSS</h2>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="/calculateur-cotisations-cnss/" class="group rounded-lg border border-gray-200 p-4 hover:border-brand-700 hover:shadow-sm transition-all">
+          <h3 class="font-semibold text-gray-900 group-hover:text-brand-700 text-sm">Calculateur cotisations CNSS</h3>
+          <p class="text-xs text-gray-500 mt-1">Calculez vos cotisations salariales et patronales</p>
+        </a>
+        <a href="/simulateur-retraite-cnss/" class="group rounded-lg border border-gray-200 p-4 hover:border-brand-700 hover:shadow-sm transition-all">
+          <h3 class="font-semibold text-gray-900 group-hover:text-brand-700 text-sm">Simulateur retraite CNSS</h3>
+          <p class="text-xs text-gray-500 mt-1">Estimez votre pension de retraite</p>
+        </a>
+        <a href="/calculateur-allocations-familiales/" class="group rounded-lg border border-gray-200 p-4 hover:border-brand-700 hover:shadow-sm transition-all">
+          <h3 class="font-semibold text-gray-900 group-hover:text-brand-700 text-sm">Allocations familiales</h3>
+          <p class="text-xs text-gray-500 mt-1">Calculez vos prestations familiales</p>
+        </a>
+      </div>
+    </section>
+
+    <div class="mt-12 pt-8 border-t border-gray-200 text-sm text-gray-500">
+      <p>
+        Glossaire fourni par <a href={CONFIG.author.url} class="text-brand-700 hover:underline">{CONFIG.author.name}</a> ({CONFIG.author.credentials}).
+        Données mises à jour en 2026. Consultez la <a href="https://www.cnss.ma" target="_blank" rel="noopener noreferrer" class="text-brand-700 hover:underline">CNSS</a> pour les informations officielles.
+      </p>
+    </div>
+  </div>
+</Layout>

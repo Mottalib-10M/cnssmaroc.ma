@@ -1,0 +1,79 @@
+---
+import Layout from '../components/layout/Layout.astro';
+import { CONFIG } from '../config';
+import { buildBreadcrumbSchema } from '../lib/seo';
+
+const title = 'Politique de Confidentialité - Protection des Données';
+const description = 'Politique de confidentialité de cnssmaroc.ma : aucune donnée personnelle collectée, calculs 100% côté navigateur, pas de cookies de suivi. Transparence totale.';
+
+const schemas = [
+  buildBreadcrumbSchema([
+    { name: 'Accueil', url: CONFIG.siteUrl + '/' },
+    { name: 'Confidentialité', url: CONFIG.siteUrl + '/confidentialite/' },
+  ]),
+];
+---
+
+<Layout title={title} description={description} schema={schemas} noindex={true}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+    <nav aria-label="Fil d'Ariane" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-brand-700">Accueil</a></li>
+        <li class="flex items-center gap-1"><span>/</span><span class="text-gray-800 font-medium">Confidentialité</span></li>
+      </ol>
+    </nav>
+
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">Politique de confidentialité</h1>
+
+    <div class="prose prose-gray max-w-none">
+      <p>Chez <strong>CNSS Maroc</strong> (cnssmaroc.ma), la protection de votre vie privée est une priorité absolue. Cette page décrit en détail comment nous traitons (ou plutôt ne traitons pas) vos données personnelles lorsque vous utilisez notre site et nos outils de calcul.</p>
+
+      <h2>Principe fondamental : aucune collecte de données personnelles</h2>
+
+      <p>CNSS Maroc ne collecte, ne stocke et ne transmet aucune donnée personnelle. Ce principe s'applique à l'ensemble de nos services :</p>
+
+      <ul>
+        <li><strong>Calculateurs et simulateurs :</strong> toutes les données que vous saisissez dans nos outils (salaire, situation familiale, nombre d'enfants, ancienneté, etc.) sont traitées exclusivement dans votre navigateur web. Aucune de ces informations n'est envoyée à nos serveurs ou à des serveurs tiers.</li>
+        <li><strong>Formulaires :</strong> le site ne comporte aucun formulaire d'inscription, de connexion ou de collecte d'informations personnelles.</li>
+        <li><strong>Paiement :</strong> le site est entièrement gratuit et ne propose aucun service payant. Aucune donnée bancaire n'est collectée.</li>
+      </ul>
+
+      <h2>Traitement côté client</h2>
+
+      <p>L'ensemble de nos calculateurs fonctionne grâce à du code JavaScript exécuté localement dans votre navigateur. Concrètement, cela signifie que :</p>
+
+      <ul>
+        <li>Vos données ne quittent jamais votre appareil.</li>
+        <li>Les calculs sont effectués instantanément sur votre machine, sans aucun appel à un serveur distant.</li>
+        <li>Aucune base de données ne contient vos informations personnelles.</li>
+        <li>La fermeture de votre navigateur ou de l'onglet efface toute trace de vos saisies.</li>
+      </ul>
+
+      <h2>Cookies</h2>
+
+      <p>CNSS Maroc n'utilise aucun cookie de suivi publicitaire ou de pistage commercial. Le site peut utiliser des cookies techniques strictement nécessaires au bon fonctionnement du site (par exemple, pour mémoriser vos préférences d'affichage). Ces cookies ne contiennent aucune information personnelle identifiable.</p>
+
+      <h2>Outils d'analyse</h2>
+
+      <p>Le site peut utiliser des outils d'analyse d'audience anonymes (tels que Microsoft Clarity) pour comprendre comment les visiteurs utilisent le site et améliorer l'expérience utilisateur. Ces outils collectent des données agrégées et anonymisées (pages visitées, durée de visite, type d'appareil) mais ne permettent pas d'identifier un utilisateur individuel. Aucune donnée personnelle (nom, email, adresse IP complète) n'est collectée par ces outils.</p>
+
+      <h2>Liens externes</h2>
+
+      <p>Notre site contient des liens vers des sites tiers (CNSS, CMR, DGI, etc.). Nous n'avons aucun contrôle sur les politiques de confidentialité de ces sites externes. Nous vous encourageons à consulter les politiques de confidentialité respectives de ces sites lorsque vous les visitez.</p>
+
+      <h2>Droits des utilisateurs</h2>
+
+      <p>Puisque nous ne collectons aucune donnée personnelle, il n'y a aucune donnée à consulter, modifier ou supprimer. Si vous avez toutefois des questions ou des préoccupations concernant votre vie privée sur notre site, vous pouvez nous contacter à : <a href={`mailto:${CONFIG.contact}`}>{CONFIG.contact}</a>.</p>
+
+      <h2>Modifications de cette politique</h2>
+
+      <p>Nous nous réservons le droit de mettre à jour cette politique de confidentialité. Toute modification sera publiée sur cette page avec la date de mise à jour. Nous vous encourageons à consulter cette page régulièrement.</p>
+
+      <h2>Contact</h2>
+
+      <p>Pour toute question relative à cette politique de confidentialité, vous pouvez nous écrire à : <a href={`mailto:${CONFIG.contact}`}>{CONFIG.contact}</a>.</p>
+
+      <p class="text-sm text-gray-500 mt-8">Dernière mise à jour : juin 2026</p>
+    </div>
+  </div>
+</Layout>
