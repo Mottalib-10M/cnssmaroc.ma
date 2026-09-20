@@ -8,8 +8,8 @@ export const CONFIG = {
   locale: 'fr-MA',
   currency: 'MAD',
   author: {
-    name: 'Mottalib Radif',
-    credentials: 'MBA INSEAD',
+    name: 'Radif Partners',
+    credentials: 'Éditeur de calculateurs et de guides pratiques',
     url: 'https://cnssmaroc.ma/a-propos/',
   },
   contact: 'contact@cnssmaroc.ma',
