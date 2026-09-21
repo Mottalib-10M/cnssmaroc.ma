@@ -28,8 +28,8 @@ const tauxEffectifSalarie = ((result.salarie.total / montant) * 100).toFixed(2);
 const tauxEffectifEmployeur = ((result.employeur.total / montant) * 100).toFixed(2);
 const tauxEffectifTotal = (((result.salarie.total + result.employeur.total) / montant) * 100).toFixed(2);
 
-const title = `Cotisation CNSS pour ${label} DH : calcul detaille 2026`;
-const description = `Cotisations CNSS detaillees pour un salaire brut de ${label} DH/mois au Maroc en 2026 : parts salarie et employeur, net avant IR, cout total et impact retraite.`;
+const title = `Cotisation CNSS pour ${label} DH : calcul détaillé 2026`;
+const description = `Cotisations CNSS détaillées pour un salaire brut de ${label} DH/mois au Maroc en 2026 : parts salarie et employeur, net avant IR, cout total et impact retraite.`;
 const url = CONFIG.siteUrl + `/cotisation/${montant}/`;
 
 const faqData = [
