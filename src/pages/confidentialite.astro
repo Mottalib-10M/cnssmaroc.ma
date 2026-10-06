@@ -4,7 +4,7 @@ import { CONFIG } from '../config';
 import { buildBreadcrumbSchema } from '../lib/seo';
 
 const title = 'Politique de Confidentialité - Protection des Données';
-const description = 'Politique de confidentialité de cnssmaroc.ma : aucune donnée personnelle collectée, calculs 100% côté navigateur, pas de cookies de suivi. Transparence totale.';
+const description = 'Confidentialité de cnssmaroc.ma : aucun cookie, aucune mesure d’audience, simulateurs CNSS calculés dans votre navigateur sans rien garder. Droits loi 09-08.';
 
 const schemas = [
   buildBreadcrumbSchema([
@@ -51,11 +51,15 @@ const schemas = [
 
       <h2>Cookies</h2>
 
-      <p>CNSS Maroc n'utilise aucun cookie de suivi publicitaire ou de pistage commercial. Le site peut utiliser des cookies techniques strictement nécessaires au bon fonctionnement du site (par exemple, pour mémoriser vos préférences d'affichage). Ces cookies ne contiennent aucune information personnelle identifiable.</p>
+      <p>cnssmaroc.ma ne dépose aucun cookie, sur aucune page. Les simulateurs de cotisations CNSS, de retraite CNSS et CMR, d'allocations familiales, d'IPE et de TVA ne mémorisent rien sur votre téléphone ou votre ordinateur : salaire brut, nombre d'enfants ou années de cotisation n'existent que dans l'onglet ouvert. Puisque rien n'est conservé ni mesuré, le site n'affiche aucun bandeau cookies : il n'y a rien à accepter.</p>
 
-      <h2>Outils d'analyse</h2>
+      <h2>Pas de mesure d'audience ni de traceur</h2>
 
-      <p>Le site peut utiliser des outils d'analyse d'audience anonymes (tels que Microsoft Clarity) pour comprendre comment les visiteurs utilisent le site et améliorer l'expérience utilisateur. Ces outils collectent des données agrégées et anonymisées (pages visitées, durée de visite, type d'appareil) mais ne permettent pas d'identifier un utilisateur individuel. Aucune donnée personnelle (nom, email, adresse IP complète) n'est collectée par ces outils.</p>
+      <p>Aucun outil de mesure d'audience n'est installé : pas de Google Analytics, pas de publicité, pas de pixel de réseau social, pas d'enregistrement des visites. Radif Partners, éditeur du site, n'enregistre aucune donnée personnelle sur les salariés, employeurs ou retraités qui l'utilisent.</p>
+
+      <p><strong>Journaux de l'hébergeur.</strong> Les pages sont servies par GitHub Pages (GitHub, Inc., États-Unis), dont les serveurs consignent automatiquement, comme tout hébergeur, l'adresse IP, l'heure, la page appelée et le type de navigateur de chaque requête, pour assurer le service et sa sécurité. L'éditeur n'exploite pas ces journaux, que GitHub conserve sous sa propre politique.</p>
+
+      <p><strong>Si vous nous écrivez.</strong> Un courriel envoyé à l'adresse de contact n'est utilisé que pour vous répondre ; il est effacé une fois la question réglée.</p>
 
       <h2>Liens externes</h2>
 
@@ -63,7 +67,7 @@ const schemas = [
 
       <h2>Droits des utilisateurs</h2>
 
-      <p>Puisque nous ne collectons aucune donnée personnelle, il n'y a aucune donnée à consulter, modifier ou supprimer. Si vous avez toutefois des questions ou des préoccupations concernant votre vie privée sur notre site, vous pouvez nous contacter à : <a href={`mailto:${CONFIG.contact}`}>{CONFIG.contact}</a>.</p>
+      <p>La loi n° 09-08 vous reconnaît des droits d'accès, de rectification et d'opposition sur vos données personnelles. Comme le site n'en conserve aucune, seul un courriel que vous nous auriez adressé pourrait être concerné : écrivez à <a href={`mailto:${CONFIG.contact}`}>{CONFIG.contact}</a>. En cas de difficulté, l'autorité compétente au Maroc est la CNDP, Commission nationale de contrôle de la protection des données à caractère personnel (<a href="https://www.cndp.ma" rel="nofollow noopener" target="_blank">www.cndp.ma</a>).</p>
 
       <h2>Modifications de cette politique</h2>
 
@@ -73,7 +77,7 @@ const schemas = [
 
       <p>Pour toute question relative à cette politique de confidentialité, vous pouvez nous écrire à : <a href={`mailto:${CONFIG.contact}`}>{CONFIG.contact}</a>.</p>
 
-      <p class="text-sm text-gray-500 mt-8">Dernière mise à jour : juin 2026</p>
+      <p class="text-sm text-gray-500 mt-8">Dernière mise à jour : octobre 2026</p>
     </div>
   </div>
 </Layout>
